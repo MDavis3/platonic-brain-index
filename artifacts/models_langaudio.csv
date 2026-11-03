@@ -9,3 +9,13 @@ pythia-410m,pythia,language,lm,"The Pile (300B tok, standard)",353822720,1024,,4
 pythia-1b,pythia,language,lm,"The Pile (300B tok, standard)",908759040,2048,,1B,EleutherAI/pythia-1b
 pythia-1.4b,pythia,language,lm,"The Pile (300B tok, standard)",1311625216,2048,,1.4B,EleutherAI/pythia-1.4b
 pythia-2.8b,pythia,language,lm,"The Pile (300B tok, standard)",2646430720,2560,,2.8B,EleutherAI/pythia-2.8b
+qwen2.5-0.5b,qwen2.5,language,lm,Qwen2.5 pretraining (18T tok),494032768,896,,0.5B,Qwen/Qwen2.5-0.5B
+qwen2.5-1.5b,qwen2.5,language,lm,Qwen2.5 pretraining (18T tok),1543714304,1536,,1.5B,Qwen/Qwen2.5-1.5B
+qwen2.5-3b,qwen2.5,language,lm,Qwen2.5 pretraining (18T tok),3085938688,2048,,3B,Qwen/Qwen2.5-3B
+cliptext-vit-l-14-openai,clip_text,language,clip_text,WIT-400M (OpenAI),123650304,768,,L/14,open_clip:ViT-L-14/openai
+cliptext-vit-h-14-laion2b,clip_text,language,clip_text,LAION-2B,354032640,1024,,H/14,open_clip:ViT-H-14/laion2b_s32b_b79k
+sbert-mpnet-base,sbert,language,sbert,1B sentence pairs (sentence-transformers),109486464,768,,base,sentence-transformers/all-mpnet-base-v2
+whisper-base,whisper,audio,asr,680k h weakly supervised speech,20590592,512,,base,openai/whisper-base
+whisper-small,whisper,audio,asr,680k h weakly supervised speech,88154112,768,,small,openai/whisper-small
+whisper-medium,whisper,audio,asr,680k h weakly supervised speech,307216384,1024,,medium,openai/whisper-medium
+hubert-large-ll60k,hubert,audio,audio_ssl,Libri-Light 60k h,315438720,1024,,large,facebook/hubert-large-ll60k
