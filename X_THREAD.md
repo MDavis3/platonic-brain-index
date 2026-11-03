@@ -4,7 +4,7 @@ Five posts, each 280 characters or fewer (counts in the HTML comments; the URL i
 from `RESULTS.md` and `artifacts/results/robustness.md`. Attach `figures/headline.png` to post 1 and
 `figures/scaling.png` (all three metrics) to post 2. `figures/map_of_minds.png` is deliberately not attached:
 brain and model positions in it are not like-for-like.
-The repository linked in post 5 is currently **private**; make it public before posting.
+The repository linked in post 5 is public.
 
 ## 1/5
 
