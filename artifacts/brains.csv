@@ -8,8 +8,11 @@ things_eeg2,sub-06,200,80,714,17 ch x 42 samples (100 Hz) 80-500 ms,0.36280,0.75
 things_eeg2,sub-07,200,80,714,17 ch x 42 samples (100 Hz) 80-500 ms,0.46970,0.90063,0.85369
 things_eeg2,sub-08,200,80,714,17 ch x 42 samples (100 Hz) 80-500 ms,0.48850,0.87292,0.84766
 things_eeg2,sub-09,200,80,714,17 ch x 42 samples (100 Hz) 80-500 ms,0.22890,0.52262,0.60122
+things_eeg2,sub-10,200,80,714,17 ch x 42 samples (100 Hz) 80-500 ms,0.43350,0.81255,0.82450
 things_fmri,sub-01,100,12,4145,"4145 IT voxels (released IT mask, NaN voxels dropped), single-trial betas",0.13200,0.15439,0.14636
 things_fmri,sub-02,100,12,3720,"3720 IT voxels (released IT mask, NaN voxels dropped), single-trial betas",0.17160,0.31647,0.40955
 things_fmri,sub-03,100,12,3022,"3022 IT voxels (released IT mask, NaN voxels dropped), single-trial betas",0.08240,0.05218,0.18627
+things_meg,sub-01,200,12,5691,271 MEG sensors x 21 samples (resampled to 50 Hz) 80-500 ms,0.05890,0.03826,0.03935
 things_meg,sub-02,200,12,5691,271 MEG sensors x 21 samples (resampled to 50 Hz) 80-500 ms,0.12280,0.22625,0.20832
 things_meg,sub-03,200,12,5691,271 MEG sensors x 21 samples (resampled to 50 Hz) 80-500 ms,0.08350,0.09696,0.14629
+things_meg,sub-04,200,12,5691,271 MEG sensors x 21 samples (resampled to 50 Hz) 80-500 ms,0.05810,0.03351,0.08478
