@@ -1,0 +1,11 @@
+model_id,family,modality,objective,training_data,params,emb_dim,capability,size_label,source
+pythia-70m,pythia,language,lm,"The Pile (300B tok, standard)",44670976,512,,70M,EleutherAI/pythia-70m
+cliptext-vit-b-32-openai,clip_text,language,clip_text,WIT-400M (OpenAI),63428096,512,,B/32,open_clip:ViT-B-32/openai
+sbert-minilm-l6,sbert,language,sbert,1B sentence pairs (sentence-transformers),22713216,384,,L6,sentence-transformers/all-MiniLM-L6-v2
+whisper-tiny,whisper,audio,asr,680k h weakly supervised speech,8208384,384,,tiny,openai/whisper-tiny
+hubert-base-ls960,hubert,audio,audio_ssl,LibriSpeech 960 h,94371712,768,,base,facebook/hubert-base-ls960
+pythia-160m,pythia,language,lm,"The Pile (300B tok, standard)",123689472,768,,160M,EleutherAI/pythia-160m
+pythia-410m,pythia,language,lm,"The Pile (300B tok, standard)",353822720,1024,,410M,EleutherAI/pythia-410m
+pythia-1b,pythia,language,lm,"The Pile (300B tok, standard)",908759040,2048,,1B,EleutherAI/pythia-1b
+pythia-1.4b,pythia,language,lm,"The Pile (300B tok, standard)",1311625216,2048,,1.4B,EleutherAI/pythia-1.4b
+pythia-2.8b,pythia,language,lm,"The Pile (300B tok, standard)",2646430720,2560,,2.8B,EleutherAI/pythia-2.8b

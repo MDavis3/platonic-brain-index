@@ -73,6 +73,16 @@ def load_stimuli():
     return {d: pd.read_csv(ROOT / "artifacts" / "stimuli" / f"{d}.csv") for d in DATASETS}
 
 
+# models whose weights are loaded directly in fp16 (> 300M params) to keep peak RAM low
+BIG = {"EleutherAI/pythia-410m", "EleutherAI/pythia-1b", "EleutherAI/pythia-1.4b", "EleutherAI/pythia-2.8b",
+       "Qwen/Qwen2.5-0.5B", "Qwen/Qwen2.5-1.5B", "Qwen/Qwen2.5-3B", "openai/whisper-medium",
+       "facebook/hubert-large-ll60k"}
+
+
+def ldtype(source):
+    return torch.float16 if source in BIG else torch.float32
+
+
 def nparams(m):
     return int(sum(p.numel() for p in m.parameters()))
 
@@ -89,9 +99,9 @@ def free():
 def embed_hf_lm(source, texts, sbert=False):
     from transformers import AutoModel, AutoTokenizer
     tok = AutoTokenizer.from_pretrained(source)
-    model = AutoModel.from_pretrained(source, dtype=torch.float32)
+    dtype = ldtype(source)
+    model = AutoModel.from_pretrained(source, dtype=dtype, low_cpu_mem_usage=True)
     P = nparams(model)
-    dtype = torch.float16 if P > 300e6 else torch.float32
     model = model.to(DEV, dtype=dtype).eval()
     out = []
     for t in texts:
@@ -170,11 +180,11 @@ def read_wav(path):
 def embed_whisper(source, waves):
     from transformers import WhisperFeatureExtractor, WhisperModel
     fe = WhisperFeatureExtractor.from_pretrained(source)
-    full = WhisperModel.from_pretrained(source, dtype=torch.float32)
+    dtype = ldtype(source)
+    full = WhisperModel.from_pretrained(source, dtype=dtype)
     enc = full.get_encoder()
     del full.decoder
     P = nparams(enc)
-    dtype = torch.float16 if P > 300e6 else torch.float32
     enc = enc.to(DEV, dtype=dtype).eval()
     out = []
     for a in waves:
@@ -190,9 +200,9 @@ def embed_whisper(source, waves):
 def embed_hubert(source, waves):
     from transformers import AutoFeatureExtractor, HubertModel
     fe = AutoFeatureExtractor.from_pretrained(source)
-    model = HubertModel.from_pretrained(source, dtype=torch.float32)
+    dtype = ldtype(source)
+    model = HubertModel.from_pretrained(source, dtype=dtype)
     P = nparams(model)
-    dtype = torch.float16 if P > 300e6 else torch.float32
     model = model.to(DEV, dtype=dtype).eval()
     out = []
     for a in waves:
