@@ -49,6 +49,22 @@ The CIs in `hypotheses.md` resample stimuli only (model set fixed). Here models 
 | fMRI | cka | 0.264 | [-0.081, 0.538] | 0.345 | 0.1737 |
 | fMRI | rsa | -0.259 | [-0.578, 0.132] | -0.224 | 1.0000 |
 
+## H2 on the layer-selected secondary representation
+
+The preregistration names a secondary representation: the best of 5 depth-fraction layers (0.2-1.0), selected on one random half of the stimuli and scored (noise-ceiling corrected) on the other half. H2 was not preregistered on it; this is the same test applied post hoc. Trained vision models with a layer sweep only (AlexNet was not swept). p = one-sided model-label permutation, Holm over 9 cells; CI = model bootstrap (no stimulus-subsample CI exists here). 'depth-1.0 layer' = the last swept layer scored on the same held-out half, for comparison.
+
+| Dataset | Metric | n | best-layer rho | model-bootstrap 95% CI | p | p (Holm) | confirmed | depth-1.0 layer rho |
+|---|---|---|---|---|---|---|---|---|
+| EEG | mknn | 34 | 0.598 | [0.209, 0.863] | 0.0002 | 0.0018 | yes | 0.087 |
+| EEG | cka | 34 | -0.022 | [-0.412, 0.366] | 0.5532 | 1.0000 | no | 0.046 |
+| EEG | rsa | 34 | -0.228 | [-0.558, 0.129] | 0.9041 | 1.0000 | no | -0.120 |
+| MEG | mknn | 34 | 0.155 | [-0.251, 0.509] | 0.1999 | 1.0000 | no | 0.325 |
+| MEG | cka | 34 | 0.384 | [-0.063, 0.730] | 0.0128 | 0.0896 | no | 0.131 |
+| MEG | rsa | 34 | 0.478 | [0.090, 0.782] | 0.0027 | 0.0216 | yes | -0.050 |
+| fMRI | mknn | 34 | 0.120 | [-0.279, 0.461] | 0.2553 | 1.0000 | no | 0.027 |
+| fMRI | cka | 34 | -0.121 | [-0.530, 0.283] | 0.7559 | 1.0000 | no | 0.136 |
+| fMRI | rsa | 34 | -0.151 | [-0.480, 0.216] | 0.8007 | 1.0000 | no | -0.031 |
+
 ## Mutual k-NN chance floor
 
 Chance for raw mutual k-NN is c = k/(n-1). After the preregistered correction (raw / sqrt(ceiling)) chance sits at c / sqrt(ceiling), not at 0, so corrected mutual k-NN values are not comparable across datasets and '1.0 = ceiling' does not mean '0 = chance'.

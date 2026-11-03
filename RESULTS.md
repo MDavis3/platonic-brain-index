@@ -8,19 +8,26 @@ model–brain score was computed).
 
 ## Summary
 
-* **Headline (H2): more capable vision models are not more brain-like on these data.** Over 35 trained vision
-  models, Spearman ρ between few-shot capability and noise-ceiling-corrected alignment ranges from −0.677 to 0.264
-  across the 9 dataset × metric cells; 0/9 cells are confirmed. No robustness variant changes this.
+* **Headline (H2): more capable vision models are not detectably more brain-like in their final embedding.** Over
+  35 trained vision models, Spearman ρ between few-shot capability and noise-ceiling-corrected alignment ranges from
+  −0.677 to 0.264 across the 9 dataset × metric cells; 0/9 cells are confirmed. No robustness variant changes the
+  FAIL verdict, but two exploratory analyses do give positive cells:
+  * One post-hoc subset (subjects with ceiling ≥ 0.1) confirms a single cell, fMRI CKA (ρ = 0.469).
+  * The layer-selected secondary representation confirms EEG mutual k-NN (ρ = 0.598) and MEG RSA (ρ = 0.478).
+
+  With 35 models, effects below ρ ≈ 0.4 cannot be detected, and the CKA cells are positive in all three datasets.
 * **Within families, bigger is not more brain-like (H3)**; the mean within-family correlation is negative in
   7 of 9 cells on point estimates and confirmed positive in none.
 * **Trained networks share more structure with brains than random-init networks** on mutual k-NN and CKA in all
   three datasets, but not on the preregistered RSA, so H1 fails its 7/9 threshold at 6/9.
 * **Models that agree more with other models agree more with brains (H5)**: ρ = 0.595 (EEG), 0.487 (MEG),
   0.406 (fMRI) on mutual k-NN.
-* **Language models given only a concept name align with IT cortex above chance (H4a)**, but there is no
+* **Language models given only a concept name align with IT cortex above chance (H4a; best model a CLIP text
+  tower, trained jointly with images; best-LM cells confirmed in 7/9)**, but there is no
   confirmed scale trend among them (H4b), so H4 is PARTIAL (not passed).
-* **No model approaches the noise ceiling (H6)**: the best corrected score in any cell is 0.298.
-* **Predictions: 5 of 6 correct** (H1 was predicted to pass and did not).
+* **No model approaches the noise ceiling (H6)**: the best corrected score in any cell is 0.298. Against the
+  like-for-like brain-to-brain reference the gap is large on EEG, small on fMRI mutual k-NN, and absent on MEG.
+* **Predictions: 5 of 6 correct** (H1 was predicted to pass and did not; H2 was right only at the threshold level).
 
 The preregistered headline rule applies: H2 failed and H1/H5 did not both pass, so no convergence claim is made.
 
@@ -110,7 +117,7 @@ Spearman ρ(capability, corrected score) over the 35 trained vision models.
 | fMRI | cka | 0.264 | [0.024, 0.525] | 0.0608 | 0.5471 | no |
 | fMRI | rsa | −0.259 | [−0.465, 0.025] | 0.9368 | 1.0000 | no |
 
-Several stimulus-subsample CIs exclude 0 (EEG CKA and RSA, MEG CKA, fMRI CKA), but none of these cells passes the
+Several stimulus-subsample CIs exclude 0 (EEG CKA and RSA, MEG CKA, fMRI CKA, and MEG RSA, negative), but none of these cells passes the
 permutation test. The model-resampling bootstrap CIs (exploratory, below) include 0 in every cell except MEG RSA,
 which is negative.
 
@@ -146,8 +153,11 @@ Effect = mean over 6 vision families (ResNet, supervised ViT, ConvNeXt, DINOv2, 
 | fMRI | rsa | 0.250 | [0.033, 0.467] | 0.1608 | 1.0000 | no |
 
 Per-family ρ on EEG mutual k-NN: CLIP-LAION −1.00, ConvNeXt −1.00, ResNet −1.00, DINOv2 −0.40, supervised ViT
-0.20, MAE 1.00. Within most families the largest model is the least brain-aligned on EEG. MAE is the exception,
-and MAE's embedding is the untrained CLS token (see limits).
+0.20, MAE 1.00. In three of six families (CLIP-LAION, ConvNeXt, ResNet), EEG mutual k-NN alignment falls
+monotonically with size. MAE is the exception; its embedding is the CLS token, which the MAE objective does not
+directly supervise (see limits). With 3–5 sizes per family, ρ = −1 happens by chance with probability up to 1/6, and
+the mean EEG value (−0.367) has a lower-tail p of about 0.06 (1 − 0.9419), so the negative trend is not significant
+either.
 
 ### H4. Language-only models given the concept name align above chance: PARTIAL (not passed)
 
@@ -167,7 +177,9 @@ the shuffled scores, so it accounts for picking the best model.
 | fMRI | rsa | 0.017 | [−0.087, 0.112] | 0.7942 | 1.0000 | no | CLIP ViT-L/14 text (OpenAI) |
 
 The preregistered test cell is fMRI mutual k-NN (bold), and it is confirmed. The best Pythia (1B, 0.204) and the
-best Qwen2.5 (0.5B, 0.173) also beat their own family-max nulls on fMRI mutual k-NN. Note that raw corrected
+best Qwen2.5 (0.5B, 0.173) also beat their own family-max nulls on fMRI mutual k-NN (uncorrected p 0.001 and
+0.026). The overall best language model in 7 of 9 cells is a CLIP text tower, which was trained jointly with images,
+so H4a is not evidence about text-only training as such. Note that raw corrected
 mutual k-NN values sit above a chance floor (0.146 on fMRI), so 0.209 is a modest margin.
 
 **(b) Scale within language families** (mean of Pythia and Qwen2.5 ρ(log params, score)):
@@ -227,8 +239,11 @@ H6 passes, but it is weak evidence. Corrected mutual k-NN has a chance floor of 
 passing is close to trivial. The preregistered brain reference (a subject's full kernel vs the others' mean) is not
 like-for-like with the models, which are scored against split halves. In the like-for-like comparison, the MEG
 references (halves vs group 0.255–0.272 for mknn/CKA; halves vs one other subject 0.159–0.223) are about as low as
-the best models. MEG RSA's reference (0.150–0.260) falls *below* the best model (0.298). On EEG and fMRI the
-like-for-like references stay well above every model.
+the best models. MEG RSA's reference (0.150–0.260) falls *below* the best model (0.298). On EEG, and on fMRI CKA
+and RSA, the like-for-like references stay well above every model. On fMRI mutual k-NN they are only slightly higher
+(0.327 halves vs group, 0.293 halves vs one subject, against 0.282 for the best model). A within-subject split-half
+ceiling includes subject-specific variance that no population-level model can capture, so the gap to *other brains*
+is the more relevant one, and on 4 of 9 cells it is close to zero or reversed.
 
 ### Held-out subjects (preregistered control)
 
@@ -247,7 +262,7 @@ Rankings are stable across subjects, except MEG RSA (minimum 0.03) and, to a les
 | # | Prediction in `PREREGISTRATION.md` | Outcome | Correct? |
 |---|---|---|---|
 | H1 | Confirmed (9/9) | FAIL, 6/9 | **No** |
-| H2 | Fails the full threshold (with positive point estimates in most cells and about half confirmed, strongest for fMRI and CLIP-style models) | FAIL, 0/9 confirmed; 5/9 point estimates positive | **Yes** at the threshold level; the detail ("about half confirmed") was too optimistic |
+| H2 | Fails the full threshold (with positive point estimates in most cells and about half confirmed, strongest for fMRI and CLIP-style models) | FAIL, 0/9 confirmed; 5/9 point estimates positive | **Yes (threshold only)** at the threshold level; the detail ("about half confirmed") was too optimistic |
 | H3 | Not confirmed | FAIL, 0/3 | **Yes** |
 | H4 | Above chance for fMRI-IT; scale trend not confirmed | (a) confirmed, (b) not confirmed: PARTIAL | **Yes** |
 | H5 | Confirmed | PASS, 3/3 | **Yes** |
@@ -318,7 +333,37 @@ in this post-hoc subset of 2 fMRI subjects.
   measures training versus no training, which H1 already tests.
 * Picking k = 20 for fMRI mutual k-NN after seeing the results (ρ 0.411).
 
-**Other exploratory outputs:** audio models on spoken names, the layer sweep, time-resolved EEG/MEG curves and the
+**Layer-selected H2 (preregistered secondary representation; H2 on it applied post hoc).** The best of 5
+depth-fraction layers is selected on one random half of the stimuli and the corrected score is taken on the other
+half (34 models; AlexNet was not swept). p = one-sided model-label permutation, Holm over 9 cells; CI = model
+bootstrap. Full table: `robustness.md`.
+
+| Dataset | mknn | CKA | RSA |
+|---|---|---|---|
+| EEG | **0.598** [0.209, 0.863], Holm p 0.002 | −0.022 | −0.228 |
+| MEG | 0.155 | 0.384 [−0.063, 0.730], Holm p 0.090 | **0.478** [0.090, 0.782], Holm p 0.022 |
+| fMRI | 0.120 | −0.121 | −0.151 |
+
+Two cells are confirmed (bold). Under the H2 threshold (mknn in ≥ 2/3 datasets and CKA or RSA in ≥ 2/3) this
+would still FAIL (1/3 and 1/3). The depth-1.0 layer scored on the same held-out half gives EEG mknn 0.087 and MEG
+RSA −0.050, so the two positive cells come from layer choice, not from the half-split. Half-split estimates are noisy,
+though: on MEG mknn the depth-1.0 layer alone gives 0.325. The signal is real enough to report but mixed. It is
+positive where early-to-middle layers win (EEG mknn: best layer at depth 0.4–0.6 for 27/34 models), and absent or
+negative on fMRI IT. Best-layer scores also lift the best model in a cell above the primary 0.298 (for example EEG CKA
+0.485, CLIP RN50; MEG RSA 0.349). These are maxima over 34 models on 50–100 stimuli, so they are biased upward.
+H6 refers to the primary embedding only.
+
+**Capability vs model–model agreement (PRH positive control, exploratory).** On the same stimuli, capability
+predicts a model's mean mutual k-NN with the other trained vision models: ρ = 0.580 (EEG stimuli), 0.629 (MEG),
+0.624 (fMRI), and 0.467 / 0.532 / 0.525 without MAE (computed from `model_similarity.csv` and
+`models_vision.csv`). So the capability proxy does recover PRH's model–model convergence. Brain alignment tracks
+that agreement (H5) but not capability itself.
+
+**Restricted capability range.** 24 of 35 models have capability 0.80–0.97. Within them, H2 is 0.15 / 0.10 /
+−0.10 (mknn, EEG / MEG / fMRI) and 0.05 / 0.13 / 0.01 (CKA). Most of the spread in capability comes from MAE,
+AlexNet and the small ResNets.
+
+**Other exploratory outputs:** audio models on spoken names, time-resolved EEG/MEG curves and the
 map of minds (`figures/`). The audio models all rank at the bottom of the leaderboard (PBI 0.033–0.042). No claim in
 this document rests on these outputs.
 
@@ -329,7 +374,8 @@ The full list is in `DEVIATIONS.md`. The ones that matter for interpretation:
 * **Datasets.** NSD, NOD and BOLD5000 are not included, so all claims are restricted to THINGS (see `BLOCKERS.md`).
 * **Language models.** SBERT models were added (exploratory, excluded from H4). The CLIP text towers use their
   pooled projected output rather than a mean-pooled hidden state.
-* **MAE.** The pooled timm output is the CLS token, which the MAE objective leaves untrained. This was kept as
+* **MAE.** The pooled timm output is the CLS token, which the MAE objective does not directly supervise (MAE
+  features are known to be weak under frozen k-NN or linear readout). This was kept as
   preregistered, and a no-MAE sensitivity analysis is reported.
 * **H4 reading (changed after review; makes the result worse).** Both arms are now judged with the general cell
   rule, which turns H4 from PASS into PARTIAL.
@@ -340,14 +386,17 @@ The full list is in `DEVIATIONS.md`. The ones that matter for interpretation:
 
 ## Independent review
 
-A blind reviewer agent cloned the repository at commit 5627443, installed only `requirements.txt`, and tried to
+A blind reviewer (an independent AI reviewer agent, not a human peer reviewer) cloned the repository at commit
+5627443, installed only `requirements.txt`, and tried to
 overturn the headline. The report is committed unedited in `REVIEW.md`, with the response.
 
 * **Reproduction:** `python -m pbi reproduce` ran in 94 s, and every CSV, `hypotheses.md`, `LEADERBOARD.md` and the
   map-of-minds figure was byte-identical to the committed files. The first run had read a stats cache outside the
   repository. With the cache disabled the rerun took 222 s and was again byte-identical; 27 tests passed. The cache
   has since moved into the repository and is keyed on a hash of the engine code.
-* **Headline:** not overturned. H2 failed under every defensible variant the reviewer tried.
+* **Headline:** not overturned. H2 failed under every defensible variant the reviewer tried. The reviewer did not
+  examine the layer sweep. Everything added after commit 5627443 (H4 rule, `robustness.md`, the layer-selected test,
+  figures) is checked by CI against the committed kernels, not by the review.
 * **Secondary points partially overturned:**
   * H1's failure is an artefact of how the RDMs are built (column-centred RSA gives 9/9).
   * The negative RSA capability correlations are the same artefact.
@@ -368,12 +417,15 @@ overturn the headline. The report is committed unedited in `REVIEW.md`, with the
 * **Models.**
   * Capability is a single proxy (5-shot nearest-centroid on THINGS concepts) measured on the same embedding.
     Other capability measures (ImageNet accuracy, zero-shot transfer) might order models differently.
-  * Only the final embedding enters the primary analysis.
-  * MAE's embedding is an untrained CLS token.
+  * Only the final embedding enters the primary analysis. Layer selection changes two H2 cells (see above).
+  * MAE's embedding is the CLS token, which its objective does not directly supervise.
+  * Capability is compressed (24 of 35 models at 0.80–0.97).
+  * EEG/MEG patterns are flattened over 80–500 ms, which weights early responses. No time-resolved H2 was run.
   * Scale is confounded with training data and recipe across families, and within-family size ranges are small
     (3–5 sizes).
   * No audio-visual models, and no models beyond about 1B vision / 3B language parameters (16 GB RAM).
 * **Cross-modal tests.** Language and audio models see only the concept name, not the image. Their scores measure
   concept-level structure, not visual similarity.
 * **Statistical power.** With 35 models a Spearman ρ of roughly 0.4 or more is needed for the smallest p to pass Holm across 9 cells. Small
-  positive capability effects (the CKA cells sit at ρ ≈ 0.13–0.26) cannot be ruled out.
+  positive capability effects (the CKA cells sit at ρ ≈ 0.13–0.26) cannot be ruled out; model-resampling CI upper bounds
+  are 0.31–0.44 for mknn and 0.49–0.54 for CKA.

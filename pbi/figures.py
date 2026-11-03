@@ -296,18 +296,19 @@ def fig_map(root=None, highlight=None):
         hit = info.index[info["system"] == m]
         if len(hit):
             labels.append((m, tuple(Y[hit[0]]), dict(color="#333333")))
-    ax.set_xlabel("MDS 1")
-    ax.set_ylabel("MDS 2")
-    ax.set_title(f"Map of minds: {n_brain} human brains and {len(models)} models", fontsize=14,
-                 fontweight="bold", loc="left", pad=12)
+    ax.set_xlabel("MDS 1 (arbitrary units)")
+    ax.set_ylabel("MDS 2 (arbitrary units)")
+    ax.set_title(f"Exploratory map of {n_brain} human brains and {len(models)} models\n"
+                 "Brains and models are placed from different kinds of scores: brain-to-model distances are not "
+                 "meaningful", fontsize=12, fontweight="bold", loc="left", pad=12, linespacing=1.5)
     ax.set_aspect("equal", adjustable="datalim")
     ax.margins(0.06)
-    ax.tick_params(labelsize=8, colors="#555555")
+    ax.set_xticks([])
+    ax.set_yticks([])
     _place_labels(ax, labels, Y, fontsize=8.5)
     grp_handles = [Line2D([], [], marker="o", ls="", markersize=8, markerfacecolor=GROUP_PAL[g],
                           markeredgecolor="white", label=GROUP_PAL_LABEL[g]) for g in GROUP_PAL
                    if any(map_group(meta, m) == g for m in models)]
-    grp_handles.append(Line2D([], [], marker="*", ls="", markersize=11, color=BRAIN_COLOR, label="human brain"))
     l1 = ax.legend(handles=grp_handles, title="colour", loc="upper left", bbox_to_anchor=(1.01, 1.0),
                    fontsize=8, title_fontsize=8.5, frameon=False, alignment="left")
     ax.add_artist(l1)
@@ -339,12 +340,24 @@ def fig_map(root=None, highlight=None):
 
 def fig_headline(root=None, metric="mknn"):
     """1600x900 px: corrected mutual-k-NN vs capability for trained vision models, one panel per dataset,
-    with the H2 Spearman rho [95% CI], the random-init range and the brain-to-brain held-out reference."""
+    with the H2 Spearman rho [model-bootstrap 95% CI], the random-init range, the like-for-like brain-to-brain
+    reference (halves vs group mean) and the mutual k-NN chance floor in corrected units."""
     out = sc.results_dir(root)
     meta = sc.load_models(root)
     S = pd.read_csv(out / "scores.csv")
-    R = pd.read_csv(out / "scores_reference.csv")
-    H = _hyp(root)
+    rp = out / "robustness.csv"
+    Rob = pd.read_csv(rp) if rp.exists() else pd.DataFrame(columns=["analysis", "hypothesis", "dataset", "metric",
+                                                                    "effect", "ci_lo", "ci_hi"])
+    # mutual k-NN chance (k/(n-1)) in corrected units, mean over included subjects (as in robustness.md)
+    floor = {}
+    Sub = pd.read_csv(out / "scores_subject.csv")
+    for ds in sc.DATASETS:
+        stim = sc.art_root(root) / "stimuli" / f"{ds}.csv"
+        g = Sub[(Sub["dataset"] == ds) & (Sub["metric"] == "mknn") & Sub["included"].astype(bool)]
+        if stim.exists() and len(g):
+            n = len(pd.read_csv(stim))
+            c = sc.kn.default_k(n) / (n - 1)
+            floor[ds] = float(np.mean(c / np.sqrt(g.groupby("subject")["ceiling"].first())))
     fig, axes = plt.subplots(1, 3, figsize=(16, 9), dpi=100, sharey=True)
     fig.subplots_adjust(left=0.06, right=0.985, top=0.77, bottom=0.17, wspace=0.08)
     for ax, ds in zip(axes, sc.DATASETS):
@@ -352,16 +365,29 @@ def fig_headline(root=None, metric="mknn"):
         rnd = g.loc[[m for m in g.index if sc.is_random(meta, m)], "corrected"].dropna()
         if len(rnd):
             ax.axhspan(rnd.min(), max(rnd.max(), rnd.min() + 1e-3), color="#AAAAAA", alpha=0.35, lw=0, zorder=0)
-        bb = R[(R["dataset"] == ds) & (R["metric"] == metric) & (R["system"] == "brain_heldout")
-               & R["included"].astype(bool)]["corrected"]
+        # like-for-like brain reference (a subject's split halves vs the other subjects' mean, scored exactly as
+        # the models are); the preregistered full-kernel reference overstates it (robustness.md)
+        bb = Rob[(Rob["hypothesis"] == "REF_halves_vs_groupmean") & (Rob["dataset"] == ds)
+                 & (Rob["metric"] == metric)]["effect"]
         if len(bb):
-            ax.axhline(bb.mean(), color=BRAIN_COLOR, ls="--", lw=1.6, zorder=1)
+            ax.axhline(bb.iloc[0], color=BRAIN_COLOR, ls="--", lw=1.6, zorder=1)
+        fl = floor.get(ds)
+        if metric == "mknn" and fl is not None:
+            ax.axhline(fl, color="#777777", ls=":", lw=1.8, zorder=1)
         ax.axhline(0, color="#DDDDDD", lw=0.8, zorder=0)
         tv = [m for m in g.index if sc.is_trained_vision(meta, m) and np.isfinite(meta.at[m, "capability"])]
         for m in tv:
             ax.scatter(meta.at[m, "capability"], g.at[m, "corrected"], s=_size(meta, m, 40) * 1.4,
                        c=GROUP_PAL[map_group(meta, m)], edgecolors="white", linewidths=0.7, alpha=0.95, zorder=3)
-        r = H[(H["hypothesis"] == "H2") & (H["dataset"] == ds) & (H["metric"] == metric)]
+        mae = [m for m in tv if str(meta.at[m, "family"]).lower().startswith("mae") and np.isfinite(g.at[m, "corrected"])]
+        if mae:
+            x = max(meta.at[m, "capability"] for m in mae)
+            y = max(g.at[m, "corrected"] for m in mae)
+            ax.annotate("MAE", (x, y), xytext=(8, 6), textcoords="offset points", fontsize=12, color="#444444")
+        r = Rob[(Rob["analysis"] == "primary") & (Rob["hypothesis"] == "H2_model_bootstrap")
+                & (Rob["dataset"] == ds) & (Rob["metric"] == metric)]
+        if not len(r):
+            r = H[(H["hypothesis"] == "H2") & (H["dataset"] == ds) & (H["metric"] == metric)]
         t = sc.DS_SHORT[ds]
         if len(r) and pd.notna(r["effect"].iloc[0]):
             r = r.iloc[0]
@@ -377,14 +403,17 @@ def fig_headline(root=None, metric="mknn"):
              ha="left", va="top")
     n = len([m for m in S["model"].unique() if sc.is_trained_vision(meta, m)
              and np.isfinite(meta.at[m, "capability"])])
-    fig.text(0.06, 0.895, f"{n} trained vision models scored against human EEG, MEG and fMRI (THINGS); "
-             "ρ with 95% subsample CI", fontsize=14, color="#555555", ha="left", va="top")
+    fig.text(0.06, 0.895, f"{n} trained vision models vs human EEG, MEG and fMRI (THINGS). Mutual k-NN, the "
+             "preregistered primary metric (CKA/RSA: scaling.png).\nρ with 95% CI from resampling models; "
+             "0 of 9 dataset × metric cells significant. Marker size = log parameters.",
+             fontsize=13, color="#555555", ha="left", va="top", linespacing=1.4)
     hs = [Line2D([], [], marker="o", ls="", markersize=11, markerfacecolor=GROUP_PAL[g], markeredgecolor="white",
                  label=GROUP_PAL_LABEL[g].replace("vision: ", "")) for g in ("supervised", "ssl", "clip")]
     hs += [matplotlib.patches.Patch(color="#AAAAAA", alpha=0.35, label="random-init models (range)"),
-           Line2D([], [], color=BRAIN_COLOR, ls="--", lw=1.6, label="brain → held-out brain")]
-    fig.legend(handles=hs, loc="lower center", ncol=len(hs), fontsize=13, frameon=False,
-               bbox_to_anchor=(0.52, 0.01), handletextpad=0.4, columnspacing=1.6)
+           Line2D([], [], color=BRAIN_COLOR, ls="--", lw=1.6, label="brain → other brains (like-for-like)"),
+           Line2D([], [], color="#777777", ls=":", lw=1.8, label="chance")]
+    fig.legend(handles=hs, loc="lower center", ncol=len(hs), fontsize=12, frameon=False,
+               bbox_to_anchor=(0.52, 0.01), handletextpad=0.4, columnspacing=1.2)
     fig.savefig(_fig_dir(root) / "headline.png", dpi=100, metadata={"Software": None})
     plt.close(fig)
 

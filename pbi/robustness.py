@@ -15,6 +15,11 @@ machinery (same split halves, same 1000 80 % stimulus subsamples, 10,000 label p
                resamples stimuli).
   REF_*        brain-brain reference computed like-for-like with the model scores (split halves of a subject
                against (i) the mean full kernel of the other subjects, (ii) each other subject's full kernel).
+  H2_layer     H2 on the preregistered *secondary* representation (layers.csv: best of 5 depth-fraction layers,
+               selected on one random half of stimuli, corrected score on the other half), over the trained vision
+               models with a layer sweep (AlexNet was not swept). One-sided model-label permutation p, Holm over
+               9 cells, model-bootstrap CI (no stimulus-subsample CI exists for this analysis).
+               H2_layer_final is the same test on the depth-1.0 layer scored on the same held-out half.
 
 Outputs: artifacts/results/robustness.csv, robustness.md, scores_variants.csv (per-model variant scores).
 """
@@ -175,6 +180,36 @@ def _boot_ci(x, y, n_boot=N_BOOT, seed=SEED_BOOT):
     return st.ci(v)
 
 
+def layer_h2(out, meta, n_perm=st.N_PERM):
+    """H2 (capability vs corrected score) on the layer-sweep secondary representation (see module docstring)."""
+    p = out / "layers.csv"
+    if not p.exists():
+        return pd.DataFrame()
+    L = pd.read_csv(p)
+    rows = []
+    for col, h in (("score_best_layer_heldout", "H2_layer"), ("score_final_layer_heldout", "H2_layer_final")):
+        part = []
+        for ds in st.DATASETS:
+            for mi, mt in enumerate(METRICS):
+                g = L[(L["dataset"] == ds) & (L["metric"] == mt)]
+                g = g[[sc.is_trained_vision(meta, m) and np.isfinite(meta.at[m, "capability"]) for m in g["model"]]]
+                if not len(g):
+                    continue
+                cap = meta.loc[g["model"], "capability"].to_numpy(float)
+                y = g[col].to_numpy(float)
+                rho, pv = st.spearman_perm(cap, y, n_perm, st.SEED_PERM + 100 * st.DATASETS.index(ds) + 10 * mi + 7)
+                lo, hi = _boot_ci(cap, y)
+                part.append(dict(st._row(h, ds, mt, rho, lo, hi, p=pv, n=len(g),
+                                         note="layer sweep; CI: models resampled; p: model-label permutation"),
+                                 analysis="layer_selected"))
+        if part:
+            P = pd.DataFrame(part)
+            P["p_holm"] = st.holm(P["p"].to_numpy(float), 9)
+            P["confirmed"] = (P["p_holm"] < 0.05) & (P["ci_lo"] > 0)
+            rows.append(P)
+    return pd.concat(rows, ignore_index=True) if rows else pd.DataFrame()
+
+
 def brain_reference(D):
     """Like-for-like brain-brain reference: split halves of subject s (as for models) against (i) the mean full
     kernel of the other subjects, (ii) each other subject's full kernel (averaged); divided by sqrt(ceiling(s))."""
@@ -256,6 +291,9 @@ def run(root, meta, point, eng, subj, n_sub=st.N_SUB, n_perm=st.N_PERM, jobs=Non
                 rows.append(pd.DataFrame([dict(st._row("H2_raw", ds, mt, rho, p=p, n=len(tv),
                                                        note="uncorrected raw scores, mean over subjects"),
                                                analysis="raw_uncorrected")]))
+    LH = layer_h2(out, meta, n_perm)
+    if len(LH):
+        rows.append(LH)
     T = pd.concat(rows, ignore_index=True)
     m = (T["analysis"] == "raw_uncorrected")
     T.loc[m, "p_holm"] = st.holm(T.loc[m, "p"].to_numpy(float), 9)
@@ -335,6 +373,26 @@ def write_md(T, V, floor, point, eng, meta, path):
                 continue
             L.append(f"| {sc.DS_SHORT[ds]} | {mt} | {f(b['effect'])} | [{f(b['ci_lo'])}, {f(b['ci_hi'])}] | "
                      f"{f(r['effect']) if r is not None else ''} | {f(r['p_holm'], 4) if r is not None else ''} |")
+    lay = T[T["analysis"] == "layer_selected"]
+    if len(lay):
+        L += ["", "## H2 on the layer-selected secondary representation", "",
+              "The preregistration names a secondary representation: the best of 5 depth-fraction layers (0.2-1.0), "
+              "selected on one random half of the stimuli and scored (noise-ceiling corrected) on the other half. "
+              "H2 was not preregistered on it; this is the same test applied post hoc. Trained vision models with a "
+              "layer sweep only (AlexNet was not swept). p = one-sided model-label permutation, Holm over 9 cells; "
+              "CI = model bootstrap (no stimulus-subsample CI exists here). 'depth-1.0 layer' = the last swept layer "
+              "scored on the same held-out half, for comparison.", "",
+              "| Dataset | Metric | n | best-layer rho | model-bootstrap 95% CI | p | p (Holm) | confirmed | depth-1.0 layer rho |",
+              "|---|---|---|---|---|---|---|---|---|"]
+        for ds in st.DATASETS:
+            for mt in METRICS:
+                a = _cellrow(T, "layer_selected", "H2_layer", ds, mt)
+                b = _cellrow(T, "layer_selected", "H2_layer_final", ds, mt)
+                if a is None:
+                    continue
+                L.append(f"| {sc.DS_SHORT[ds]} | {mt} | {int(a['n'])} | {f(a['effect'])} | [{f(a['ci_lo'])}, "
+                         f"{f(a['ci_hi'])}] | {f(a['p'], 4)} | {f(a['p_holm'], 4)} | "
+                         f"{'yes' if a['confirmed'] else 'no'} | {f(b['effect']) if b is not None else ''} |")
     L += ["", "## Mutual k-NN chance floor", "",
           "Chance for raw mutual k-NN is c = k/(n-1). After the preregistered correction (raw / sqrt(ceiling)) chance "
           "sits at c / sqrt(ceiling), not at 0, so corrected mutual k-NN values are not comparable across datasets "

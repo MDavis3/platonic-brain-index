@@ -37,7 +37,7 @@ pin down something it leaves open. The final section lists the statistics implem
   Pythia and Qwen2.5 use the attention-masked mean of the final hidden state, as preregistered.
 * **(specification) Language input.** The fixed sentence is "A photo of a/an {concept}."
 * **(specification) MAE embedding.** For `vit_*_patch*_224.mae` timm's pooled output (num_classes=0) is the CLS token,
-  which the MAE objective does not train; MAE capability is therefore very low (0.08-0.36). Kept as preregistered
+  which the MAE objective does not directly supervise (MAE features are known to be weak under frozen readout); MAE capability is therefore very low (0.08-0.36). Kept as preregistered
   ("final pooled embedding as exposed by timm") in all primary analyses; an exploratory sensitivity analysis without
   MAE is reported (below).
 * **(specification) Preprocessing.** Each model uses its library's default eval transform (timm `resolve_data_config`,
@@ -52,6 +52,11 @@ pin down something it leaves open. The final section lists the statistics implem
 * **(specification) Layer sweep (secondary).** Run for 43 of the 44 vision models; AlexNet (torchvision) was not
   swept. Layer features are the token/spatial mean of the block output at depth fractions 0.2..1.0, so the 1.0 layer
   is not identical to the primary embedding. No layer sweep for language/audio models.
+* **(exploratory, added after the write-up checks) H2 on the layer sweep.** The preregistration named the layer
+  sweep as a secondary representation but did not say which hypothesis tests to run on it. H2 on the held-out-half
+  best-layer score (model-label permutation, Holm over 9 cells, model-bootstrap CI) is now reported in
+  `robustness.md`. It confirms EEG mutual k-NN (ρ 0.598) and MEG RSA (ρ 0.478) and would still fail the H2 threshold.
+  It replaces no verdict.
 
 ## Statistics
 
