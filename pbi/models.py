@@ -127,10 +127,10 @@ def _timm_layers(m):
     """Depth-fraction modules for the secondary layer sweep."""
     if hasattr(m, "blocks"):
         blocks = list(m.blocks)
-    elif hasattr(m, "stages"):
-        blocks = list(m.stages)
-    elif hasattr(m, "layer4"):
-        blocks = [m.layer1, m.layer2, m.layer3, m.layer4]
+    elif hasattr(m, "stages"):  # ConvNeXt: individual blocks across all stages
+        blocks = [b for s in m.stages for b in (s.blocks if hasattr(s, "blocks") else [s])]
+    elif hasattr(m, "layer4"):  # ResNets: individual residual blocks across all stages
+        blocks = [b for l in (m.layer1, m.layer2, m.layer3, m.layer4) for b in l]
     elif hasattr(m, "trunk"):
         return _timm_layers(m.trunk)
     elif hasattr(m, "transformer") and hasattr(m.transformer, "resblocks"):
