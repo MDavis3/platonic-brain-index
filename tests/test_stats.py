@@ -94,3 +94,22 @@ def test_verdict_h6_and_h4():
     assert st.verdicts(_H(rows))["H4"]["passed"]
     rows[1]["effect"] = -0.2
     assert not st.verdicts(_H(rows))["H4"]["passed"]
+
+
+def test_derive_subject_and_model_restriction():
+    rng = np.random.default_rng(0)
+    r = dict(sub_s=rng.random((4, 3, 5, 3)), bb_s=rng.random((4, 3, 3)), null_s=rng.random((6, 3, 5, 3)),
+             mm_mat=rng.random((4, 4, 4)))
+    for M in r["mm_mat"]:
+        np.fill_diagonal(M, np.nan)
+    st._derive(r)
+    np.testing.assert_allclose(r["sub"], r["sub_s"].mean(-1))
+    np.testing.assert_allclose(r["mm"], np.nanmean(r["mm_mat"], 2))
+    keep = {1: np.array([True, False, True])}
+    st._derive(r, keep_subjects=keep, keep_tv=np.array([True, True, False, True]))
+    np.testing.assert_allclose(r["sub"][:, 0], r["sub_s"][:, 0].mean(-1))
+    np.testing.assert_allclose(r["sub"][:, 1], r["sub_s"][:, 1][..., [0, 2]].mean(-1))
+    np.testing.assert_allclose(r["null"][:, 1], r["null_s"][:, 1][..., [0, 2]].mean(-1))
+    np.testing.assert_allclose(r["bb"][:, 1], r["bb_s"][:, 1][:, [0, 2]].mean(-1))
+    sel = [0, 1, 3]
+    np.testing.assert_allclose(r["mm"], np.nanmean(r["mm_mat"][:, sel][:, :, sel], 2))

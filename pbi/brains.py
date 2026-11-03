@@ -11,7 +11,7 @@ and a row in artifacts/brains.csv with the split-half ceilings ceil_M = mean_s M
 Primary brain representations
   things_eeg2 : 17 posterior channels x samples with 80 <= t < 500 ms (100 Hz -> 42 samples), flattened.
   things_meg  : all 271 MEG sensors (picks='meg'), test trials only, FFT-resampled 200 -> 50 Hz
-                (mne.filter.resample, anti-aliased) on the full epoch, then 80 <= t < 500 ms (22 samples), flattened.
+                (mne.filter.resample, anti-aliased) on the full epoch, then 80 <= t < 500 ms (21 samples: 80, 100, ..., 480 ms), flattened.
   things_fmri : single-trial betas of the released IT voxels; voxels with any NaN dropped.
 
 Splits: s = 0..4, rng = np.random.default_rng(1000 + s).

@@ -38,9 +38,15 @@ SUB_FRAC = 0.8
 SEED_SUB, SEED_NULL, SEED_PERM, SEED_LAYER = 20261102, 30261102, 40261102, 50261102
 K_SENS = (5, 10, 20)
 ALPHA = 0.05
-ENGINE_VERSION = "1"
+ENGINE_VERSION = "2"  # 2: per-subject subsample/null scores, model-model matrix, layer files in fingerprint
 METRICS = sc.METRICS
 DATASETS = sc.DATASETS
+# Systems named in PREREGISTRATION.md: H3 families ("ResNet, ViT, ConvNeXt, DINOv2, MAE, CLIP-LAION"), the LM
+# families of the H4 scale test ("Pythia, Qwen"), and the preregistered language-only systems (Pythia, Qwen,
+# CLIP text towers; SBERT is exploratory and not part of H4).
+H3_FAMILIES = ("resnet", "vit_sup", "convnext", "dinov2", "mae", "clip_laion")
+H4_SCALE_FAMILIES = ("pythia", "qwen2.5")
+H4_LANGUAGE_OBJECTIVES = ("lm", "clip_text")
 
 
 # ------------------------------------------------------------------ small statistics
@@ -179,6 +185,13 @@ def _mm_mean(FM, tv):
     return np.nanmean(M, 1)
 
 
+def _mm_matrix(FM, tv):
+    """Model-model mutual k-NN among trained vision models (diagonal NaN)."""
+    M = FM.pair(tv, FM, tv, "mknn") if len(tv) else np.zeros((0, 0))
+    np.fill_diagonal(M, np.nan)
+    return M
+
+
 def _task(args):
     kind, ds, root, seeds, snap = args
     W = _get(ds, root, snap)
@@ -187,30 +200,31 @@ def _task(args):
     nM = len(D.models)
     im = np.arange(nM)
     if kind == "sub":
-        S = np.full((len(seeds), len(METRICS), nM), np.nan)
-        BB = np.full((len(seeds), len(METRICS)), np.nan)
-        MM = np.full((len(seeds), len(tv)), np.nan)
+        ns = len(D.subjects)
+        S = np.full((len(seeds), len(METRICS), nM, ns), np.nan)   # per-subject corrected scores
+        BB = np.full((len(seeds), len(METRICS), ns), np.nan)
+        MM = np.full((len(seeds), len(tv), len(tv)), np.nan)
         for j, b in enumerate(seeds):
             idx = _subsample_idx(D.n, b)
             FB, L = sc.brain_feats(D, idx)
             FM = sc.Feats(bM, idx, orders=oM)
             for mi, metric in enumerate(METRICS):
                 raw, ceil, bb = sc.block_scores(FM, im, FB, L, metric)
-                S[j, mi] = sc.dataset_scores(raw, ceil)[0]
-                BB[j, mi] = sc.nanmean0(sc.corrected(bb, ceil))
-            MM[j] = _mm_mean(FM, tv)
+                S[j, mi] = sc.corrected(raw, ceil)
+                BB[j, mi] = sc.corrected(bb, ceil)
+            MM[j] = _mm_matrix(FM, tv)
         return kind, ds, seeds, (S, BB, MM)
     if kind == "null":
         if "FB_full" not in W:
             W["FB_full"] = sc.brain_feats(D, exact=True)
         FB, L = W["FB_full"]
-        S = np.full((len(seeds), len(METRICS), nM), np.nan)
+        S = np.full((len(seeds), len(METRICS), nM, len(D.subjects)), np.nan)  # per-subject corrected
         for j, p in enumerate(seeds):
             perm = np.random.default_rng(SEED_NULL + p).permutation(D.n)
             FM = sc.Feats(bM, perm, orders=oM)
             for mi, metric in enumerate(METRICS):
                 raw, ceil, _ = sc.block_scores(FM, im, FB, L, metric)
-                S[j, mi] = sc.dataset_scores(raw, ceil)[0]
+                S[j, mi] = sc.corrected(raw, ceil)
         return kind, ds, seeds, (S,)
     if kind == "k":
         out = {}
@@ -264,6 +278,10 @@ def _fingerprint(root, ds, n_sub, n_null, snap):
     for f in files:
         h.update(str(f.relative_to(kdir)).encode())
         h.update(f.read_bytes())
+    ldir = sc.art_root(root) / "layers" / ds  # the layer sweep is cached too
+    for f in sorted(ldir.glob("*/layer*.npz")) if ldir.exists() else []:
+        h.update(str(f.relative_to(ldir)).encode())
+        h.update(f.read_bytes())
     h.update(sc.load_models(root)[["model_id", "modality", "objective"]].to_csv().encode())
     return h.hexdigest()[:16]
 
@@ -308,13 +326,18 @@ def run_engine(root, datasets, n_sub=N_SUB, n_null=N_NULL, jobs=None, verbose=Tr
             res[ds]["layers"] = list(z["layers"])
             res[ds]["models"] = list(z["models"])
             res[ds]["tv"] = list(z["tv"])
+            res[ds]["subjects"] = list(z["subjects"])
+            _derive(res[ds])
             if verbose:
                 print(f"[stats] {ds}: engine results from cache {cpath.name}")
             continue
         M = len(D.models)
-        res[ds] = dict(models=D.models, tv=tv, cpath=cpath,
-                       sub=np.full((n_sub, len(METRICS), M), np.nan), bb=np.full((n_sub, len(METRICS)), np.nan),
-                       mm=np.full((n_sub, len(tv)), np.nan), null=np.full((n_null, len(METRICS), M), np.nan),
+        ns = len(D.subjects)
+        res[ds] = dict(models=D.models, tv=tv, subjects=list(D.subjects), cpath=cpath,
+                       sub_s=np.full((n_sub, len(METRICS), M, ns), np.nan),
+                       bb_s=np.full((n_sub, len(METRICS), ns), np.nan),
+                       mm_mat=np.full((n_sub, len(tv), len(tv)), np.nan),
+                       null_s=np.full((n_null, len(METRICS), M, ns), np.nan),
                        k={}, layers=[])
         del D
         ch = 10
@@ -337,23 +360,45 @@ def run_engine(root, datasets, n_sub=N_SUB, n_null=N_NULL, jobs=None, verbose=Tr
             cpath = r.pop("cpath", None)
             if cpath is not None:
                 try:
-                    np.savez_compressed(cpath, sub=r["sub"], bb=r["bb"], mm=r["mm"], null=r["null"],
-                                        k=np.array(r["k"], dtype=object), layers=np.array(r["layers"], dtype=object),
-                                        models=np.array(r["models"]), tv=np.array(r["tv"]))
+                    np.savez_compressed(cpath, sub_s=r["sub_s"], bb_s=r["bb_s"], mm_mat=r["mm_mat"],
+                                        null_s=r["null_s"], k=np.array(r["k"], dtype=object),
+                                        layers=np.array(r["layers"], dtype=object), models=np.array(r["models"]),
+                                        tv=np.array(r["tv"]), subjects=np.array(r["subjects"]))
                 except OSError:
                     pass
+            _derive(r)
     for r in res.values():
         r.pop("cpath", None)
     return res
+
+
+def _derive(r, keep_subjects=None, keep_tv=None):
+    """Dataset-level arrays from the per-subject engine output (optionally restricted to subjects per metric
+    and/or to a subset of the trained vision models for the model-model agreement):
+      sub (n_sub, metric, model), bb (n_sub, metric), null (n_null, metric, model), mm (n_sub, n_tv)."""
+    S, BB, NL = r["sub_s"], r["bb_s"], r["null_s"]
+    if keep_subjects is not None:  # {metric index: boolean mask over subjects}
+        S, BB, NL = S.copy(), BB.copy(), NL.copy()
+        for mi, keep in keep_subjects.items():
+            S[:, mi, :, ~keep] = np.nan
+            BB[:, mi, ~keep] = np.nan
+            NL[:, mi, :, ~keep] = np.nan
+    r["sub"], r["bb"], r["null"] = sc.nanmean0(S, -1), sc.nanmean0(BB, -1), sc.nanmean0(NL, -1)
+    M = r["mm_mat"]
+    if keep_tv is not None:
+        M = M[:, keep_tv][:, :, keep_tv]
+    with np.errstate(all="ignore"):
+        r["mm"] = np.nanmean(M, 2) if M.shape[1] >= 2 else np.full(M.shape[:2], np.nan)
+    return r
 
 
 def _collect(res, it, n, t0, verbose):
     for i, (kind, ds, seeds, out) in enumerate(it):
         r = res[ds]
         if kind == "sub":
-            r["sub"][seeds], r["bb"][seeds], r["mm"][seeds] = out
+            r["sub_s"][seeds], r["bb_s"][seeds], r["mm_mat"][seeds] = out
         elif kind == "null":
-            r["null"][seeds] = out[0]
+            r["null_s"][seeds] = out[0]
         elif kind == "k":
             r["k"].update(out[0])
         elif kind == "layers":
@@ -416,13 +461,14 @@ def test_hypotheses(meta, point, eng, n_perm=N_PERM, subj=None):
         pos = {m: i for i, m in enumerate(models)}
         tv = [m for m in models if sc.is_trained_vision(meta, m)]
         rnd = [m for m in models if sc.is_random(meta, m)]
-        lm = [m for m in models if m in meta.index and meta.at[m, "modality"] == "language"]
+        lm = [m for m in models if m in meta.index and meta.at[m, "modality"] == "language"
+              and meta.at[m, "objective"] in H4_LANGUAGE_OBJECTIVES]
         itv, irnd = [pos[m] for m in tv], [pos[m] for m in rnd]
         cap = meta.loc[tv, "capability"].to_numpy(float) if tv else np.array([])
         logw = np.log10(meta.loc[tv, "emb_dim"].to_numpy(float)) if tv else np.array([])
         mm_point = E["mm_point"]
-        vfam = _families(meta, models, lambda m: sc.is_trained_vision(meta, m))
-        lfam = _families(meta, models, lambda m: m in lm)
+        vfam = _families(meta, models, lambda m: sc.is_trained_vision(meta, m) and meta.at[m, "family"] in H3_FAMILIES)
+        lfam = _families(meta, models, lambda m: m in lm and meta.at[m, "family"] in H4_SCALE_FAMILIES)
         for mi, metric in enumerate(METRICS):
             y = point[ds][metric]
             sub = E["sub"][:, mi, :]
@@ -615,6 +661,77 @@ def loso(subj, meta):
     return pd.DataFrame(rows)
 
 
+# ------------------------------------------------------------------ exploratory sensitivity analyses
+
+CEIL_MIN = 0.1           # sensitivity (b): drop subjects whose split-half ceiling for a metric is below this
+SENS_EXCLUDE_FAMILY = "mae"  # sensitivity (a): drop MAE models (timm exposes MAE's untrained CLS token)
+
+
+def _mm_point(mmsim, ds, tv):
+    M = mmsim[mmsim["dataset"] == ds].pivot(index="model_a", columns="model_b", values="mknn")
+    if len(tv) < 2:
+        return np.full(len(tv), np.nan)
+    Mt = M.loc[tv, tv].to_numpy(float).copy()
+    np.fill_diagonal(Mt, np.nan)
+    return np.nanmean(Mt, 1)
+
+
+def sensitivity(meta, point, eng, subj, ref, mmsim, n_perm=N_PERM):
+    """EXPLORATORY (not preregistered; added after the builders' notes, before the final integration run).
+
+    (a) no_mae: H2, H3, H5 recomputed with the MAE models removed from the trained-vision set (and from the
+        model-model agreement of H5). Everything else (subsamples, permutations, Holm over 9 cells) as primary.
+    (b) ceiling_ge_0.1: every hypothesis recomputed after excluding, per dataset x metric, subjects whose
+        split-half ceiling is < 0.1 (point estimate and the same subjects in every subsample / null draw).
+    Returns (table, {analysis: verdicts}, {analysis: description})."""
+    tabs, V, desc = [], {}, {}
+    # (a)
+    mae = [m for m in meta.index if meta.at[m, "family"] == SENS_EXCLUDE_FAMILY]
+    meta_a = meta.drop(index=mae)
+    eng_a = {}
+    for ds, E in eng.items():
+        Ea = dict(E)
+        keep_tv = np.array([m not in mae for m in E["tv"]], bool)
+        _derive(Ea, keep_tv=keep_tv)
+        Ea["mm_point"] = _mm_point(mmsim, ds, [m for m in E["tv"] if m not in mae])
+        eng_a[ds] = Ea
+    Ha, _, _ = test_hypotheses(meta_a, point, eng_a, n_perm)
+    Ha = Ha[Ha["hypothesis"].isin(["H2", "H3", "H5"])].assign(analysis="no_mae")
+    va = verdicts(Ha)
+    V["no_mae"] = {h: va[h] for h in ("H2", "H3", "H5")}
+    desc["no_mae"] = f"H2/H3/H5 without the MAE models ({', '.join(sorted(mae))})"
+    tabs.append(Ha)
+    # (b)
+    point_b, eng_b, dropped = {}, {}, []
+    for ds, E in eng.items():
+        subs = list(E["subjects"])
+        g = subj[subj["dataset"] == ds]
+        ce = g.groupby(["metric", "subject"])["ceiling"].first()
+        keep = {mi: np.array([bool(ce.get((mt, s_), np.nan) >= CEIL_MIN) for s_ in subs]) for mi, mt in enumerate(METRICS)}
+        for mi, mt in enumerate(METRICS):
+            dropped += [f"{sc.DS_SHORT[ds]} {mt}: {s_} ({ce[(mt, s_)]:.3f})" for s_, k in zip(subs, keep[mi]) if not k]
+        Eb = _derive(dict(E), keep_subjects=keep)
+        point_b[ds] = {}
+        rb = ref[(ref["dataset"] == ds) & (ref["system"] == "brain_heldout")]
+        bbp = []
+        for mi, mt in enumerate(METRICS):
+            ok = set(np.array(subs)[keep[mi]])
+            gg = g[(g["metric"] == mt) & g["subject"].isin(ok) & g["included"].astype(bool)]
+            s = gg.groupby("model")["corrected"].mean()
+            point_b[ds][mt] = s.reindex(list(E["models"])).to_numpy(float)
+            r = rb[(rb["metric"] == mt) & rb["subject"].isin(ok) & rb["included"].astype(bool)]
+            bbp.append(r["corrected"].mean() if len(r) else np.nan)
+        Eb["bb_point"] = np.array(bbp)
+        eng_b[ds] = Eb
+    Hb, _, _ = test_hypotheses(meta, point_b, eng_b, n_perm)
+    Hb = Hb.assign(analysis=f"ceiling_ge_{CEIL_MIN}")
+    V[f"ceiling_ge_{CEIL_MIN}"] = verdicts(Hb)
+    desc[f"ceiling_ge_{CEIL_MIN}"] = (f"all hypotheses after excluding subjects with split-half ceiling < {CEIL_MIN} "
+                                      f"for a metric; excluded: " + ("; ".join(dropped) if dropped else "none"))
+    T = pd.concat(tabs + [Hb], ignore_index=True)
+    return T, V, desc
+
+
 # ------------------------------------------------------------------ main
 
 def run(root=None, n_sub=N_SUB, n_null=N_NULL, n_perm=N_PERM, jobs=None, verbose=True):
@@ -637,14 +754,7 @@ def run(root=None, n_sub=N_SUB, n_null=N_NULL, n_perm=N_PERM, jobs=None, verbose
         for metric in METRICS:
             s = S[(S["dataset"] == ds) & (S["metric"] == metric)].set_index("model")["corrected"]
             point[ds][metric] = s.reindex(models).to_numpy(float)
-        tv = list(E["tv"])
-        M = mmsim[(mmsim["dataset"] == ds)].pivot(index="model_a", columns="model_b", values="mknn")
-        if len(tv) >= 2:
-            Mt = M.loc[tv, tv].to_numpy(float).copy()
-            np.fill_diagonal(Mt, np.nan)
-            E["mm_point"] = np.nanmean(Mt, 1)
-        else:
-            E["mm_point"] = np.full(len(tv), np.nan)
+        E["mm_point"] = _mm_point(mmsim, ds, list(E["tv"]))
         r = ref[(ref["dataset"] == ds) & (ref["system"] == "brain_heldout") & ref["included"].astype(bool)]
         E["bb_point"] = np.array([r[r["metric"] == mt]["corrected"].mean() for mt in METRICS])
         if "k" in E:
@@ -686,7 +796,9 @@ def run(root=None, n_sub=N_SUB, n_null=N_NULL, n_perm=N_PERM, jobs=None, verbose
     if lay:
         pd.DataFrame(lay).to_csv(out / "layers.csv", index=False, float_format="%.4f")
     settings = dict(n_sub=n_sub, n_null=n_null, n_perm=n_perm)
-    write_markdown(H, verdicts(H), out / "hypotheses.md", datasets, settings)
+    sens = sensitivity(meta, point, eng, subj, ref, mmsim, n_perm)
+    sens[0][["analysis"] + cols].to_csv(out / "sensitivity.csv", index=False, float_format="%.4f")
+    write_markdown(H, verdicts(H), out / "hypotheses.md", datasets, settings, sens)
     if verbose:
         print(f"[stats] done in {time.time() - t0:.0f} s")
     return H
@@ -696,7 +808,7 @@ def _fmt(x, nd=3):
     return "" if x is None or (isinstance(x, float) and not np.isfinite(x)) else f"{x:.{nd}f}"
 
 
-def write_markdown(H, V, path, datasets, settings):
+def write_markdown(H, V, path, datasets, settings, sens=None):
     pre = dict(n_sub=N_SUB, n_null=N_NULL, n_perm=N_PERM)
     L = ["# Hypothesis tests (machine-generated by `python -m pbi stats`; do not edit)", ""]
     if settings != pre:
@@ -741,6 +853,25 @@ def write_markdown(H, V, path, datasets, settings):
           "(not a test). LOSO = leave-one-subject-out ranking consistency (CI columns hold min/max over subjects). "
           "H4 is operationalized on the primary metric (mutual k-NN) because the threshold names no metric; "
           "the other metrics are reported in the table.", ""]
+    if sens is not None:
+        T, SV, desc = sens
+        L += ["## EXPLORATORY sensitivity analyses (not preregistered; do not replace the verdicts above)", "",
+              "Same tests, subsamples, permutations and Holm correction (9 cells) as the primary analysis, on a "
+              "restricted set of models or subjects. Full rows: `artifacts/results/sensitivity.csv`.", ""]
+        for a in SV:
+            L += [f"### {a}: {desc[a]}", "", "| Hypothesis | Verdict (exploratory) | Detail |", "|---|---|---|"]
+            for h, v in SV[a].items():
+                L.append(f"| {h} | {'PASS' if v['passed'] else 'FAIL'} | {v['detail']} |")
+            L += ["", "| Test | Dataset | Metric | Effect | 95% CI | p | p (Holm) | Confirmed | n |",
+                  "|---|---|---|---|---|---|---|---|---|"]
+            for _, r in T[T["analysis"] == a].iterrows():
+                if not r["hypothesis"] in ("H1", "H2", "H3", "H4_bestLM", "H4_scale", "H5", "H6"):
+                    continue
+                L.append(f"| {r['hypothesis']} | {sc.DS_SHORT.get(r['dataset'], r['dataset'])} | {r['metric']} | "
+                         f"{_fmt(r['effect'])} | [{_fmt(r['ci_lo'])}, {_fmt(r['ci_hi'])}] | {_fmt(r['p'], 4)} | "
+                         f"{_fmt(r['p_holm'], 4)} | {'yes' if r['confirmed'] else 'no'} | "
+                         f"{'' if pd.isna(r['n']) else int(r['n'])} |")
+            L.append("")
     Path(path).write_text("\n".join(L))
 
 

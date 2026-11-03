@@ -1,79 +1,127 @@
 hypothesis,dataset,metric,effect,ci_lo,ci_hi,p,p_holm,confirmed,n,note
-H1,things_eeg2,mknn,0.0673,0.0547,0.0786,0.0001,0.0009,True,30.0000,21 trained vs 9 random-init
-H1,things_eeg2,cka,0.0518,0.0352,0.0707,0.0216,0.1296,False,30.0000,21 trained vs 9 random-init
-H1,things_eeg2,rsa,0.0078,-0.0134,0.0282,0.2905,1.0000,False,30.0000,21 trained vs 9 random-init
-H1,things_fmri,mknn,0.0825,0.0589,0.0969,0.0001,0.0009,True,30.0000,21 trained vs 9 random-init
-H1,things_fmri,cka,0.1357,0.1096,0.1687,0.0001,0.0009,True,30.0000,21 trained vs 9 random-init
-H1,things_fmri,rsa,-0.0805,-0.1242,-0.0332,0.9960,1.0000,False,30.0000,21 trained vs 9 random-init
-H2,things_eeg2,mknn,,,,,,False,,fewer than 3 trained vision models with capability
-H2,things_eeg2,cka,,,,,,False,,fewer than 3 trained vision models with capability
-H2,things_eeg2,rsa,,,,,,False,,fewer than 3 trained vision models with capability
-H2,things_fmri,mknn,,,,,,False,,fewer than 3 trained vision models with capability
-H2,things_fmri,cka,,,,,,False,,fewer than 3 trained vision models with capability
-H2,things_fmri,rsa,,,,,,False,,fewer than 3 trained vision models with capability
-H2_width_partial,things_eeg2,mknn,,,,,,False,,insufficient models
-H2_width_partial,things_eeg2,cka,,,,,,False,,insufficient models
-H2_width_partial,things_eeg2,rsa,,,,,,False,,insufficient models
-H2_width_partial,things_fmri,mknn,,,,,,False,,insufficient models
-H2_width_partial,things_fmri,cka,,,,,,False,,insufficient models
-H2_width_partial,things_fmri,rsa,,,,,,False,,insufficient models
-H3,things_eeg2,mknn,-0.8500,-0.8750,-0.1250,0.9986,1.0000,False,4.0000,"mean within-family rho(log10 params, score): clip_openai=-0.50, convnext=-1.00, resnet=-0.90, vit_sup=-1.00"
-H3,things_eeg2,cka,-0.3750,-0.8750,-0.2250,0.8737,1.0000,False,4.0000,"mean within-family rho(log10 params, score): clip_openai=-0.50, convnext=-1.00, resnet=-1.00, vit_sup=1.00"
-H3,things_eeg2,rsa,0.2750,-0.3500,0.5500,0.2260,1.0000,False,4.0000,"mean within-family rho(log10 params, score): clip_openai=-1.00, convnext=1.00, resnet=0.10, vit_sup=1.00"
-H3,things_fmri,mknn,0.0750,-0.1250,0.5500,0.4286,1.0000,False,4.0000,"mean within-family rho(log10 params, score): clip_openai=1.00, convnext=-1.00, resnet=-0.70, vit_sup=1.00"
-H3,things_fmri,cka,0.2000,-0.2256,0.2500,0.2891,1.0000,False,4.0000,"mean within-family rho(log10 params, score): clip_openai=1.00, convnext=-0.50, resnet=-0.70, vit_sup=1.00"
-H3,things_fmri,rsa,0.2750,0.0000,0.4000,0.2313,1.0000,False,4.0000,"mean within-family rho(log10 params, score): clip_openai=-1.00, convnext=0.50, resnet=0.60, vit_sup=1.00"
-H4_bestLM,things_eeg2,mknn,0.1817,0.1668,0.1969,0.0010,0.0090,True,3.0000,best=cliptext-vit-b-32-openai; null = max over all language models
-H4_bestLM,things_eeg2,cka,0.1392,0.1235,0.1560,0.0010,0.0090,True,3.0000,best=cliptext-vit-b-32-openai; null = max over all language models
-H4_bestLM,things_eeg2,rsa,0.0357,0.0122,0.0596,0.2857,1.0000,False,3.0000,best=sbert-minilm-l6; null = max over all language models
-H4_bestLM,things_fmri,mknn,0.1974,0.1727,0.2233,0.0010,0.0090,True,3.0000,best=sbert-minilm-l6; null = max over all language models
-H4_bestLM,things_fmri,cka,0.1296,0.0923,0.1736,0.0010,0.0090,True,3.0000,best=sbert-minilm-l6; null = max over all language models
-H4_bestLM,things_fmri,rsa,0.0600,0.0206,0.1037,0.4136,1.0000,False,3.0000,best=sbert-minilm-l6; null = max over all language models
-H4_scale,things_eeg2,mknn,,,,,,False,,no family with >= 3 sizes
-H4_scale,things_eeg2,cka,,,,,,False,,no family with >= 3 sizes
-H4_scale,things_eeg2,rsa,,,,,,False,,no family with >= 3 sizes
-H4_scale,things_fmri,mknn,,,,,,False,,no family with >= 3 sizes
-H4_scale,things_fmri,cka,,,,,,False,,no family with >= 3 sizes
-H4_scale,things_fmri,rsa,,,,,,False,,no family with >= 3 sizes
-H5,things_eeg2,mknn,0.6481,0.5545,0.7273,0.0010,0.0080,True,21.0000,
-H5,things_eeg2,cka,0.6662,0.6169,0.7262,0.0011,0.0080,True,21.0000,
-H5,things_eeg2,rsa,0.4831,0.3881,0.6208,0.0154,0.0770,False,21.0000,
-H5,things_fmri,mknn,0.6182,0.3051,0.7779,0.0018,0.0108,True,21.0000,
-H5,things_fmri,cka,0.8455,0.6143,0.8935,0.0001,0.0009,True,21.0000,
-H5,things_fmri,rsa,-0.0338,-0.2729,0.1701,0.5576,1.0000,False,21.0000,
-H6,things_eeg2,mknn,0.2574,0.2441,0.2750,,,True,24.0000,best=dino_vit_small_p16; CI of max over models per subsample
-H6,things_eeg2,cka,0.2768,0.2549,0.2965,,,True,24.0000,best=alexnet; CI of max over models per subsample
-H6,things_eeg2,rsa,0.2090,0.1914,0.2271,,,True,24.0000,best=alexnet; CI of max over models per subsample
-H6,things_fmri,mknn,0.2819,0.2567,0.3129,,,True,24.0000,best=vit_base_p16_in21k; CI of max over models per subsample
-H6,things_fmri,cka,0.2160,0.1885,0.2650,,,True,24.0000,best=clip_vit_b_32_openai; CI of max over models per subsample
-H6,things_fmri,rsa,0.1270,0.0945,0.1904,,,True,24.0000,best=vit_base_p16_in21k; CI of max over models per subsample
-REF_brain_heldout,things_eeg2,mknn,0.5123,0.4860,0.5295,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
-REF_brain_heldout,things_eeg2,cka,0.8074,0.7818,0.8284,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
-REF_brain_heldout,things_eeg2,rsa,0.7162,0.6873,0.7424,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+H1,things_eeg2,mknn,0.0754,0.0632,0.0851,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+H1,things_eeg2,cka,0.0685,0.0525,0.0859,0.0028,0.0112,True,44.0000,35 trained vs 9 random-init
+H1,things_eeg2,rsa,0.0277,0.0078,0.0477,0.0623,0.1869,False,44.0000,35 trained vs 9 random-init
+H1,things_meg,mknn,0.0313,0.0227,0.0398,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+H1,things_meg,cka,0.1000,0.0793,0.1200,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+H1,things_meg,rsa,0.0290,-0.0016,0.0593,0.1229,0.2458,False,44.0000,35 trained vs 9 random-init
+H1,things_fmri,mknn,0.0774,0.0552,0.0923,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+H1,things_fmri,cka,0.1317,0.1059,0.1644,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+H1,things_fmri,rsa,-0.0771,-0.1195,-0.0313,0.9926,0.9926,False,44.0000,35 trained vs 9 random-init
+H2,things_eeg2,mknn,0.0756,-0.0251,0.1598,0.3320,1.0000,False,35.0000,
+H2,things_eeg2,cka,0.1317,0.0688,0.1532,0.2352,1.0000,False,35.0000,
+H2,things_eeg2,rsa,0.2154,0.0785,0.3252,0.1036,0.8287,False,35.0000,
+H2,things_meg,mknn,-0.0359,-0.1864,0.3034,0.5787,1.0000,False,35.0000,
+H2,things_meg,cka,0.2032,0.1074,0.3307,0.1154,0.8287,False,35.0000,
+H2,things_meg,rsa,-0.6768,-0.7597,-0.4552,1.0000,1.0000,False,35.0000,
+H2,things_fmri,mknn,-0.0074,-0.2416,0.3145,0.5102,1.0000,False,35.0000,
+H2,things_fmri,cka,0.2639,0.0237,0.5252,0.0608,0.5471,False,35.0000,
+H2,things_fmri,rsa,-0.2591,-0.4645,0.0253,0.9368,1.0000,False,35.0000,
+H2_width_partial,things_eeg2,mknn,0.0656,-0.0382,0.1528,0.3561,1.0000,False,35.0000,partial Spearman controlling log10 emb_dim
+H2_width_partial,things_eeg2,cka,0.1247,0.0594,0.1462,0.2455,1.0000,False,35.0000,partial Spearman controlling log10 emb_dim
+H2_width_partial,things_eeg2,rsa,0.2160,0.0782,0.3284,0.1082,0.8655,False,35.0000,partial Spearman controlling log10 emb_dim
+H2_width_partial,things_meg,mknn,-0.0436,-0.2001,0.2995,0.5883,1.0000,False,35.0000,partial Spearman controlling log10 emb_dim
+H2_width_partial,things_meg,cka,0.1973,0.0987,0.3268,0.1273,0.8910,False,35.0000,partial Spearman controlling log10 emb_dim
+H2_width_partial,things_meg,rsa,-0.6782,-0.7604,-0.4636,1.0000,1.0000,False,35.0000,partial Spearman controlling log10 emb_dim
+H2_width_partial,things_fmri,mknn,-0.0304,-0.2655,0.3129,0.5697,1.0000,False,35.0000,partial Spearman controlling log10 emb_dim
+H2_width_partial,things_fmri,cka,0.2657,0.0041,0.5339,0.0628,0.5651,False,35.0000,partial Spearman controlling log10 emb_dim
+H2_width_partial,things_fmri,rsa,-0.2580,-0.4625,0.0233,0.9312,1.0000,False,35.0000,partial Spearman controlling log10 emb_dim
+H2_k5,things_eeg2,mknn,0.0604,,,0.3622,,False,35.0000,k sensitivity (point + perm p)
+H2_k5,things_meg,mknn,-0.0611,,,0.6399,,False,35.0000,k sensitivity (point + perm p)
+H2_k5,things_fmri,mknn,-0.0074,,,0.5274,,False,35.0000,k sensitivity (point + perm p)
+H2_k10,things_eeg2,mknn,0.0756,,,0.3346,,False,35.0000,k sensitivity (point + perm p)
+H2_k10,things_meg,mknn,-0.0359,,,0.5817,,False,35.0000,k sensitivity (point + perm p)
+H2_k10,things_fmri,mknn,0.2380,,,0.0846,,False,35.0000,k sensitivity (point + perm p)
+H2_k20,things_eeg2,mknn,0.1132,,,0.2619,,False,35.0000,k sensitivity (point + perm p)
+H2_k20,things_meg,mknn,0.1095,,,0.2632,,False,35.0000,k sensitivity (point + perm p)
+H2_k20,things_fmri,mknn,0.4107,,,0.0075,,False,35.0000,k sensitivity (point + perm p)
+H3,things_eeg2,mknn,-0.3667,-0.5167,-0.1833,0.9419,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-1.00, convnext=-1.00, dinov2=-0.40, mae=1.00, resnet=-1.00, vit_sup=0.20"
+H3,things_eeg2,cka,-0.2167,-0.4167,-0.1667,0.8268,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.90, convnext=-0.80, dinov2=-0.40, mae=1.00, resnet=-1.00, vit_sup=0.80"
+H3,things_eeg2,rsa,-0.1333,-0.2833,0.2333,0.7199,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.30, convnext=-0.20, dinov2=-0.40, mae=1.00, resnet=-0.70, vit_sup=-0.20"
+H3,things_meg,mknn,-0.2833,-0.4667,0.0000,0.8857,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.80, convnext=-0.80, dinov2=-0.40, mae=0.50, resnet=-0.60, vit_sup=0.40"
+H3,things_meg,cka,-0.1667,-0.3000,-0.1333,0.7639,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.90, convnext=-1.00, dinov2=-0.20, mae=1.00, resnet=-0.90, vit_sup=1.00"
+H3,things_meg,rsa,0.1500,-0.1667,0.2500,0.2778,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.80, convnext=-0.40, dinov2=-0.20, mae=1.00, resnet=0.90, vit_sup=0.40"
+H3,things_fmri,mknn,-0.0667,-0.2500,0.3000,0.6223,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=0.10, convnext=-1.00, dinov2=-0.60, mae=1.00, resnet=-0.70, vit_sup=0.80"
+H3,things_fmri,cka,-0.1500,-0.2667,0.0667,0.7392,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.60, convnext=-0.80, dinov2=-0.80, mae=1.00, resnet=-0.70, vit_sup=1.00"
+H3,things_fmri,rsa,0.2500,0.0329,0.4667,0.1608,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.80, convnext=0.00, dinov2=0.40, mae=0.50, resnet=0.60, vit_sup=0.80"
+H4_bestLM,things_eeg2,mknn,0.2009,0.1867,0.2149,0.0010,0.0090,True,12.0000,best=cliptext-vit-h-14-laion2b; null = max over all language models
+H4_bestLM,things_eeg2,cka,0.1479,0.1325,0.1646,0.0010,0.0090,True,12.0000,best=cliptext-vit-b-32-openai; null = max over all language models
+H4_bestLM,things_eeg2,rsa,0.1323,0.0998,0.1684,0.0020,0.0090,True,12.0000,best=cliptext-vit-h-14-laion2b; null = max over all language models
+H4_bestLM,things_meg,mknn,0.2440,0.2328,0.2548,0.0010,0.0090,True,12.0000,best=cliptext-vit-h-14-laion2b; null = max over all language models
+H4_bestLM,things_meg,cka,0.1494,0.1274,0.1779,0.0010,0.0090,True,12.0000,best=cliptext-vit-h-14-laion2b; null = max over all language models
+H4_bestLM,things_meg,rsa,0.0414,-0.0229,0.1287,0.5794,1.0000,False,12.0000,best=cliptext-vit-b-32-openai; null = max over all language models
+H4_bestLM,things_fmri,mknn,0.2091,0.1829,0.2345,0.0010,0.0090,True,12.0000,best=cliptext-vit-h-14-laion2b; null = max over all language models
+H4_bestLM,things_fmri,cka,0.1048,0.0726,0.1499,0.0070,0.0210,True,12.0000,best=cliptext-vit-h-14-laion2b; null = max over all language models
+H4_bestLM,things_fmri,rsa,0.0174,-0.0870,0.1124,0.7942,1.0000,False,12.0000,best=cliptext-vit-l-14-openai; null = max over all language models
+H4_scale,things_eeg2,mknn,0.6357,-0.1714,0.9143,0.0618,0.4944,False,2.0000,"mean within-family rho(log10 params, score): pythia=0.77, qwen2.5=0.50"
+H4_scale,things_eeg2,cka,-0.3214,-0.3214,0.2071,0.7688,1.0000,False,2.0000,"mean within-family rho(log10 params, score): pythia=-0.14, qwen2.5=-0.50"
+H4_scale,things_eeg2,rsa,0.7214,0.0500,0.9714,0.0327,0.2943,False,2.0000,"mean within-family rho(log10 params, score): pythia=0.94, qwen2.5=0.50"
+H4_scale,things_meg,mknn,0.5500,-0.3714,0.8857,0.1089,0.7622,False,2.0000,"mean within-family rho(log10 params, score): pythia=0.60, qwen2.5=0.50"
+H4_scale,things_meg,cka,-0.0643,-0.3150,0.0500,0.5614,1.0000,False,2.0000,"mean within-family rho(log10 params, score): pythia=0.37, qwen2.5=-0.50"
+H4_scale,things_meg,rsa,0.0500,-0.4000,0.6357,0.4785,1.0000,False,2.0000,"mean within-family rho(log10 params, score): pythia=0.60, qwen2.5=-0.50"
+H4_scale,things_fmri,mknn,0.1071,-0.3430,0.9143,0.4215,1.0000,False,2.0000,"mean within-family rho(log10 params, score): pythia=0.71, qwen2.5=-0.50"
+H4_scale,things_fmri,cka,0.4071,-0.4571,0.6648,0.2050,1.0000,False,2.0000,"mean within-family rho(log10 params, score): pythia=0.31, qwen2.5=0.50"
+H4_scale,things_fmri,rsa,0.0357,-0.5786,0.3786,0.4864,1.0000,False,2.0000,"mean within-family rho(log10 params, score): pythia=-0.43, qwen2.5=0.50"
+H5,things_eeg2,mknn,0.5947,0.5016,0.6672,0.0001,0.0009,True,35.0000,
+H5,things_eeg2,cka,0.6034,0.5728,0.6499,0.0001,0.0009,True,35.0000,
+H5,things_eeg2,rsa,0.4891,0.3999,0.5628,0.0016,0.0080,True,35.0000,
+H5,things_meg,mknn,0.4871,0.3252,0.7182,0.0017,0.0080,True,35.0000,
+H5,things_meg,cka,0.6703,0.5798,0.7560,0.0001,0.0009,True,35.0000,
+H5,things_meg,rsa,-0.3132,-0.4829,-0.0448,0.9677,1.0000,False,35.0000,
+H5,things_fmri,mknn,0.4059,0.1062,0.6410,0.0074,0.0222,True,35.0000,
+H5,things_fmri,cka,0.8073,0.5812,0.9050,0.0001,0.0009,True,35.0000,
+H5,things_fmri,rsa,-0.2022,-0.4303,0.0662,0.8808,1.0000,False,35.0000,
+H6,things_eeg2,mknn,0.2629,0.2486,0.2766,,,True,55.0000,best=dino_vit_small_p16; CI of max over models per subsample
+H6,things_eeg2,cka,0.2747,0.2547,0.2942,,,True,55.0000,best=alexnet; CI of max over models per subsample
+H6,things_eeg2,rsa,0.2365,0.2137,0.2701,,,True,55.0000,best=siglip_vit_l_16_256; CI of max over models per subsample
+H6,things_meg,mknn,0.2580,0.2509,0.2711,,,True,55.0000,best=alexnet; CI of max over models per subsample
+H6,things_meg,cka,0.2337,0.2133,0.2588,,,True,55.0000,best=alexnet; CI of max over models per subsample
+H6,things_meg,rsa,0.2980,0.2436,0.3886,,,True,55.0000,best=mae_vit_huge; CI of max over models per subsample
+H6,things_fmri,mknn,0.2819,0.2567,0.3129,,,True,55.0000,best=vit_base_p16_in21k; CI of max over models per subsample
+H6,things_fmri,cka,0.2160,0.1901,0.2670,,,True,55.0000,best=clip_vit_b_32_openai; CI of max over models per subsample
+H6,things_fmri,rsa,0.2068,0.1393,0.3077,,,True,55.0000,best=mae_vit_large; CI of max over models per subsample
+REF_brain_heldout,things_eeg2,mknn,0.5988,0.5820,0.6120,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+REF_brain_heldout,things_eeg2,cka,0.8554,0.8396,0.8681,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+REF_brain_heldout,things_eeg2,rsa,0.8014,0.7830,0.8177,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+REF_brain_heldout,things_meg,mknn,0.2892,0.2617,0.3140,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+REF_brain_heldout,things_meg,cka,0.4441,0.3789,0.5147,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+REF_brain_heldout,things_meg,rsa,0.3691,0.2812,0.4960,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
 REF_brain_heldout,things_fmri,mknn,0.4000,0.3612,0.4844,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
 REF_brain_heldout,things_fmri,cka,0.6340,0.5034,0.7755,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
 REF_brain_heldout,things_fmri,rsa,0.7076,0.5883,0.8839,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
-LOSO,things_eeg2,mknn,0.9730,0.9617,0.9791,,,False,3.0000,"mean (min, max) over held-out subjects of Spearman(held-out ranking, others' mean ranking)"
-LOSO,things_eeg2,cka,0.9896,0.9870,0.9922,,,False,3.0000,"mean (min, max) over held-out subjects of Spearman(held-out ranking, others' mean ranking)"
-LOSO,things_eeg2,rsa,0.9359,0.9235,0.9452,,,False,3.0000,"mean (min, max) over held-out subjects of Spearman(held-out ranking, others' mean ranking)"
-LOSO,things_fmri,mknn,0.8061,0.7515,0.8435,,,False,3.0000,"mean (min, max) over held-out subjects of Spearman(held-out ranking, others' mean ranking)"
-LOSO,things_fmri,cka,0.7177,0.6287,0.7730,,,False,3.0000,"mean (min, max) over held-out subjects of Spearman(held-out ranking, others' mean ranking)"
-LOSO,things_fmri,rsa,0.6354,0.5443,0.7278,,,False,3.0000,"mean (min, max) over held-out subjects of Spearman(held-out ranking, others' mean ranking)"
-H4_best:clip_text,things_eeg2,mknn,0.1817,0.1668,0.1969,0.0010,,False,1.0000,best=cliptext-vit-b-32-openai; null = max over family of shuffled-stimulus scores
-H4_best:clip_text,things_eeg2,cka,0.1392,0.1235,0.1560,0.0010,,False,1.0000,best=cliptext-vit-b-32-openai; null = max over family of shuffled-stimulus scores
-H4_best:clip_text,things_eeg2,rsa,-0.0039,-0.0425,0.0343,0.5195,,False,1.0000,best=cliptext-vit-b-32-openai; null = max over family of shuffled-stimulus scores
-H4_best:clip_text,things_fmri,mknn,0.1881,0.1659,0.2192,0.0010,,False,1.0000,best=cliptext-vit-b-32-openai; null = max over family of shuffled-stimulus scores
-H4_best:clip_text,things_fmri,cka,0.0727,0.0405,0.1158,0.0010,,False,1.0000,best=cliptext-vit-b-32-openai; null = max over family of shuffled-stimulus scores
-H4_best:clip_text,things_fmri,rsa,-0.1003,-0.1835,-0.0276,0.8591,,False,1.0000,best=cliptext-vit-b-32-openai; null = max over family of shuffled-stimulus scores
-H4_best:pythia,things_eeg2,mknn,0.1184,0.1071,0.1306,0.0010,,False,1.0000,best=pythia-70m; null = max over family of shuffled-stimulus scores
-H4_best:pythia,things_eeg2,cka,0.0490,0.0337,0.0636,0.0010,,False,1.0000,best=pythia-70m; null = max over family of shuffled-stimulus scores
-H4_best:pythia,things_eeg2,rsa,-0.0368,-0.0751,-0.0006,0.8142,,False,1.0000,best=pythia-70m; null = max over family of shuffled-stimulus scores
-H4_best:pythia,things_fmri,mknn,0.1693,0.1485,0.1908,0.0220,,False,1.0000,best=pythia-70m; null = max over family of shuffled-stimulus scores
-H4_best:pythia,things_fmri,cka,0.0459,0.0130,0.0944,0.0270,,False,1.0000,best=pythia-70m; null = max over family of shuffled-stimulus scores
-H4_best:pythia,things_fmri,rsa,-0.0553,-0.1374,0.0324,0.6683,,False,1.0000,best=pythia-70m; null = max over family of shuffled-stimulus scores
-H4_best:sbert,things_eeg2,mknn,0.1340,0.1229,0.1470,0.0010,,False,1.0000,best=sbert-minilm-l6; null = max over family of shuffled-stimulus scores
-H4_best:sbert,things_eeg2,cka,0.0818,0.0646,0.0988,0.0010,,False,1.0000,best=sbert-minilm-l6; null = max over family of shuffled-stimulus scores
-H4_best:sbert,things_eeg2,rsa,0.0357,0.0122,0.0596,0.0350,,False,1.0000,best=sbert-minilm-l6; null = max over family of shuffled-stimulus scores
-H4_best:sbert,things_fmri,mknn,0.1974,0.1727,0.2233,0.0010,,False,1.0000,best=sbert-minilm-l6; null = max over family of shuffled-stimulus scores
-H4_best:sbert,things_fmri,cka,0.1296,0.0923,0.1736,0.0010,,False,1.0000,best=sbert-minilm-l6; null = max over family of shuffled-stimulus scores
-H4_best:sbert,things_fmri,rsa,0.0600,0.0206,0.1037,0.0899,,False,1.0000,best=sbert-minilm-l6; null = max over family of shuffled-stimulus scores
+LOSO,things_eeg2,mknn,0.9777,0.9595,0.9875,,,False,10.0000,"mean (min, max) over held-out subjects of Spearman(held-out ranking, others' mean ranking)"
+LOSO,things_eeg2,cka,0.9908,0.9812,0.9962,,,False,10.0000,"mean (min, max) over held-out subjects of Spearman(held-out ranking, others' mean ranking)"
+LOSO,things_eeg2,rsa,0.9531,0.9188,0.9790,,,False,10.0000,"mean (min, max) over held-out subjects of Spearman(held-out ranking, others' mean ranking)"
+LOSO,things_meg,mknn,0.8092,0.7426,0.8802,,,False,4.0000,"mean (min, max) over held-out subjects of Spearman(held-out ranking, others' mean ranking)"
+LOSO,things_meg,cka,0.9589,0.9454,0.9766,,,False,4.0000,"mean (min, max) over held-out subjects of Spearman(held-out ranking, others' mean ranking)"
+LOSO,things_meg,rsa,0.3986,0.0318,0.6323,,,False,4.0000,"mean (min, max) over held-out subjects of Spearman(held-out ranking, others' mean ranking)"
+LOSO,things_fmri,mknn,0.8554,0.8329,0.8880,,,False,3.0000,"mean (min, max) over held-out subjects of Spearman(held-out ranking, others' mean ranking)"
+LOSO,things_fmri,cka,0.8176,0.6701,0.9121,,,False,3.0000,"mean (min, max) over held-out subjects of Spearman(held-out ranking, others' mean ranking)"
+LOSO,things_fmri,rsa,0.6069,0.5609,0.6405,,,False,3.0000,"mean (min, max) over held-out subjects of Spearman(held-out ranking, others' mean ranking)"
+H4_best:clip_text,things_eeg2,mknn,0.2009,0.1867,0.2149,0.0010,,False,3.0000,best=cliptext-vit-h-14-laion2b; null = max over family of shuffled-stimulus scores
+H4_best:clip_text,things_eeg2,cka,0.1479,0.1325,0.1646,0.0010,,False,3.0000,best=cliptext-vit-b-32-openai; null = max over family of shuffled-stimulus scores
+H4_best:clip_text,things_eeg2,rsa,0.1323,0.0998,0.1684,0.0010,,False,3.0000,best=cliptext-vit-h-14-laion2b; null = max over family of shuffled-stimulus scores
+H4_best:clip_text,things_meg,mknn,0.2440,0.2328,0.2548,0.0010,,False,3.0000,best=cliptext-vit-h-14-laion2b; null = max over family of shuffled-stimulus scores
+H4_best:clip_text,things_meg,cka,0.1494,0.1274,0.1779,0.0010,,False,3.0000,best=cliptext-vit-h-14-laion2b; null = max over family of shuffled-stimulus scores
+H4_best:clip_text,things_meg,rsa,0.0414,-0.0229,0.1287,0.4156,,False,3.0000,best=cliptext-vit-b-32-openai; null = max over family of shuffled-stimulus scores
+H4_best:clip_text,things_fmri,mknn,0.2091,0.1829,0.2345,0.0010,,False,3.0000,best=cliptext-vit-h-14-laion2b; null = max over family of shuffled-stimulus scores
+H4_best:clip_text,things_fmri,cka,0.1048,0.0726,0.1499,0.0010,,False,3.0000,best=cliptext-vit-h-14-laion2b; null = max over family of shuffled-stimulus scores
+H4_best:clip_text,things_fmri,rsa,0.0174,-0.0870,0.1124,0.6723,,False,3.0000,best=cliptext-vit-l-14-openai; null = max over family of shuffled-stimulus scores
+H4_best:pythia,things_eeg2,mknn,0.1610,0.1479,0.1734,0.0010,,False,6.0000,best=pythia-1b; null = max over family of shuffled-stimulus scores
+H4_best:pythia,things_eeg2,cka,0.0880,0.0721,0.1037,0.0010,,False,6.0000,best=pythia-160m; null = max over family of shuffled-stimulus scores
+H4_best:pythia,things_eeg2,rsa,0.0185,-0.0132,0.0524,0.4046,,False,6.0000,best=pythia-2.8b; null = max over family of shuffled-stimulus scores
+H4_best:pythia,things_meg,mknn,0.2215,0.2112,0.2317,0.0010,,False,6.0000,best=pythia-1b; null = max over family of shuffled-stimulus scores
+H4_best:pythia,things_meg,cka,0.0621,0.0474,0.0825,0.0010,,False,6.0000,best=pythia-1b; null = max over family of shuffled-stimulus scores
+H4_best:pythia,things_meg,rsa,-0.0169,-0.0785,0.0452,0.7123,,False,6.0000,best=pythia-1.4b; null = max over family of shuffled-stimulus scores
+H4_best:pythia,things_fmri,mknn,0.2036,0.1798,0.2266,0.0010,,False,6.0000,best=pythia-1b; null = max over family of shuffled-stimulus scores
+H4_best:pythia,things_fmri,cka,0.0811,0.0459,0.1395,0.0070,,False,6.0000,best=pythia-1b; null = max over family of shuffled-stimulus scores
+H4_best:pythia,things_fmri,rsa,-0.0553,-0.1374,0.0324,0.7792,,False,6.0000,best=pythia-70m; null = max over family of shuffled-stimulus scores
+H4_best:qwen2.5,things_eeg2,mknn,0.1503,0.1399,0.1609,0.0010,,False,3.0000,best=qwen2.5-3b; null = max over family of shuffled-stimulus scores
+H4_best:qwen2.5,things_eeg2,cka,0.0565,0.0424,0.0742,0.0010,,False,3.0000,best=qwen2.5-0.5b; null = max over family of shuffled-stimulus scores
+H4_best:qwen2.5,things_eeg2,rsa,0.0296,-0.0021,0.0640,0.2318,,False,3.0000,best=qwen2.5-3b; null = max over family of shuffled-stimulus scores
+H4_best:qwen2.5,things_meg,mknn,0.2154,0.2057,0.2263,0.0010,,False,3.0000,best=qwen2.5-3b; null = max over family of shuffled-stimulus scores
+H4_best:qwen2.5,things_meg,cka,0.0535,0.0396,0.0721,0.0010,,False,3.0000,best=qwen2.5-0.5b; null = max over family of shuffled-stimulus scores
+H4_best:qwen2.5,things_meg,rsa,-0.0038,-0.0691,0.0734,0.5714,,False,3.0000,best=qwen2.5-0.5b; null = max over family of shuffled-stimulus scores
+H4_best:qwen2.5,things_fmri,mknn,0.1731,0.1530,0.1906,0.0260,,False,3.0000,best=qwen2.5-0.5b; null = max over family of shuffled-stimulus scores
+H4_best:qwen2.5,things_fmri,cka,0.0637,0.0300,0.1193,0.0100,,False,3.0000,best=qwen2.5-1.5b; null = max over family of shuffled-stimulus scores
+H4_best:qwen2.5,things_fmri,rsa,-0.0326,-0.1176,0.0540,0.6703,,False,3.0000,best=qwen2.5-1.5b; null = max over family of shuffled-stimulus scores

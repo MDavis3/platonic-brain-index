@@ -1,41 +1,83 @@
 system,kind,dataset,x,y
-EEG s01,brain,things_eeg2,-0.5600,-0.4040
-EEG s02,brain,things_eeg2,-0.8553,-0.2751
-EEG s03,brain,things_eeg2,-0.8267,-0.2849
-fMRI s01,brain,things_fmri,-0.2975,-0.4882
-fMRI s02,brain,things_fmri,-0.1566,-0.4839
-fMRI s03,brain,things_fmri,-0.2949,-0.4794
-alexnet,model,,0.3789,0.3952
-clip_rn50_openai,model,,0.6493,-0.1588
-clip_vit_b_16_laion2b,model,,0.6188,-0.1688
-clip_vit_b_16_openai,model,,0.6063,-0.2362
-clip_vit_b_32_openai,model,,0.6673,-0.1921
-cliptext-vit-b-32-openai,model,,0.4192,-0.3344
-convnext_base,model,,0.6907,0.2907
-convnext_small,model,,0.6855,0.2362
-convnext_tiny,model,,0.7263,0.1647
-dino_vit_base_p16,model,,0.6314,0.0626
-dino_vit_small_p16,model,,0.5939,-0.0070
-dinov2_vit_base_p14,model,,0.4885,0.3777
-dinov2_vit_small_p14,model,,0.5421,0.1583
-mae_vit_base,model,,-1.1414,0.1654
-pythia-70m,model,,-0.4650,0.2205
-random_convnext_tiny_s0,model,,-1.0740,0.2772
-random_convnext_tiny_s1,model,,-1.0864,0.2276
-random_convnext_tiny_s2,model,,-1.0696,0.2970
-random_resnet50_s0,model,,-1.0414,0.0364
-random_resnet50_s1,model,,-1.0761,-0.0468
-random_resnet50_s2,model,,-1.0598,-0.0188
-random_vit_base_p16_s0,model,,-1.1153,0.1456
-random_vit_base_p16_s1,model,,-1.0991,0.2367
-random_vit_base_p16_s2,model,,-1.1052,0.1906
-resnet101,model,,0.7188,0.2495
-resnet152,model,,0.7352,0.1858
-resnet18,model,,0.6900,0.0123
-resnet34,model,,0.7489,0.0909
-resnet50,model,,0.7243,0.1147
-sbert-minilm-l6,model,,0.0842,-0.4726
-vit_base_p16_in21k,model,,0.7026,-0.0830
-vit_small_p16_in21k,model,,0.7283,-0.0366
-vit_tiny_p16_in21k,model,,0.7417,0.0271
-consensus,consensus,,0.7519,0.0080
+EEG s01,brain,things_eeg2,-0.6040,0.3985
+EEG s02,brain,things_eeg2,-0.5761,0.4760
+EEG s03,brain,things_eeg2,-0.6553,0.4074
+EEG s04,brain,things_eeg2,-0.3187,0.5031
+EEG s05,brain,things_eeg2,-0.7103,0.3659
+EEG s06,brain,things_eeg2,-0.5527,0.4721
+EEG s07,brain,things_eeg2,-0.7124,0.3476
+EEG s08,brain,things_eeg2,-0.4894,0.5074
+EEG s09,brain,things_eeg2,-0.5679,0.4262
+EEG s10,brain,things_eeg2,-0.3424,0.5574
+MEG s01,brain,things_meg,-0.8215,-0.1242
+MEG s02,brain,things_meg,-0.8385,0.0617
+MEG s03,brain,things_meg,-0.8417,-0.1294
+MEG s04,brain,things_meg,-0.8184,-0.1014
+fMRI s01,brain,things_fmri,-0.5229,-0.0089
+fMRI s02,brain,things_fmri,-0.4014,0.0632
+fMRI s03,brain,things_fmri,-0.5204,0.1507
+alexnet,model,,0.2292,0.5832
+clip_rn50_openai,model,,0.8157,0.0515
+clip_vit_b_16_laion2b,model,,0.8026,0.0013
+clip_vit_b_16_openai,model,,0.8251,-0.0585
+clip_vit_b_32_laion2b,model,,0.7991,0.0477
+clip_vit_b_32_openai,model,,0.8220,0.0221
+clip_vit_g_14_laion2b,model,,0.8082,-0.0845
+clip_vit_h_14_laion2b,model,,0.7999,-0.0476
+clip_vit_l_14_laion2b,model,,0.8140,-0.0301
+clip_vit_l_14_openai,model,,0.8207,-0.1021
+cliptext-vit-b-32-openai,model,,0.5746,-0.5046
+cliptext-vit-h-14-laion2b,model,,0.6647,-0.4259
+cliptext-vit-l-14-openai,model,,0.6129,-0.4787
+convnext_base,model,,0.6257,0.4017
+convnext_large,model,,0.5871,0.4132
+convnext_small,model,,0.6661,0.3461
+convnext_tiny,model,,0.6241,0.3843
+dino_vit_base_p16,model,,0.6151,0.3025
+dino_vit_small_p16,model,,0.5498,0.3729
+dinov2_vit_base_p14,model,,0.4562,0.1323
+dinov2_vit_giant_p14,model,,0.5256,0.0239
+dinov2_vit_large_p14,model,,0.3441,-0.0207
+dinov2_vit_small_p14,model,,0.5943,0.1792
+hubert-base-ls960,model,,-0.6919,-0.4416
+hubert-large-ll60k,model,,-0.7090,-0.4583
+mae_vit_base,model,,-0.8656,0.2658
+mae_vit_huge,model,,-0.5321,0.5602
+mae_vit_large,model,,-0.5704,0.5214
+pythia-1.4b,model,,-0.1335,-0.8280
+pythia-160m,model,,-0.1685,-0.8298
+pythia-1b,model,,-0.0980,-0.8292
+pythia-2.8b,model,,-0.1639,-0.8168
+pythia-410m,model,,-0.1237,-0.8206
+pythia-70m,model,,-0.2897,-0.8140
+qwen2.5-0.5b,model,,-0.1444,-0.8046
+qwen2.5-1.5b,model,,-0.1966,-0.8028
+qwen2.5-3b,model,,-0.1107,-0.8013
+random_convnext_tiny_s0,model,,-0.8540,0.1862
+random_convnext_tiny_s1,model,,-0.8591,0.1657
+random_convnext_tiny_s2,model,,-0.8704,0.1724
+random_resnet50_s0,model,,-0.8018,0.3094
+random_resnet50_s1,model,,-0.7989,0.2666
+random_resnet50_s2,model,,-0.7968,0.2856
+random_vit_base_p16_s0,model,,-0.8693,0.1949
+random_vit_base_p16_s1,model,,-0.8663,0.2259
+random_vit_base_p16_s2,model,,-0.8736,0.2059
+resnet101,model,,0.6540,0.3773
+resnet152,model,,0.6775,0.3323
+resnet18,model,,0.6349,0.3244
+resnet34,model,,0.6923,0.3040
+resnet50,model,,0.6379,0.3655
+sbert-minilm-l6,model,,0.2826,-0.7653
+sbert-mpnet-base,model,,0.5343,-0.5940
+siglip_vit_b_16,model,,0.8093,-0.0517
+siglip_vit_l_16_256,model,,0.7926,-0.0930
+siglip_vit_so400m_14,model,,0.8005,-0.1319
+vit_base_p16_in21k,model,,0.7999,0.1305
+vit_large_p16_in21k,model,,0.8054,0.0943
+vit_small_p16_in21k,model,,0.7766,0.1797
+vit_tiny_p16_in21k,model,,0.7441,0.2394
+whisper-base,model,,-0.6622,-0.4650
+whisper-medium,model,,-0.6769,-0.5109
+whisper-small,model,,-0.6641,-0.4908
+whisper-tiny,model,,-0.6751,-0.4701
+consensus,consensus,,0.7418,0.2297

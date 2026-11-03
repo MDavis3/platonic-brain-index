@@ -1,3 +1,70 @@
+# Deviations from the preregistration
+
+`PREREGISTRATION.md` (commit cbd0a89) said deviations would be listed in `RESULTS.md`; they are listed here instead.
+This file lists every place where the executed analysis differs from, or had to specify, what the preregistration
+says. Items marked **(deviation)** change something the preregistration states; items marked **(specification)**
+pin down something it leaves open. The final section lists the statistics implementation choices recorded when
+`pbi/stats.py` was written.
+
+## Data
+
+* **(deviation) Datasets.** Only THINGS-EEG2 (10 subjects), THINGS-MEG (4) and THINGS-fMRI (3) are analysed. NOD,
+  BOLD5000 and NSD (listed as conditional in the preregistration) were not included; reasons in `BLOCKERS.md`.
+  All claims are restricted to the THINGS datasets.
+* **(specification) MEG window.** "Resampled to 50 Hz, 80-500 ms" was implemented as FFT resampling
+  (`mne.filter.resample`, 200 -> 50 Hz) of the full -100..1300 ms epoch followed by the half-open window
+  80 <= t < 500 ms, which gives **21 samples** (80, 100, ..., 480 ms) x 271 MEG sensors (reference channels
+  excluded) = 5,691 features. The 500 ms sample is not included. (The `pbi/brains.py` docstring said 22 samples;
+  corrected to 21 — the committed kernels always used 21, see `artifacts/brains.csv`.)
+* **(specification) EEG window.** 17 channels x 42 samples (100 Hz, 80 <= t < 500 ms) = 714 features.
+* **(specification) fMRI voxels.** Released IT mask, with voxels that are NaN in any trial dropped
+  (sub-01 4,145, sub-02 3,720, sub-03 3,022 voxels).
+* **(specification) Split halves.** EEG2 (80 repetitions for every image): one permutation of the repetition indices
+  per split, shared by all images. MEG / fMRI: repetitions permuted independently per image; A = first n_i // 2.
+  Seeds `default_rng(1000 + split)`.
+
+## Systems
+
+* **(deviation) SBERT added.** Two sentence-transformers models (`all-MiniLM-L6-v2`, `all-mpnet-base-v2`) were scored;
+  they are not in the preregistration. They are treated as exploratory: excluded from H4 (language set = Pythia,
+  Qwen2.5, CLIP text towers) but listed on the leaderboard. Their embeddings are computed "manually" with
+  `transformers` (attention-masked mean pooling + L2 normalisation, i.e. the sentence-transformers pooling of those
+  checkpoints), not with the `sentence-transformers` library.
+* **(deviation) CLIP text towers** use open_clip `encode_text` (the projected end-of-text token embedding, the tower's
+  pooled output) rather than the "mean-pooled final hidden state" the preregistration specifies for language models.
+  Pythia and Qwen2.5 use the attention-masked mean of the final hidden state, as preregistered.
+* **(specification) Language input.** The fixed sentence is "A photo of a/an {concept}."
+* **(specification) MAE embedding.** For `vit_*_patch*_224.mae` timm's pooled output (num_classes=0) is the CLS token,
+  which the MAE objective does not train; MAE capability is therefore very low (0.08-0.36). Kept as preregistered
+  ("final pooled embedding as exposed by timm") in all primary analyses; an exploratory sensitivity analysis without
+  MAE is reported (below).
+* **(specification) Preprocessing.** Each model uses its library's default eval transform (timm `resolve_data_config`,
+  open_clip transforms, torchvision weights transforms). Consequences: DINOv2 runs at 518 px; SigLIP-L is the 256 px
+  checkpoint (`ViT-L-16-SigLIP-256`); the random-init ConvNeXt-T uses crop 0.95 (timm default without pretrained
+  config) while trained ConvNeXt uses crop 0.875. AlexNet's embedding is fc7 (after ReLU; final classifier removed).
+* **(specification) Precision.** Vision models with > 300 M parameters run in fp16 on Apple MPS; Pythia >= 410M, all
+  Qwen2.5 models, Whisper-medium and HuBERT-L were loaded in fp16 (language models fall back to bf16 if fp16
+  overflows).
+* **(specification) Parameter counts** are of the module that produced the embedding (vision: image tower;
+  CLIP text: text tower; Pythia/Qwen: base model without the LM head).
+* **(specification) Layer sweep (secondary).** Run for 43 of the 44 vision models; AlexNet (torchvision) was not
+  swept. Layer features are the token/spatial mean of the block output at depth fractions 0.2..1.0, so the 1.0 layer
+  is not identical to the primary embedding. No layer sweep for language/audio models.
+
+## Statistics
+
+* **(specification) H3 confirmation, H2 reading, H4 operationalization, H6 CI, subsample k and kernels, shuffled
+  null:** see "Scoring / statistics implementation choices" below. Note in particular that the H3 table threshold
+  ("mean rho > 0 with CI excluding 0 in >= 2/3 datasets") is applied with the general cell rule (Holm-corrected
+  permutation p < 0.05 **and** CI excluding 0), which is stricter than the table text; `hypotheses.md` also reports
+  the CI-only count.
+* **(specification) LOSO** rankings use all non-random models (random-init networks excluded).
+* **(addition, exploratory) Sensitivity analyses** (not preregistered; added after the capability values and the
+  split-half ceilings were known, labelled exploratory in `hypotheses.md` and `sensitivity.csv`; they do not replace
+  any verdict): (a) H2, H3, H5 without the three MAE models; (b) every hypothesis after excluding, per dataset x
+  metric, subjects whose split-half ceiling is < 0.1 (MEG and fMRI subjects; EEG2 ceilings are all >= 0.23).
+* **Independent review.** `REVIEW.md` (independent reviewer rerun) does not exist yet at the time of this commit.
+
 
 ## Scoring / statistics implementation choices (pbi/score.py, pbi/stats.py)
 
@@ -27,4 +94,5 @@ None of these change the preregistered plan; they pin down details the plan leav
 * **Holm** always uses a family of 9 cells. Cells with no data (e.g. a dataset not yet processed) enter
   as p = 1 and count as not confirmed.
 * **Runtime.** The full 1000 subsamples / 1000 null permutations / 10,000 label permutations are run (no
-  reduction was needed).
+  reduction was needed). `python -m pbi reproduce --jobs 5` on all data (17 subjects x 64 models, no engine cache)
+  took 251 s on an M2 Pro.
