@@ -140,9 +140,11 @@ def _meg_raw(s):
     # (event value = things_image_nr in the released preprocessing) where available.
     ev = ep.events[:, 2]
     tin = meta.things_image_nr.to_numpy()
-    agree = np.mean(ev == tin)
-    print(f"  P{s}: event code == things_image_nr for {agree:.3f} of epochs")
     test = np.where(meta.trial_type.to_numpy() == "test")[0]
+    # (catch trials carry event code 999999 and no image number; every test trial must match)
+    agree = np.mean(ev[test] == tin[test])
+    print(f"  P{s}: event code == things_image_nr for {agree:.3f} of test epochs")
+    assert agree == 1.0, "MEG epoch order does not match sample_attributes"
     picks = mne.pick_types(ep.info, meg=True, ref_meg=False)
     chunks = []
     for i in range(0, len(test), 300):
