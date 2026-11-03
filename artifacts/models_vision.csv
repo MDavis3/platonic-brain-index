@@ -1,0 +1,5 @@
+model_id,family,modality,objective,training_data,params,emb_dim,capability,size_label,source
+resnet18,resnet,vision,supervised,ImageNet-1k,11176512,512,,R18,"timm:resnet18.a1_in1k (input 224px, bicubic, crop 0.95)"
+alexnet,alexnet,vision,supervised,ImageNet-1k,57003840,4096,,AlexNet,"torchvision:alexnet IMAGENET1K_V1, classifier[6] removed (fc7+ReLU, 4096-d)"
+clip_rn50_openai,clip_openai,vision,clip,WIT-400M,38316896,1024,,RN50,open_clip:RN50/openai (encode_image = visual())
+random_resnet50_s0,random_resnet50,vision,random,none,23508032,2048,,resnet50,"timm:resnet50 pretrained=False torch.manual_seed(0) (input 224px, bicubic, crop 0.95)"
