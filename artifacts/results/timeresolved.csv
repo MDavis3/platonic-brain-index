@@ -1,0 +1,1081 @@
+dataset,subject,system,metric,t0_ms,score
+things_eeg2,sub-01,best vision: alexnet,mknn,-100,0.05
+things_eeg2,sub-01,consensus (trained vision),mknn,-100,0.051
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,-100,0.0435
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,-100,0.053
+things_eeg2,sub-01,best vision: alexnet,rsa,-100,0.000463
+things_eeg2,sub-01,consensus (trained vision),rsa,-100,0.026647
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,-100,-0.008359
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,-100,0.048859
+things_eeg2,sub-01,best vision: alexnet,mknn,-20,0.0335
+things_eeg2,sub-01,consensus (trained vision),mknn,-20,0.0405
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,-20,0.0455
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,-20,0.038
+things_eeg2,sub-01,best vision: alexnet,rsa,-20,0.0052902
+things_eeg2,sub-01,consensus (trained vision),rsa,-20,0.0089169
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,-20,-0.034844
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,-20,0.013516
+things_eeg2,sub-01,best vision: alexnet,mknn,-40,0.0495
+things_eeg2,sub-01,consensus (trained vision),mknn,-40,0.0605
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,-40,0.0575
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,-40,0.064
+things_eeg2,sub-01,best vision: alexnet,rsa,-40,-0.0051405
+things_eeg2,sub-01,consensus (trained vision),rsa,-40,0.00077187
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,-40,0.060577
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,-40,0.0019639
+things_eeg2,sub-01,best vision: alexnet,mknn,-60,0.0495
+things_eeg2,sub-01,consensus (trained vision),mknn,-60,0.051
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,-60,0.0425
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,-60,0.053
+things_eeg2,sub-01,best vision: alexnet,rsa,-60,0.00017194
+things_eeg2,sub-01,consensus (trained vision),rsa,-60,0.0020341
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,-60,-0.039714
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,-60,-0.0013711
+things_eeg2,sub-01,best vision: alexnet,mknn,-80,0.0485
+things_eeg2,sub-01,consensus (trained vision),mknn,-80,0.0485
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,-80,0.053
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,-80,0.04
+things_eeg2,sub-01,best vision: alexnet,rsa,-80,0.026555
+things_eeg2,sub-01,consensus (trained vision),rsa,-80,0.031929
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,-80,-0.035244
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,-80,0.0053097
+things_eeg2,sub-01,best vision: alexnet,mknn,0,0.049
+things_eeg2,sub-01,consensus (trained vision),mknn,0,0.0485
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,0,0.051
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,0,0.0575
+things_eeg2,sub-01,best vision: alexnet,rsa,0,0.010454
+things_eeg2,sub-01,consensus (trained vision),rsa,0,0.012157
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,0,-0.063964
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,0,0.011444
+things_eeg2,sub-01,best vision: alexnet,mknn,100,0.108
+things_eeg2,sub-01,consensus (trained vision),mknn,100,0.0975
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,100,0.072
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,100,0.065
+things_eeg2,sub-01,best vision: alexnet,rsa,100,0.068541
+things_eeg2,sub-01,consensus (trained vision),rsa,100,0.085465
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,100,-0.025056
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,100,0.081705
+things_eeg2,sub-01,best vision: alexnet,mknn,120,0.109
+things_eeg2,sub-01,consensus (trained vision),mknn,120,0.0855
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,120,0.0675
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,120,0.0635
+things_eeg2,sub-01,best vision: alexnet,rsa,120,0.052883
+things_eeg2,sub-01,consensus (trained vision),rsa,120,0.060503
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,120,-0.070388
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,120,0.073872
+things_eeg2,sub-01,best vision: alexnet,mknn,140,0.104
+things_eeg2,sub-01,consensus (trained vision),mknn,140,0.089
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,140,0.074
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,140,0.063
+things_eeg2,sub-01,best vision: alexnet,rsa,140,0.040518
+things_eeg2,sub-01,consensus (trained vision),rsa,140,0.036261
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,140,-0.045458
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,140,-0.0045137
+things_eeg2,sub-01,best vision: alexnet,mknn,160,0.113
+things_eeg2,sub-01,consensus (trained vision),mknn,160,0.101
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,160,0.084
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,160,0.0665
+things_eeg2,sub-01,best vision: alexnet,rsa,160,0.092757
+things_eeg2,sub-01,consensus (trained vision),rsa,160,0.048086
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,160,0.030148
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,160,-0.034096
+things_eeg2,sub-01,best vision: alexnet,mknn,180,0.1155
+things_eeg2,sub-01,consensus (trained vision),mknn,180,0.113
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,180,0.0965
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,180,0.0655
+things_eeg2,sub-01,best vision: alexnet,rsa,180,0.10509
+things_eeg2,sub-01,consensus (trained vision),rsa,180,0.036231
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,180,0.011129
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,180,-0.033954
+things_eeg2,sub-01,best vision: alexnet,mknn,20,0.046
+things_eeg2,sub-01,consensus (trained vision),mknn,20,0.044
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,20,0.0495
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,20,0.052
+things_eeg2,sub-01,best vision: alexnet,rsa,20,0.018953
+things_eeg2,sub-01,consensus (trained vision),rsa,20,0.022507
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,20,-0.040845
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,20,0.0021446
+things_eeg2,sub-01,best vision: alexnet,mknn,200,0.101
+things_eeg2,sub-01,consensus (trained vision),mknn,200,0.109
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,200,0.092
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,200,0.073
+things_eeg2,sub-01,best vision: alexnet,rsa,200,0.10575
+things_eeg2,sub-01,consensus (trained vision),rsa,200,0.046182
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,200,0.047361
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,200,0.00016821
+things_eeg2,sub-01,best vision: alexnet,mknn,220,0.0925
+things_eeg2,sub-01,consensus (trained vision),mknn,220,0.0875
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,220,0.077
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,220,0.0595
+things_eeg2,sub-01,best vision: alexnet,rsa,220,0.081033
+things_eeg2,sub-01,consensus (trained vision),rsa,220,0.071479
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,220,0.063493
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,220,0.04892
+things_eeg2,sub-01,best vision: alexnet,mknn,240,0.0845
+things_eeg2,sub-01,consensus (trained vision),mknn,240,0.076
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,240,0.081
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,240,0.057
+things_eeg2,sub-01,best vision: alexnet,rsa,240,0.058159
+things_eeg2,sub-01,consensus (trained vision),rsa,240,0.076561
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,240,0.045354
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,240,0.020913
+things_eeg2,sub-01,best vision: alexnet,mknn,260,0.083
+things_eeg2,sub-01,consensus (trained vision),mknn,260,0.0865
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,260,0.0795
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,260,0.057
+things_eeg2,sub-01,best vision: alexnet,rsa,260,0.048124
+things_eeg2,sub-01,consensus (trained vision),rsa,260,0.088527
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,260,-0.0074847
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,260,0.028451
+things_eeg2,sub-01,best vision: alexnet,mknn,280,0.103
+things_eeg2,sub-01,consensus (trained vision),mknn,280,0.109
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,280,0.0875
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,280,0.054
+things_eeg2,sub-01,best vision: alexnet,rsa,280,0.085009
+things_eeg2,sub-01,consensus (trained vision),rsa,280,0.091363
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,280,0.026563
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,280,-0.0053663
+things_eeg2,sub-01,best vision: alexnet,mknn,300,0.1045
+things_eeg2,sub-01,consensus (trained vision),mknn,300,0.0995
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,300,0.088
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,300,0.0595
+things_eeg2,sub-01,best vision: alexnet,rsa,300,0.093428
+things_eeg2,sub-01,consensus (trained vision),rsa,300,0.10651
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,300,0.026443
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,300,-0.030293
+things_eeg2,sub-01,best vision: alexnet,mknn,320,0.101
+things_eeg2,sub-01,consensus (trained vision),mknn,320,0.094
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,320,0.0725
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,320,0.061
+things_eeg2,sub-01,best vision: alexnet,rsa,320,0.082504
+things_eeg2,sub-01,consensus (trained vision),rsa,320,0.10348
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,320,0.014585
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,320,-0.010222
+things_eeg2,sub-01,best vision: alexnet,mknn,340,0.094
+things_eeg2,sub-01,consensus (trained vision),mknn,340,0.1065
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,340,0.076
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,340,0.064
+things_eeg2,sub-01,best vision: alexnet,rsa,340,0.085353
+things_eeg2,sub-01,consensus (trained vision),rsa,340,0.079713
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,340,0.019642
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,340,0.027745
+things_eeg2,sub-01,best vision: alexnet,mknn,360,0.0925
+things_eeg2,sub-01,consensus (trained vision),mknn,360,0.107
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,360,0.096
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,360,0.0555
+things_eeg2,sub-01,best vision: alexnet,rsa,360,0.06898
+things_eeg2,sub-01,consensus (trained vision),rsa,360,0.10676
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,360,0.051623
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,360,0.039845
+things_eeg2,sub-01,best vision: alexnet,mknn,380,0.0885
+things_eeg2,sub-01,consensus (trained vision),mknn,380,0.0995
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,380,0.0905
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,380,0.0595
+things_eeg2,sub-01,best vision: alexnet,rsa,380,0.063184
+things_eeg2,sub-01,consensus (trained vision),rsa,380,0.12041
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,380,0.10593
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,380,0.024844
+things_eeg2,sub-01,best vision: alexnet,mknn,40,0.052
+things_eeg2,sub-01,consensus (trained vision),mknn,40,0.0565
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,40,0.051
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,40,0.0575
+things_eeg2,sub-01,best vision: alexnet,rsa,40,0.0069928
+things_eeg2,sub-01,consensus (trained vision),rsa,40,0.020952
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,40,1.0752e-05
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,40,0.022548
+things_eeg2,sub-01,best vision: alexnet,mknn,400,0.0895
+things_eeg2,sub-01,consensus (trained vision),mknn,400,0.098
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,400,0.0745
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,400,0.065
+things_eeg2,sub-01,best vision: alexnet,rsa,400,0.077498
+things_eeg2,sub-01,consensus (trained vision),rsa,400,0.10483
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,400,0.056022
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,400,0.026766
+things_eeg2,sub-01,best vision: alexnet,mknn,420,0.0845
+things_eeg2,sub-01,consensus (trained vision),mknn,420,0.0895
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,420,0.0585
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,420,0.0565
+things_eeg2,sub-01,best vision: alexnet,rsa,420,0.071549
+things_eeg2,sub-01,consensus (trained vision),rsa,420,0.05986
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,420,-0.017652
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,420,0.018256
+things_eeg2,sub-01,best vision: alexnet,mknn,440,0.0715
+things_eeg2,sub-01,consensus (trained vision),mknn,440,0.0865
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,440,0.0695
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,440,0.053
+things_eeg2,sub-01,best vision: alexnet,rsa,440,0.059272
+things_eeg2,sub-01,consensus (trained vision),rsa,440,0.02704
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,440,-0.034999
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,440,-0.0022936
+things_eeg2,sub-01,best vision: alexnet,mknn,460,0.0735
+things_eeg2,sub-01,consensus (trained vision),mknn,460,0.075
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,460,0.065
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,460,0.0455
+things_eeg2,sub-01,best vision: alexnet,rsa,460,0.051375
+things_eeg2,sub-01,consensus (trained vision),rsa,460,0.0077656
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,460,-0.022435
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,460,0.00079452
+things_eeg2,sub-01,best vision: alexnet,mknn,480,0.065
+things_eeg2,sub-01,consensus (trained vision),mknn,480,0.055
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,480,0.06
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,480,0.0555
+things_eeg2,sub-01,best vision: alexnet,rsa,480,0.03665
+things_eeg2,sub-01,consensus (trained vision),rsa,480,-0.0013456
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,480,-0.0035844
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,480,-0.0063076
+things_eeg2,sub-01,best vision: alexnet,mknn,500,0.056
+things_eeg2,sub-01,consensus (trained vision),mknn,500,0.0605
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,500,0.067
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,500,0.049
+things_eeg2,sub-01,best vision: alexnet,rsa,500,0.018072
+things_eeg2,sub-01,consensus (trained vision),rsa,500,0.05069
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,500,0.049417
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,500,0.013056
+things_eeg2,sub-01,best vision: alexnet,mknn,520,0.046
+things_eeg2,sub-01,consensus (trained vision),mknn,520,0.067
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,520,0.061
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,520,0.0595
+things_eeg2,sub-01,best vision: alexnet,rsa,520,0.018833
+things_eeg2,sub-01,consensus (trained vision),rsa,520,0.056822
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,520,0.018211
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,520,0.021858
+things_eeg2,sub-01,best vision: alexnet,mknn,540,0.0775
+things_eeg2,sub-01,consensus (trained vision),mknn,540,0.081
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,540,0.054
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,540,0.0565
+things_eeg2,sub-01,best vision: alexnet,rsa,540,0.028627
+things_eeg2,sub-01,consensus (trained vision),rsa,540,0.048103
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,540,0.0013177
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,540,0.0048654
+things_eeg2,sub-01,best vision: alexnet,mknn,560,0.0605
+things_eeg2,sub-01,consensus (trained vision),mknn,560,0.063
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,560,0.0695
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,560,0.0455
+things_eeg2,sub-01,best vision: alexnet,rsa,560,0.054732
+things_eeg2,sub-01,consensus (trained vision),rsa,560,0.035059
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,560,-0.0029623
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,560,0.0076037
+things_eeg2,sub-01,best vision: alexnet,mknn,580,0.065
+things_eeg2,sub-01,consensus (trained vision),mknn,580,0.055
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,580,0.05
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,580,0.049
+things_eeg2,sub-01,best vision: alexnet,rsa,580,0.035621
+things_eeg2,sub-01,consensus (trained vision),rsa,580,-0.0087489
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,580,-0.051967
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,580,-0.013784
+things_eeg2,sub-01,best vision: alexnet,mknn,60,0.083
+things_eeg2,sub-01,consensus (trained vision),mknn,60,0.0785
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,60,0.062
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,60,0.0595
+things_eeg2,sub-01,best vision: alexnet,rsa,60,0.049123
+things_eeg2,sub-01,consensus (trained vision),rsa,60,0.047623
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,60,-0.033522
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,60,0.033615
+things_eeg2,sub-01,best vision: alexnet,mknn,600,0.056
+things_eeg2,sub-01,consensus (trained vision),mknn,600,0.051
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,600,0.05
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,600,0.044
+things_eeg2,sub-01,best vision: alexnet,rsa,600,0.026286
+things_eeg2,sub-01,consensus (trained vision),rsa,600,-0.019347
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,600,-0.1051
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,600,-0.024267
+things_eeg2,sub-01,best vision: alexnet,mknn,620,0.06
+things_eeg2,sub-01,consensus (trained vision),mknn,620,0.05
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,620,0.0585
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,620,0.049
+things_eeg2,sub-01,best vision: alexnet,rsa,620,0.028967
+things_eeg2,sub-01,consensus (trained vision),rsa,620,0.035696
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,620,-0.010135
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,620,-2.5853e-05
+things_eeg2,sub-01,best vision: alexnet,mknn,640,0.0575
+things_eeg2,sub-01,consensus (trained vision),mknn,640,0.059
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,640,0.048
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,640,0.0435
+things_eeg2,sub-01,best vision: alexnet,rsa,640,0.016272
+things_eeg2,sub-01,consensus (trained vision),rsa,640,0.020634
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,640,-0.034712
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,640,-0.018439
+things_eeg2,sub-01,best vision: alexnet,mknn,660,0.0615
+things_eeg2,sub-01,consensus (trained vision),mknn,660,0.057
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,660,0.051
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,660,0.04
+things_eeg2,sub-01,best vision: alexnet,rsa,660,0.023783
+things_eeg2,sub-01,consensus (trained vision),rsa,660,-0.0011464
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,660,-0.013742
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,660,-0.0018824
+things_eeg2,sub-01,best vision: alexnet,mknn,680,0.0665
+things_eeg2,sub-01,consensus (trained vision),mknn,680,0.06
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,680,0.062
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,680,0.048
+things_eeg2,sub-01,best vision: alexnet,rsa,680,0.03178
+things_eeg2,sub-01,consensus (trained vision),rsa,680,0.024815
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,680,0.044267
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,680,-0.012873
+things_eeg2,sub-01,best vision: alexnet,mknn,700,0.065
+things_eeg2,sub-01,consensus (trained vision),mknn,700,0.0545
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,700,0.049
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,700,0.058
+things_eeg2,sub-01,best vision: alexnet,rsa,700,0.013308
+things_eeg2,sub-01,consensus (trained vision),rsa,700,0.015567
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,700,0.03505
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,700,-0.0011223
+things_eeg2,sub-01,best vision: alexnet,mknn,720,0.0625
+things_eeg2,sub-01,consensus (trained vision),mknn,720,0.0535
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,720,0.0435
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,720,0.0595
+things_eeg2,sub-01,best vision: alexnet,rsa,720,-0.0029555
+things_eeg2,sub-01,consensus (trained vision),rsa,720,0.014016
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,720,0.029451
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,720,0.0035005
+things_eeg2,sub-01,best vision: alexnet,mknn,740,0.0475
+things_eeg2,sub-01,consensus (trained vision),mknn,740,0.051
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,740,0.0475
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,740,0.0555
+things_eeg2,sub-01,best vision: alexnet,rsa,740,-0.0087531
+things_eeg2,sub-01,consensus (trained vision),rsa,740,0.003971
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,740,0.063348
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,740,-0.011546
+things_eeg2,sub-01,best vision: alexnet,mknn,760,0.058
+things_eeg2,sub-01,consensus (trained vision),mknn,760,0.0505
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,760,0.0445
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,760,0.055
+things_eeg2,sub-01,best vision: alexnet,rsa,760,-0.011647
+things_eeg2,sub-01,consensus (trained vision),rsa,760,-0.010719
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,760,0.020846
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,760,-0.0061993
+things_eeg2,sub-01,best vision: alexnet,mknn,780,0.058
+things_eeg2,sub-01,consensus (trained vision),mknn,780,0.061
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,780,0.056
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,780,0.0415
+things_eeg2,sub-01,best vision: alexnet,rsa,780,0.013035
+things_eeg2,sub-01,consensus (trained vision),rsa,780,-0.0081944
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,780,0.00086708
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,780,0.011752
+things_eeg2,sub-01,best vision: alexnet,mknn,80,0.099
+things_eeg2,sub-01,consensus (trained vision),mknn,80,0.082
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,mknn,80,0.0655
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,mknn,80,0.0635
+things_eeg2,sub-01,best vision: alexnet,rsa,80,0.08673
+things_eeg2,sub-01,consensus (trained vision),rsa,80,0.11238
+things_eeg2,sub-01,best language: cliptext-vit-b-32-openai,rsa,80,0.0089592
+things_eeg2,sub-01,random-init: random_convnext_tiny_s0,rsa,80,0.11438
+things_eeg2,sub-02,best vision: alexnet,mknn,-100,0.047
+things_eeg2,sub-02,consensus (trained vision),mknn,-100,0.0515
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,-100,0.053
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,-100,0.04
+things_eeg2,sub-02,best vision: alexnet,rsa,-100,0.0023815
+things_eeg2,sub-02,consensus (trained vision),rsa,-100,0.015224
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,-100,-0.00073332
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,-100,0.0065193
+things_eeg2,sub-02,best vision: alexnet,mknn,-20,0.047
+things_eeg2,sub-02,consensus (trained vision),mknn,-20,0.0455
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,-20,0.0515
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,-20,0.041
+things_eeg2,sub-02,best vision: alexnet,rsa,-20,-0.00036431
+things_eeg2,sub-02,consensus (trained vision),rsa,-20,0.019334
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,-20,-0.037718
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,-20,-0.0049451
+things_eeg2,sub-02,best vision: alexnet,mknn,-40,0.0555
+things_eeg2,sub-02,consensus (trained vision),mknn,-40,0.059
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,-40,0.059
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,-40,0.047
+things_eeg2,sub-02,best vision: alexnet,rsa,-40,-0.0026674
+things_eeg2,sub-02,consensus (trained vision),rsa,-40,0.0067121
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,-40,0.055752
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,-40,-0.024648
+things_eeg2,sub-02,best vision: alexnet,mknn,-60,0.0505
+things_eeg2,sub-02,consensus (trained vision),mknn,-60,0.0445
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,-60,0.0415
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,-60,0.0335
+things_eeg2,sub-02,best vision: alexnet,rsa,-60,-0.009439
+things_eeg2,sub-02,consensus (trained vision),rsa,-60,0.0096711
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,-60,-0.017191
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,-60,-0.0311
+things_eeg2,sub-02,best vision: alexnet,mknn,-80,0.064
+things_eeg2,sub-02,consensus (trained vision),mknn,-80,0.0625
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,-80,0.0575
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,-80,0.0515
+things_eeg2,sub-02,best vision: alexnet,rsa,-80,-0.013239
+things_eeg2,sub-02,consensus (trained vision),rsa,-80,-0.017242
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,-80,-0.031086
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,-80,-0.0087712
+things_eeg2,sub-02,best vision: alexnet,mknn,0,0.0555
+things_eeg2,sub-02,consensus (trained vision),mknn,0,0.043
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,0,0.051
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,0,0.0485
+things_eeg2,sub-02,best vision: alexnet,rsa,0,0.0069122
+things_eeg2,sub-02,consensus (trained vision),rsa,0,0.008213
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,0,0.0028353
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,0,0.0063887
+things_eeg2,sub-02,best vision: alexnet,mknn,100,0.0905
+things_eeg2,sub-02,consensus (trained vision),mknn,100,0.087
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,100,0.0645
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,100,0.067
+things_eeg2,sub-02,best vision: alexnet,rsa,100,0.10242
+things_eeg2,sub-02,consensus (trained vision),rsa,100,0.072539
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,100,-0.04075
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,100,0.098152
+things_eeg2,sub-02,best vision: alexnet,mknn,120,0.1045
+things_eeg2,sub-02,consensus (trained vision),mknn,120,0.084
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,120,0.0595
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,120,0.0725
+things_eeg2,sub-02,best vision: alexnet,rsa,120,0.086601
+things_eeg2,sub-02,consensus (trained vision),rsa,120,0.096309
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,120,-0.075286
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,120,0.10774
+things_eeg2,sub-02,best vision: alexnet,mknn,140,0.1045
+things_eeg2,sub-02,consensus (trained vision),mknn,140,0.085
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,140,0.067
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,140,0.0615
+things_eeg2,sub-02,best vision: alexnet,rsa,140,0.097458
+things_eeg2,sub-02,consensus (trained vision),rsa,140,0.085845
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,140,-0.052369
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,140,0.064235
+things_eeg2,sub-02,best vision: alexnet,mknn,160,0.1065
+things_eeg2,sub-02,consensus (trained vision),mknn,160,0.085
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,160,0.0625
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,160,0.0555
+things_eeg2,sub-02,best vision: alexnet,rsa,160,0.12333
+things_eeg2,sub-02,consensus (trained vision),rsa,160,0.076648
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,160,0.0012608
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,160,0.0071763
+things_eeg2,sub-02,best vision: alexnet,mknn,180,0.1025
+things_eeg2,sub-02,consensus (trained vision),mknn,180,0.087
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,180,0.084
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,180,0.0525
+things_eeg2,sub-02,best vision: alexnet,rsa,180,0.090428
+things_eeg2,sub-02,consensus (trained vision),rsa,180,0.043071
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,180,0.051431
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,180,-0.026572
+things_eeg2,sub-02,best vision: alexnet,mknn,20,0.052
+things_eeg2,sub-02,consensus (trained vision),mknn,20,0.043
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,20,0.0485
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,20,0.0465
+things_eeg2,sub-02,best vision: alexnet,rsa,20,0.011982
+things_eeg2,sub-02,consensus (trained vision),rsa,20,0.015167
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,20,0.057353
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,20,0.027028
+things_eeg2,sub-02,best vision: alexnet,mknn,200,0.1025
+things_eeg2,sub-02,consensus (trained vision),mknn,200,0.105
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,200,0.087
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,200,0.0595
+things_eeg2,sub-02,best vision: alexnet,rsa,200,0.1408
+things_eeg2,sub-02,consensus (trained vision),rsa,200,0.12846
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,200,0.034241
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,200,0.021773
+things_eeg2,sub-02,best vision: alexnet,mknn,220,0.086
+things_eeg2,sub-02,consensus (trained vision),mknn,220,0.093
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,220,0.077
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,220,0.0725
+things_eeg2,sub-02,best vision: alexnet,rsa,220,0.049554
+things_eeg2,sub-02,consensus (trained vision),rsa,220,0.082623
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,220,-0.015445
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,220,0.028337
+things_eeg2,sub-02,best vision: alexnet,mknn,240,0.098
+things_eeg2,sub-02,consensus (trained vision),mknn,240,0.099
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,240,0.0715
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,240,0.0655
+things_eeg2,sub-02,best vision: alexnet,rsa,240,0.10171
+things_eeg2,sub-02,consensus (trained vision),rsa,240,0.063506
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,240,-7.2946e-05
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,240,-0.013784
+things_eeg2,sub-02,best vision: alexnet,mknn,260,0.09
+things_eeg2,sub-02,consensus (trained vision),mknn,260,0.0935
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,260,0.07
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,260,0.06
+things_eeg2,sub-02,best vision: alexnet,rsa,260,0.092613
+things_eeg2,sub-02,consensus (trained vision),rsa,260,0.073028
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,260,-0.030065
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,260,-0.011866
+things_eeg2,sub-02,best vision: alexnet,mknn,280,0.084
+things_eeg2,sub-02,consensus (trained vision),mknn,280,0.0745
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,280,0.0675
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,280,0.061
+things_eeg2,sub-02,best vision: alexnet,rsa,280,0.079061
+things_eeg2,sub-02,consensus (trained vision),rsa,280,0.062294
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,280,-0.039819
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,280,0.0070232
+things_eeg2,sub-02,best vision: alexnet,mknn,300,0.08
+things_eeg2,sub-02,consensus (trained vision),mknn,300,0.0885
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,300,0.064
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,300,0.052
+things_eeg2,sub-02,best vision: alexnet,rsa,300,0.074229
+things_eeg2,sub-02,consensus (trained vision),rsa,300,0.073817
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,300,0.033764
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,300,-0.020379
+things_eeg2,sub-02,best vision: alexnet,mknn,320,0.0945
+things_eeg2,sub-02,consensus (trained vision),mknn,320,0.0895
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,320,0.073
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,320,0.0545
+things_eeg2,sub-02,best vision: alexnet,rsa,320,0.023232
+things_eeg2,sub-02,consensus (trained vision),rsa,320,0.022794
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,320,-0.026398
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,320,-0.0016553
+things_eeg2,sub-02,best vision: alexnet,mknn,340,0.088
+things_eeg2,sub-02,consensus (trained vision),mknn,340,0.111
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,340,0.0845
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,340,0.049
+things_eeg2,sub-02,best vision: alexnet,rsa,340,0.030152
+things_eeg2,sub-02,consensus (trained vision),rsa,340,0.029774
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,340,-0.013822
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,340,0.013759
+things_eeg2,sub-02,best vision: alexnet,mknn,360,0.093
+things_eeg2,sub-02,consensus (trained vision),mknn,360,0.1105
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,360,0.107
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,360,0.0625
+things_eeg2,sub-02,best vision: alexnet,rsa,360,0.078607
+things_eeg2,sub-02,consensus (trained vision),rsa,360,0.10857
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,360,0.016274
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,360,0.047748
+things_eeg2,sub-02,best vision: alexnet,mknn,380,0.0945
+things_eeg2,sub-02,consensus (trained vision),mknn,380,0.088
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,380,0.082
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,380,0.057
+things_eeg2,sub-02,best vision: alexnet,rsa,380,0.0948
+things_eeg2,sub-02,consensus (trained vision),rsa,380,0.16444
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,380,0.052902
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,380,0.059509
+things_eeg2,sub-02,best vision: alexnet,mknn,40,0.0625
+things_eeg2,sub-02,consensus (trained vision),mknn,40,0.0565
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,40,0.045
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,40,0.058
+things_eeg2,sub-02,best vision: alexnet,rsa,40,-0.01246
+things_eeg2,sub-02,consensus (trained vision),rsa,40,-0.01604
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,40,0.041855
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,40,0.021146
+things_eeg2,sub-02,best vision: alexnet,mknn,400,0.084
+things_eeg2,sub-02,consensus (trained vision),mknn,400,0.076
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,400,0.07
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,400,0.049
+things_eeg2,sub-02,best vision: alexnet,rsa,400,0.075675
+things_eeg2,sub-02,consensus (trained vision),rsa,400,0.11137
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,400,-0.0024129
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,400,0.069328
+things_eeg2,sub-02,best vision: alexnet,mknn,420,0.069
+things_eeg2,sub-02,consensus (trained vision),mknn,420,0.0625
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,420,0.059
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,420,0.046
+things_eeg2,sub-02,best vision: alexnet,rsa,420,0.051274
+things_eeg2,sub-02,consensus (trained vision),rsa,420,0.052166
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,420,-0.058419
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,420,0.037419
+things_eeg2,sub-02,best vision: alexnet,mknn,440,0.0555
+things_eeg2,sub-02,consensus (trained vision),mknn,440,0.058
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,440,0.063
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,440,0.05
+things_eeg2,sub-02,best vision: alexnet,rsa,440,0.016858
+things_eeg2,sub-02,consensus (trained vision),rsa,440,0.029124
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,440,-0.030635
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,440,0.046035
+things_eeg2,sub-02,best vision: alexnet,mknn,460,0.064
+things_eeg2,sub-02,consensus (trained vision),mknn,460,0.0645
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,460,0.0625
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,460,0.0485
+things_eeg2,sub-02,best vision: alexnet,rsa,460,0.013755
+things_eeg2,sub-02,consensus (trained vision),rsa,460,0.015353
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,460,0.0023043
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,460,0.025096
+things_eeg2,sub-02,best vision: alexnet,mknn,480,0.0725
+things_eeg2,sub-02,consensus (trained vision),mknn,480,0.063
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,480,0.0565
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,480,0.051
+things_eeg2,sub-02,best vision: alexnet,rsa,480,0.026284
+things_eeg2,sub-02,consensus (trained vision),rsa,480,-0.017666
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,480,-0.018601
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,480,0.022827
+things_eeg2,sub-02,best vision: alexnet,mknn,500,0.0775
+things_eeg2,sub-02,consensus (trained vision),mknn,500,0.0685
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,500,0.0645
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,500,0.045
+things_eeg2,sub-02,best vision: alexnet,rsa,500,0.056192
+things_eeg2,sub-02,consensus (trained vision),rsa,500,0.033866
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,500,-0.033737
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,500,0.045789
+things_eeg2,sub-02,best vision: alexnet,mknn,520,0.06
+things_eeg2,sub-02,consensus (trained vision),mknn,520,0.054
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,520,0.0545
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,520,0.0445
+things_eeg2,sub-02,best vision: alexnet,rsa,520,0.029927
+things_eeg2,sub-02,consensus (trained vision),rsa,520,0.020065
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,520,0.024121
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,520,0.04713
+things_eeg2,sub-02,best vision: alexnet,mknn,540,0.063
+things_eeg2,sub-02,consensus (trained vision),mknn,540,0.0465
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,540,0.0545
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,540,0.048
+things_eeg2,sub-02,best vision: alexnet,rsa,540,0.037166
+things_eeg2,sub-02,consensus (trained vision),rsa,540,0.061534
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,540,0.0094772
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,540,0.041068
+things_eeg2,sub-02,best vision: alexnet,mknn,560,0.0555
+things_eeg2,sub-02,consensus (trained vision),mknn,560,0.0645
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,560,0.059
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,560,0.0465
+things_eeg2,sub-02,best vision: alexnet,rsa,560,0.01649
+things_eeg2,sub-02,consensus (trained vision),rsa,560,0.05511
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,560,-0.0031366
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,560,0.046108
+things_eeg2,sub-02,best vision: alexnet,mknn,580,0.058
+things_eeg2,sub-02,consensus (trained vision),mknn,580,0.0545
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,580,0.0605
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,580,0.057
+things_eeg2,sub-02,best vision: alexnet,rsa,580,0.026935
+things_eeg2,sub-02,consensus (trained vision),rsa,580,0.025482
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,580,0.012303
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,580,0.023957
+things_eeg2,sub-02,best vision: alexnet,mknn,60,0.052
+things_eeg2,sub-02,consensus (trained vision),mknn,60,0.0525
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,60,0.0515
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,60,0.0625
+things_eeg2,sub-02,best vision: alexnet,rsa,60,0.023351
+things_eeg2,sub-02,consensus (trained vision),rsa,60,-0.012777
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,60,-0.0015815
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,60,0.0068335
+things_eeg2,sub-02,best vision: alexnet,mknn,600,0.054
+things_eeg2,sub-02,consensus (trained vision),mknn,600,0.0565
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,600,0.05
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,600,0.052
+things_eeg2,sub-02,best vision: alexnet,rsa,600,0.03468
+things_eeg2,sub-02,consensus (trained vision),rsa,600,0.046378
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,600,-0.038212
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,600,0.019099
+things_eeg2,sub-02,best vision: alexnet,mknn,620,0.056
+things_eeg2,sub-02,consensus (trained vision),mknn,620,0.0555
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,620,0.056
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,620,0.0425
+things_eeg2,sub-02,best vision: alexnet,rsa,620,0.030166
+things_eeg2,sub-02,consensus (trained vision),rsa,620,0.039511
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,620,-0.077788
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,620,0.0041967
+things_eeg2,sub-02,best vision: alexnet,mknn,640,0.062
+things_eeg2,sub-02,consensus (trained vision),mknn,640,0.044
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,640,0.06
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,640,0.05
+things_eeg2,sub-02,best vision: alexnet,rsa,640,0.014153
+things_eeg2,sub-02,consensus (trained vision),rsa,640,0.030923
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,640,-0.010059
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,640,0.031335
+things_eeg2,sub-02,best vision: alexnet,mknn,660,0.052
+things_eeg2,sub-02,consensus (trained vision),mknn,660,0.0535
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,660,0.065
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,660,0.051
+things_eeg2,sub-02,best vision: alexnet,rsa,660,0.016238
+things_eeg2,sub-02,consensus (trained vision),rsa,660,0.0046923
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,660,-0.02017
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,660,0.019851
+things_eeg2,sub-02,best vision: alexnet,mknn,680,0.052
+things_eeg2,sub-02,consensus (trained vision),mknn,680,0.0575
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,680,0.049
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,680,0.054
+things_eeg2,sub-02,best vision: alexnet,rsa,680,0.0023549
+things_eeg2,sub-02,consensus (trained vision),rsa,680,-0.010093
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,680,-0.015365
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,680,0.016922
+things_eeg2,sub-02,best vision: alexnet,mknn,700,0.056
+things_eeg2,sub-02,consensus (trained vision),mknn,700,0.0555
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,700,0.062
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,700,0.0485
+things_eeg2,sub-02,best vision: alexnet,rsa,700,0.010565
+things_eeg2,sub-02,consensus (trained vision),rsa,700,0.022297
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,700,0.022518
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,700,0.036269
+things_eeg2,sub-02,best vision: alexnet,mknn,720,0.0585
+things_eeg2,sub-02,consensus (trained vision),mknn,720,0.042
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,720,0.047
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,720,0.0465
+things_eeg2,sub-02,best vision: alexnet,rsa,720,0.026386
+things_eeg2,sub-02,consensus (trained vision),rsa,720,0.026573
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,720,0.032189
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,720,0.020013
+things_eeg2,sub-02,best vision: alexnet,mknn,740,0.048
+things_eeg2,sub-02,consensus (trained vision),mknn,740,0.0505
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,740,0.0585
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,740,0.0475
+things_eeg2,sub-02,best vision: alexnet,rsa,740,0.024354
+things_eeg2,sub-02,consensus (trained vision),rsa,740,0.03044
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,740,0.029201
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,740,0.012134
+things_eeg2,sub-02,best vision: alexnet,mknn,760,0.055
+things_eeg2,sub-02,consensus (trained vision),mknn,760,0.048
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,760,0.058
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,760,0.043
+things_eeg2,sub-02,best vision: alexnet,rsa,760,0.0036369
+things_eeg2,sub-02,consensus (trained vision),rsa,760,-0.0018193
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,760,-0.0054431
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,760,0.0072387
+things_eeg2,sub-02,best vision: alexnet,mknn,780,0.0515
+things_eeg2,sub-02,consensus (trained vision),mknn,780,0.0455
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,780,0.0405
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,780,0.0445
+things_eeg2,sub-02,best vision: alexnet,rsa,780,0.0051865
+things_eeg2,sub-02,consensus (trained vision),rsa,780,-0.0096994
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,780,-0.034909
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,780,-0.006901
+things_eeg2,sub-02,best vision: alexnet,mknn,80,0.0865
+things_eeg2,sub-02,consensus (trained vision),mknn,80,0.082
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,mknn,80,0.0645
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,mknn,80,0.063
+things_eeg2,sub-02,best vision: alexnet,rsa,80,0.073413
+things_eeg2,sub-02,consensus (trained vision),rsa,80,0.024348
+things_eeg2,sub-02,best language: cliptext-vit-b-32-openai,rsa,80,-0.044342
+things_eeg2,sub-02,random-init: random_convnext_tiny_s0,rsa,80,0.041857
+things_eeg2,sub-03,best vision: alexnet,mknn,-100,0.0425
+things_eeg2,sub-03,consensus (trained vision),mknn,-100,0.0465
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,-100,0.05
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,-100,0.0505
+things_eeg2,sub-03,best vision: alexnet,rsa,-100,0.0066734
+things_eeg2,sub-03,consensus (trained vision),rsa,-100,-0.015062
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,-100,-0.015878
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,-100,-0.010902
+things_eeg2,sub-03,best vision: alexnet,mknn,-20,0.0545
+things_eeg2,sub-03,consensus (trained vision),mknn,-20,0.0425
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,-20,0.0445
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,-20,0.0415
+things_eeg2,sub-03,best vision: alexnet,rsa,-20,0.00058152
+things_eeg2,sub-03,consensus (trained vision),rsa,-20,-0.027186
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,-20,-0.045732
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,-20,-0.0067556
+things_eeg2,sub-03,best vision: alexnet,mknn,-40,0.048
+things_eeg2,sub-03,consensus (trained vision),mknn,-40,0.0445
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,-40,0.0465
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,-40,0.0495
+things_eeg2,sub-03,best vision: alexnet,rsa,-40,0.008555
+things_eeg2,sub-03,consensus (trained vision),rsa,-40,0.017296
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,-40,0.0019284
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,-40,0.014762
+things_eeg2,sub-03,best vision: alexnet,mknn,-60,0.0435
+things_eeg2,sub-03,consensus (trained vision),mknn,-60,0.0445
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,-60,0.044
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,-60,0.0515
+things_eeg2,sub-03,best vision: alexnet,rsa,-60,-0.0006402
+things_eeg2,sub-03,consensus (trained vision),rsa,-60,-0.020621
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,-60,0.0047439
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,-60,-0.0084318
+things_eeg2,sub-03,best vision: alexnet,mknn,-80,0.0495
+things_eeg2,sub-03,consensus (trained vision),mknn,-80,0.05
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,-80,0.0505
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,-80,0.0515
+things_eeg2,sub-03,best vision: alexnet,rsa,-80,0.016378
+things_eeg2,sub-03,consensus (trained vision),rsa,-80,-0.021382
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,-80,-0.058141
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,-80,-0.015584
+things_eeg2,sub-03,best vision: alexnet,mknn,0,0.049
+things_eeg2,sub-03,consensus (trained vision),mknn,0,0.0435
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,0,0.0505
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,0,0.044
+things_eeg2,sub-03,best vision: alexnet,rsa,0,-0.027052
+things_eeg2,sub-03,consensus (trained vision),rsa,0,-0.016427
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,0,-0.0013118
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,0,-0.002647
+things_eeg2,sub-03,best vision: alexnet,mknn,100,0.1
+things_eeg2,sub-03,consensus (trained vision),mknn,100,0.085
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,100,0.07
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,100,0.0725
+things_eeg2,sub-03,best vision: alexnet,rsa,100,0.055783
+things_eeg2,sub-03,consensus (trained vision),rsa,100,0.056687
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,100,-0.022897
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,100,0.088818
+things_eeg2,sub-03,best vision: alexnet,mknn,120,0.097
+things_eeg2,sub-03,consensus (trained vision),mknn,120,0.083
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,120,0.075
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,120,0.066
+things_eeg2,sub-03,best vision: alexnet,rsa,120,0.029572
+things_eeg2,sub-03,consensus (trained vision),rsa,120,0.011409
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,120,-0.069003
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,120,0.032209
+things_eeg2,sub-03,best vision: alexnet,mknn,140,0.1055
+things_eeg2,sub-03,consensus (trained vision),mknn,140,0.0915
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,140,0.0875
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,140,0.052
+things_eeg2,sub-03,best vision: alexnet,rsa,140,0.051732
+things_eeg2,sub-03,consensus (trained vision),rsa,140,0.026254
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,140,-0.024636
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,140,-0.0025981
+things_eeg2,sub-03,best vision: alexnet,mknn,160,0.108
+things_eeg2,sub-03,consensus (trained vision),mknn,160,0.112
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,160,0.1055
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,160,0.047
+things_eeg2,sub-03,best vision: alexnet,rsa,160,0.0837
+things_eeg2,sub-03,consensus (trained vision),rsa,160,0.024861
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,160,0.022165
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,160,-0.021127
+things_eeg2,sub-03,best vision: alexnet,mknn,180,0.1035
+things_eeg2,sub-03,consensus (trained vision),mknn,180,0.1095
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,180,0.09
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,180,0.073
+things_eeg2,sub-03,best vision: alexnet,rsa,180,0.044123
+things_eeg2,sub-03,consensus (trained vision),rsa,180,-0.0065444
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,180,0.03874
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,180,-0.014479
+things_eeg2,sub-03,best vision: alexnet,mknn,20,0.052
+things_eeg2,sub-03,consensus (trained vision),mknn,20,0.052
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,20,0.053
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,20,0.049
+things_eeg2,sub-03,best vision: alexnet,rsa,20,0.026691
+things_eeg2,sub-03,consensus (trained vision),rsa,20,0.010008
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,20,0.073529
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,20,0.014883
+things_eeg2,sub-03,best vision: alexnet,mknn,200,0.1015
+things_eeg2,sub-03,consensus (trained vision),mknn,200,0.102
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,200,0.087
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,200,0.058
+things_eeg2,sub-03,best vision: alexnet,rsa,200,0.089241
+things_eeg2,sub-03,consensus (trained vision),rsa,200,0.077104
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,200,0.10282
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,200,0.0052484
+things_eeg2,sub-03,best vision: alexnet,mknn,220,0.096
+things_eeg2,sub-03,consensus (trained vision),mknn,220,0.0945
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,220,0.085
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,220,0.071
+things_eeg2,sub-03,best vision: alexnet,rsa,220,0.044143
+things_eeg2,sub-03,consensus (trained vision),rsa,220,0.037995
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,220,0.012297
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,220,0.020032
+things_eeg2,sub-03,best vision: alexnet,mknn,240,0.101
+things_eeg2,sub-03,consensus (trained vision),mknn,240,0.1075
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,240,0.0885
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,240,0.0655
+things_eeg2,sub-03,best vision: alexnet,rsa,240,0.092961
+things_eeg2,sub-03,consensus (trained vision),rsa,240,0.10052
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,240,0.0044477
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,240,0.014094
+things_eeg2,sub-03,best vision: alexnet,mknn,260,0.0925
+things_eeg2,sub-03,consensus (trained vision),mknn,260,0.102
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,260,0.0915
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,260,0.053
+things_eeg2,sub-03,best vision: alexnet,rsa,260,0.097054
+things_eeg2,sub-03,consensus (trained vision),rsa,260,0.12943
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,260,0.071044
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,260,0.011465
+things_eeg2,sub-03,best vision: alexnet,mknn,280,0.101
+things_eeg2,sub-03,consensus (trained vision),mknn,280,0.0975
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,280,0.0775
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,280,0.049
+things_eeg2,sub-03,best vision: alexnet,rsa,280,0.052486
+things_eeg2,sub-03,consensus (trained vision),rsa,280,0.035017
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,280,0.069131
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,280,-0.003389
+things_eeg2,sub-03,best vision: alexnet,mknn,300,0.0975
+things_eeg2,sub-03,consensus (trained vision),mknn,300,0.0895
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,300,0.0725
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,300,0.0565
+things_eeg2,sub-03,best vision: alexnet,rsa,300,0.052151
+things_eeg2,sub-03,consensus (trained vision),rsa,300,0.028665
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,300,0.04601
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,300,0.0098667
+things_eeg2,sub-03,best vision: alexnet,mknn,320,0.0825
+things_eeg2,sub-03,consensus (trained vision),mknn,320,0.086
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,320,0.0815
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,320,0.0515
+things_eeg2,sub-03,best vision: alexnet,rsa,320,0.045501
+things_eeg2,sub-03,consensus (trained vision),rsa,320,0.027971
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,320,0.027246
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,320,0.028735
+things_eeg2,sub-03,best vision: alexnet,mknn,340,0.076
+things_eeg2,sub-03,consensus (trained vision),mknn,340,0.09
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,340,0.082
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,340,0.0635
+things_eeg2,sub-03,best vision: alexnet,rsa,340,0.041632
+things_eeg2,sub-03,consensus (trained vision),rsa,340,0.025105
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,340,0.026881
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,340,0.0096246
+things_eeg2,sub-03,best vision: alexnet,mknn,360,0.0805
+things_eeg2,sub-03,consensus (trained vision),mknn,360,0.094
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,360,0.076
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,360,0.063
+things_eeg2,sub-03,best vision: alexnet,rsa,360,0.10834
+things_eeg2,sub-03,consensus (trained vision),rsa,360,0.18144
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,360,0.051154
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,360,0.055905
+things_eeg2,sub-03,best vision: alexnet,mknn,380,0.0845
+things_eeg2,sub-03,consensus (trained vision),mknn,380,0.073
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,380,0.083
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,380,0.048
+things_eeg2,sub-03,best vision: alexnet,rsa,380,0.1171
+things_eeg2,sub-03,consensus (trained vision),rsa,380,0.18119
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,380,0.036736
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,380,0.037672
+things_eeg2,sub-03,best vision: alexnet,mknn,40,0.048
+things_eeg2,sub-03,consensus (trained vision),mknn,40,0.0465
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,40,0.05
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,40,0.0535
+things_eeg2,sub-03,best vision: alexnet,rsa,40,0.0053621
+things_eeg2,sub-03,consensus (trained vision),rsa,40,-0.011634
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,40,-0.05107
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,40,0.002338
+things_eeg2,sub-03,best vision: alexnet,mknn,400,0.0895
+things_eeg2,sub-03,consensus (trained vision),mknn,400,0.0705
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,400,0.0725
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,400,0.0565
+things_eeg2,sub-03,best vision: alexnet,rsa,400,0.10521
+things_eeg2,sub-03,consensus (trained vision),rsa,400,0.14201
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,400,-0.0083861
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,400,0.0091251
+things_eeg2,sub-03,best vision: alexnet,mknn,420,0.087
+things_eeg2,sub-03,consensus (trained vision),mknn,420,0.057
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,420,0.059
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,420,0.0505
+things_eeg2,sub-03,best vision: alexnet,rsa,420,0.051703
+things_eeg2,sub-03,consensus (trained vision),rsa,420,0.05061
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,420,0.0044892
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,420,0.0078863
+things_eeg2,sub-03,best vision: alexnet,mknn,440,0.0665
+things_eeg2,sub-03,consensus (trained vision),mknn,440,0.0555
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,440,0.058
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,440,0.0455
+things_eeg2,sub-03,best vision: alexnet,rsa,440,0.036536
+things_eeg2,sub-03,consensus (trained vision),rsa,440,0.014817
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,440,-0.018395
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,440,0.010249
+things_eeg2,sub-03,best vision: alexnet,mknn,460,0.068
+things_eeg2,sub-03,consensus (trained vision),mknn,460,0.08
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,460,0.063
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,460,0.0505
+things_eeg2,sub-03,best vision: alexnet,rsa,460,0.026693
+things_eeg2,sub-03,consensus (trained vision),rsa,460,0.024323
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,460,0.027064
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,460,-0.007376
+things_eeg2,sub-03,best vision: alexnet,mknn,480,0.0565
+things_eeg2,sub-03,consensus (trained vision),mknn,480,0.0595
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,480,0.0575
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,480,0.0515
+things_eeg2,sub-03,best vision: alexnet,rsa,480,0.077686
+things_eeg2,sub-03,consensus (trained vision),rsa,480,0.087485
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,480,0.13559
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,480,0.026286
+things_eeg2,sub-03,best vision: alexnet,mknn,500,0.067
+things_eeg2,sub-03,consensus (trained vision),mknn,500,0.065
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,500,0.072
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,500,0.06
+things_eeg2,sub-03,best vision: alexnet,rsa,500,0.057291
+things_eeg2,sub-03,consensus (trained vision),rsa,500,0.073189
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,500,0.14713
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,500,0.036579
+things_eeg2,sub-03,best vision: alexnet,mknn,520,0.069
+things_eeg2,sub-03,consensus (trained vision),mknn,520,0.0605
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,520,0.061
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,520,0.046
+things_eeg2,sub-03,best vision: alexnet,rsa,520,0.05172
+things_eeg2,sub-03,consensus (trained vision),rsa,520,0.05683
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,520,0.13426
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,520,0.02881
+things_eeg2,sub-03,best vision: alexnet,mknn,540,0.0685
+things_eeg2,sub-03,consensus (trained vision),mknn,540,0.073
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,540,0.056
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,540,0.048
+things_eeg2,sub-03,best vision: alexnet,rsa,540,0.051421
+things_eeg2,sub-03,consensus (trained vision),rsa,540,0.053916
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,540,0.084392
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,540,0.030292
+things_eeg2,sub-03,best vision: alexnet,mknn,560,0.0545
+things_eeg2,sub-03,consensus (trained vision),mknn,560,0.062
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,560,0.058
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,560,0.039
+things_eeg2,sub-03,best vision: alexnet,rsa,560,0.046572
+things_eeg2,sub-03,consensus (trained vision),rsa,560,0.052856
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,560,0.070792
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,560,0.020469
+things_eeg2,sub-03,best vision: alexnet,mknn,580,0.0545
+things_eeg2,sub-03,consensus (trained vision),mknn,580,0.064
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,580,0.05
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,580,0.043
+things_eeg2,sub-03,best vision: alexnet,rsa,580,0.022472
+things_eeg2,sub-03,consensus (trained vision),rsa,580,0.025203
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,580,0.026948
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,580,-0.022075
+things_eeg2,sub-03,best vision: alexnet,mknn,60,0.065
+things_eeg2,sub-03,consensus (trained vision),mknn,60,0.057
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,60,0.057
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,60,0.0535
+things_eeg2,sub-03,best vision: alexnet,rsa,60,0.044983
+things_eeg2,sub-03,consensus (trained vision),rsa,60,0.011064
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,60,-0.036853
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,60,-0.0049268
+things_eeg2,sub-03,best vision: alexnet,mknn,600,0.066
+things_eeg2,sub-03,consensus (trained vision),mknn,600,0.058
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,600,0.051
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,600,0.054
+things_eeg2,sub-03,best vision: alexnet,rsa,600,0.013309
+things_eeg2,sub-03,consensus (trained vision),rsa,600,0.046143
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,600,0.013611
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,600,0.0035188
+things_eeg2,sub-03,best vision: alexnet,mknn,620,0.063
+things_eeg2,sub-03,consensus (trained vision),mknn,620,0.0725
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,620,0.06
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,620,0.056
+things_eeg2,sub-03,best vision: alexnet,rsa,620,0.050243
+things_eeg2,sub-03,consensus (trained vision),rsa,620,0.043461
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,620,0.060037
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,620,0.0018491
+things_eeg2,sub-03,best vision: alexnet,mknn,640,0.063
+things_eeg2,sub-03,consensus (trained vision),mknn,640,0.0655
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,640,0.0515
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,640,0.0515
+things_eeg2,sub-03,best vision: alexnet,rsa,640,0.040423
+things_eeg2,sub-03,consensus (trained vision),rsa,640,0.044431
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,640,0.038223
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,640,0.0027389
+things_eeg2,sub-03,best vision: alexnet,mknn,660,0.0545
+things_eeg2,sub-03,consensus (trained vision),mknn,660,0.065
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,660,0.0625
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,660,0.053
+things_eeg2,sub-03,best vision: alexnet,rsa,660,0.036385
+things_eeg2,sub-03,consensus (trained vision),rsa,660,0.050491
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,660,0.039945
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,660,-0.011033
+things_eeg2,sub-03,best vision: alexnet,mknn,680,0.061
+things_eeg2,sub-03,consensus (trained vision),mknn,680,0.064
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,680,0.055
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,680,0.058
+things_eeg2,sub-03,best vision: alexnet,rsa,680,0.025745
+things_eeg2,sub-03,consensus (trained vision),rsa,680,0.01808
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,680,0.0045936
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,680,-0.0011478
+things_eeg2,sub-03,best vision: alexnet,mknn,700,0.05
+things_eeg2,sub-03,consensus (trained vision),mknn,700,0.0535
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,700,0.0475
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,700,0.0515
+things_eeg2,sub-03,best vision: alexnet,rsa,700,-0.006136
+things_eeg2,sub-03,consensus (trained vision),rsa,700,-0.0064914
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,700,-0.023988
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,700,-0.0038064
+things_eeg2,sub-03,best vision: alexnet,mknn,720,0.0525
+things_eeg2,sub-03,consensus (trained vision),mknn,720,0.0405
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,720,0.049
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,720,0.0505
+things_eeg2,sub-03,best vision: alexnet,rsa,720,0.0084862
+things_eeg2,sub-03,consensus (trained vision),rsa,720,0.012063
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,720,-0.023783
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,720,-0.00024791
+things_eeg2,sub-03,best vision: alexnet,mknn,740,0.053
+things_eeg2,sub-03,consensus (trained vision),mknn,740,0.057
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,740,0.0525
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,740,0.045
+things_eeg2,sub-03,best vision: alexnet,rsa,740,0.019713
+things_eeg2,sub-03,consensus (trained vision),rsa,740,0.015348
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,740,-0.046985
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,740,0.006839
+things_eeg2,sub-03,best vision: alexnet,mknn,760,0.0465
+things_eeg2,sub-03,consensus (trained vision),mknn,760,0.049
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,760,0.055
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,760,0.052
+things_eeg2,sub-03,best vision: alexnet,rsa,760,0.0074621
+things_eeg2,sub-03,consensus (trained vision),rsa,760,0.043197
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,760,-0.027051
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,760,0.022376
+things_eeg2,sub-03,best vision: alexnet,mknn,780,0.048
+things_eeg2,sub-03,consensus (trained vision),mknn,780,0.056
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,780,0.0455
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,780,0.0475
+things_eeg2,sub-03,best vision: alexnet,rsa,780,0.016853
+things_eeg2,sub-03,consensus (trained vision),rsa,780,0.02466
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,780,0.057798
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,780,0.015236
+things_eeg2,sub-03,best vision: alexnet,mknn,80,0.1055
+things_eeg2,sub-03,consensus (trained vision),mknn,80,0.0905
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,mknn,80,0.0715
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,mknn,80,0.066
+things_eeg2,sub-03,best vision: alexnet,rsa,80,0.086621
+things_eeg2,sub-03,consensus (trained vision),rsa,80,0.12706
+things_eeg2,sub-03,best language: cliptext-vit-b-32-openai,rsa,80,0.0022563
+things_eeg2,sub-03,random-init: random_convnext_tiny_s0,rsa,80,0.10544

@@ -1,0 +1,48 @@
+# Rescore and re-test whenever code, committed kernels or the model registry change.
+#
+# How a new model gets onto the leaderboard (CI never touches raw data or images):
+#   1. Locally (GPU optional):  python -m pbi.models --models <id>      (vision; register it in pbi/models.py)
+#                          or:  python -m pbi.text_audio --models <id>  (language / audio)
+#      This writes artifacts/kernels/{dataset}/model/<id>.npz for every dataset and a row in
+#      artifacts/models_vision.csv / artifacts/models_langaudio.csv.
+#      Alternatively commit the kernel npz files yourself (np.savez_compressed(path, **pbi.kernels.pack(K)),
+#      K = pbi.kernels.kernels_from_features(X), X = embeddings of artifacts/stimuli/{dataset}.csv in idx order)
+#      plus a models_<yours>.csv row with the artifacts/models.csv columns.
+#   2. Run `python -m pbi reproduce` and commit the regenerated artifacts/results/, LEADERBOARD.md, figures/.
+#   3. Open a PR. This workflow re-runs the tests and the full rescoring from the committed kernels and fails if
+#      the committed results do not match what the committed kernels produce (numeric tolerance 2e-3).
+name: pbi
+on:
+  push:
+    paths: ["pbi/**", "tests/**", "artifacts/kernels/**", "artifacts/models_*.csv", "artifacts/stimuli/**",
+            "requirements.txt", ".github/workflows/pbi.yml"]
+  pull_request:
+    paths: ["pbi/**", "tests/**", "artifacts/kernels/**", "artifacts/models_*.csv", "artifacts/stimuli/**",
+            "requirements.txt", ".github/workflows/pbi.yml"]
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q tests
+      - name: Keep the committed results for comparison
+        run: mkdir -p /tmp/committed && cp artifacts/results/*.csv /tmp/committed/ 2>/dev/null || true
+      - run: python -m pbi reproduce --jobs 4
+        env:
+          PBI_CACHE: "0"
+      - name: Committed results must match the committed kernels
+        run: python -m pbi check --against /tmp/committed
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pbi-results
+          path: |
+            LEADERBOARD.md
+            figures/
+            artifacts/results/

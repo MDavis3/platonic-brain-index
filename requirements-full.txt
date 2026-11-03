@@ -1,0 +1,11 @@
+# Everything for `python -m pbi full` (raw data -> kernels). Install on top of requirements.txt.
+-r requirements.txt
+torch>=2.2
+torchvision>=0.17
+timm>=1.0
+open_clip_torch>=2.24
+transformers>=4.40
+sentence-transformers>=2.7
+mne>=1.6
+pillow>=10.0
+requests>=2.31
