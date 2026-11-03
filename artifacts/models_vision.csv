@@ -7,8 +7,11 @@ resnet152,resnet,vision,supervised,ImageNet-1k,58143808,2048,,R152,"timm:resnet1
 vit_tiny_p16_in21k,vit_sup,vision,supervised,ImageNet-21k->1k,5524416,192,,Ti,"timm:vit_tiny_patch16_224.augreg_in21k_ft_in1k (input 224px, bicubic, crop 0.9)"
 vit_small_p16_in21k,vit_sup,vision,supervised,ImageNet-21k->1k,21665664,384,,S,"timm:vit_small_patch16_224.augreg_in21k_ft_in1k (input 224px, bicubic, crop 0.9)"
 vit_base_p16_in21k,vit_sup,vision,supervised,ImageNet-21k->1k,85798656,768,,B,"timm:vit_base_patch16_224.augreg_in21k_ft_in1k (input 224px, bicubic, crop 0.9)"
+vit_large_p16_in21k,vit_sup,vision,supervised,ImageNet-21k->1k,303301632,1024,,L,"timm:vit_large_patch16_224.augreg_in21k_ft_in1k (input 224px, bicubic, crop 0.9)"
 convnext_tiny,convnext,vision,supervised,ImageNet-1k,27820128,768,,T,"timm:convnext_tiny.fb_in1k (input 224px, bicubic, crop 0.875)"
 convnext_small,convnext,vision,supervised,ImageNet-1k,49454688,768,,S,"timm:convnext_small.fb_in1k (input 224px, bicubic, crop 0.875)"
+convnext_base,convnext,vision,supervised,ImageNet-1k,87566464,1024,,B,"timm:convnext_base.fb_in1k (input 224px, bicubic, crop 0.875)"
+convnext_large,convnext,vision,supervised,ImageNet-1k,196230336,1536,,L,"timm:convnext_large.fb_in1k (input 224px, bicubic, crop 0.875)"
 alexnet,alexnet,vision,supervised,ImageNet-1k,57003840,4096,,AlexNet,"torchvision:alexnet IMAGENET1K_V1, classifier[6] removed (fc7+ReLU, 4096-d)"
 dino_vit_small_p16,dino,vision,ssl,ImageNet-1k (no labels),21665664,384,,S,"timm:vit_small_patch16_224.dino (input 224px, bicubic, crop 0.9)"
 dino_vit_base_p16,dino,vision,ssl,ImageNet-1k (no labels),85798656,768,,B,"timm:vit_base_patch16_224.dino (input 224px, bicubic, crop 0.9)"
@@ -16,10 +19,17 @@ dinov2_vit_small_p14,dinov2,vision,ssl,LVD-142M,22056192,384,,S,"timm:vit_small_
 dinov2_vit_base_p14,dinov2,vision,ssl,LVD-142M,86579712,768,,B,"timm:vit_base_patch14_dinov2.lvd142m (input 518px, bicubic, crop 1.0)"
 mae_vit_base,mae,vision,ssl,ImageNet-1k (no labels),85798656,768,,B,"timm:vit_base_patch16_224.mae (input 224px, bicubic, crop 0.9)"
 clip_rn50_openai,clip_openai,vision,clip,WIT-400M,38316896,1024,,RN50,open_clip:RN50/openai (encode_image = visual())
+clip_vit_b_32_openai,clip_openai,vision,clip,WIT-400M,87849216,512,,B/32,open_clip:ViT-B-32/openai (encode_image = visual())
 clip_vit_b_16_openai,clip_openai,vision,clip,WIT-400M,86192640,512,,B/16,open_clip:ViT-B-16/openai (encode_image = visual())
+clip_vit_b_32_laion2b,clip_laion,vision,clip,LAION-2B,87849216,512,,B/32,open_clip:ViT-B-32/laion2b_s34b_b79k (encode_image = visual())
+clip_vit_b_16_laion2b,clip_laion,vision,clip,LAION-2B,86192640,512,,B/16,open_clip:ViT-B-16/laion2b_s34b_b88k (encode_image = visual())
+siglip_vit_b_16,siglip,vision,siglip,WebLI,92884224,768,,B/16,open_clip:ViT-B-16-SigLIP/webli (encode_image = visual())
 random_resnet50_s0,random_resnet50,vision,random,none,23508032,2048,,resnet50,"timm:resnet50 pretrained=False torch.manual_seed(0) (input 224px, bicubic, crop 0.95)"
 random_resnet50_s1,random_resnet50,vision,random,none,23508032,2048,,resnet50,"timm:resnet50 pretrained=False torch.manual_seed(1) (input 224px, bicubic, crop 0.95)"
 random_resnet50_s2,random_resnet50,vision,random,none,23508032,2048,,resnet50,"timm:resnet50 pretrained=False torch.manual_seed(2) (input 224px, bicubic, crop 0.95)"
+random_vit_base_p16_s0,random_vit_base_p16,vision,random,none,85798656,768,,vit_base_p16,"timm:vit_base_patch16_224 pretrained=False torch.manual_seed(0) (input 224px, bicubic, crop 0.9)"
+random_vit_base_p16_s1,random_vit_base_p16,vision,random,none,85798656,768,,vit_base_p16,"timm:vit_base_patch16_224 pretrained=False torch.manual_seed(1) (input 224px, bicubic, crop 0.9)"
+random_vit_base_p16_s2,random_vit_base_p16,vision,random,none,85798656,768,,vit_base_p16,"timm:vit_base_patch16_224 pretrained=False torch.manual_seed(2) (input 224px, bicubic, crop 0.9)"
 random_convnext_tiny_s0,random_convnext_tiny,vision,random,none,27820128,768,,convnext_tiny,"timm:convnext_tiny pretrained=False torch.manual_seed(0) (input 224px, bicubic, crop 0.95)"
 random_convnext_tiny_s1,random_convnext_tiny,vision,random,none,27820128,768,,convnext_tiny,"timm:convnext_tiny pretrained=False torch.manual_seed(1) (input 224px, bicubic, crop 0.95)"
 random_convnext_tiny_s2,random_convnext_tiny,vision,random,none,27820128,768,,convnext_tiny,"timm:convnext_tiny pretrained=False torch.manual_seed(2) (input 224px, bicubic, crop 0.95)"
