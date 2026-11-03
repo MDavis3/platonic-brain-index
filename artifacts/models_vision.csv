@@ -18,10 +18,10 @@ dino_vit_base_p16,dino,vision,ssl,ImageNet-1k (no labels),85798656,768,0.80467,B
 dinov2_vit_small_p14,dinov2,vision,ssl,LVD-142M,22056192,384,0.903,S,"timm:vit_small_patch14_dinov2.lvd142m (input 518px, bicubic, crop 1.0)"
 dinov2_vit_base_p14,dinov2,vision,ssl,LVD-142M,86579712,768,0.92033,B,"timm:vit_base_patch14_dinov2.lvd142m (input 518px, bicubic, crop 1.0)"
 dinov2_vit_large_p14,dinov2,vision,ssl,LVD-142M,304367616,1024,0.93067,L,"timm:vit_large_patch14_dinov2.lvd142m (input 518px, bicubic, crop 1.0)"
-dinov2_vit_giant_p14,dinov2,vision,ssl,LVD-142M,1136479232,1536,,g,"timm:vit_giant_patch14_dinov2.lvd142m (input 518px, bicubic, crop 1.0)"
+dinov2_vit_giant_p14,dinov2,vision,ssl,LVD-142M,1136479232,1536,0.92267,g,"timm:vit_giant_patch14_dinov2.lvd142m (input 518px, bicubic, crop 1.0)"
 mae_vit_base,mae,vision,ssl,ImageNet-1k (no labels),85798656,768,0.084,B,"timm:vit_base_patch16_224.mae (input 224px, bicubic, crop 0.9)"
 mae_vit_large,mae,vision,ssl,ImageNet-1k (no labels),303301632,1024,0.344,L,"timm:vit_large_patch16_224.mae (input 224px, bicubic, crop 0.9)"
-mae_vit_huge,mae,vision,ssl,ImageNet-1k (no labels),630764800,1280,,H,"timm:vit_huge_patch14_224.mae (input 224px, bicubic, crop 0.9)"
+mae_vit_huge,mae,vision,ssl,ImageNet-1k (no labels),630764800,1280,0.364,H,"timm:vit_huge_patch14_224.mae (input 224px, bicubic, crop 0.9)"
 clip_rn50_openai,clip_openai,vision,clip,WIT-400M,38316896,1024,0.80433,RN50,open_clip:RN50/openai (encode_image = visual())
 clip_vit_b_32_openai,clip_openai,vision,clip,WIT-400M,87849216,512,0.84467,B/32,open_clip:ViT-B-32/openai (encode_image = visual())
 clip_vit_b_16_openai,clip_openai,vision,clip,WIT-400M,86192640,512,0.87033,B/16,open_clip:ViT-B-16/openai (encode_image = visual())
@@ -29,8 +29,8 @@ clip_vit_l_14_openai,clip_openai,vision,clip,WIT-400M,303966208,768,0.936,L/14,o
 clip_vit_b_32_laion2b,clip_laion,vision,clip,LAION-2B,87849216,512,0.91867,B/32,open_clip:ViT-B-32/laion2b_s34b_b79k (encode_image = visual())
 clip_vit_b_16_laion2b,clip_laion,vision,clip,LAION-2B,86192640,512,0.94233,B/16,open_clip:ViT-B-16/laion2b_s34b_b88k (encode_image = visual())
 clip_vit_l_14_laion2b,clip_laion,vision,clip,LAION-2B,303966208,768,0.96033,L/14,open_clip:ViT-L-14/laion2b_s32b_b82k (encode_image = visual())
-clip_vit_h_14_laion2b,clip_laion,vision,clip,LAION-2B,632076800,1024,,H/14,open_clip:ViT-H-14/laion2b_s32b_b79k (encode_image = visual())
-clip_vit_g_14_laion2b,clip_laion,vision,clip,LAION-2B,1012645632,1024,,g/14,open_clip:ViT-g-14/laion2b_s34b_b88k (encode_image = visual())
+clip_vit_h_14_laion2b,clip_laion,vision,clip,LAION-2B,632076800,1024,0.96633,H/14,open_clip:ViT-H-14/laion2b_s32b_b79k (encode_image = visual())
+clip_vit_g_14_laion2b,clip_laion,vision,clip,LAION-2B,1012645632,1024,0.968,g/14,open_clip:ViT-g-14/laion2b_s34b_b88k (encode_image = visual())
 siglip_vit_b_16,siglip,vision,siglip,WebLI,92884224,768,0.96067,B/16,open_clip:ViT-B-16-SigLIP/webli (encode_image = visual())
 siglip_vit_l_16_256,siglip,vision,siglip,WebLI,315956224,1024,0.96833,L/16,open_clip:ViT-L-16-SigLIP-256/webli (encode_image = visual())
 siglip_vit_so400m_14,siglip,vision,siglip,WebLI,427680704,1152,0.972,So400m/14,open_clip:ViT-SO400M-14-SigLIP/webli (encode_image = visual())
