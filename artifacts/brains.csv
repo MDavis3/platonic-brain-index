@@ -1,0 +1,6 @@
+dataset,subject,n_stim,n_reps,n_features,feature_desc,ceil_mknn,ceil_cka,ceil_rsa
+things_eeg2,sub-01,200,80,714,17 ch x 42 samples (100 Hz) 80-500 ms,0.34070,0.74723,0.71756
+things_eeg2,sub-03,200,80,714,17 ch x 42 samples (100 Hz) 80-500 ms,0.43210,0.81835,0.82621
+things_fmri,sub-01,100,12,4145,"4145 IT voxels (released IT mask, NaN voxels dropped), single-trial betas",0.13200,0.15439,0.14636
+things_fmri,sub-02,100,12,3720,"3720 IT voxels (released IT mask, NaN voxels dropped), single-trial betas",0.17160,0.31647,0.40955
+things_fmri,sub-03,100,12,3022,"3022 IT voxels (released IT mask, NaN voxels dropped), single-trial betas",0.08240,0.05218,0.18627
