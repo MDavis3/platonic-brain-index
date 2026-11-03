@@ -42,7 +42,7 @@ alignment was −0.37 (EEG; the CI excludes 0, but the negative trend is not sig
 **Distance to brains.** The best corrected model score in any cell was 0.30. Other brains, scored like-for-like
 (a subject's split halves against the other subjects' mean), sit well above every model on EEG (0.52–0.79) and on
 fMRI CKA and RSA (0.42, 0.54). They are only slightly above on fMRI mutual k-NN (0.33 against 0.28). On MEG they
-are about where the best models are (0.26–0.27). On MEG RSA the best model (0.30) exceeds them.
+are about where the best models are (0.25–0.27). On MEG RSA the best model (0.30) exceeds them.
 
 **Prior work.** This agrees with reports that neural alignment saturates or falls as accuracy rises (Linsley et
 al. 2023; Gokce & Schrimpf 2025; Conwell et al. 2024). It differs from controlled-scaling results (Raugel et al.
@@ -52,8 +52,9 @@ al. 2023; Gokce & Schrimpf 2025; Conwell et al. 2024). It differs from controlle
 
 **Review.** An independent AI reviewer agent, working blind from a clean clone of commit 5627443, got byte-identical
 result files. It could not make the capability test pass under any variant it tried. The H4 rule change, the
-robustness analyses, the layer-selected test and the figures came after that review. CI checks them against the
-committed kernels. The independent review does not cover them.
+robustness analyses, the layer-selected test and the figures came after that review, which does not cover them.
+CI regenerates everything from the committed kernels but numerically compares only `scores.csv`,
+`hypotheses.csv` and `leaderboard.csv`.
 
 These results cover three THINGS datasets with 10, 4 and 3 subjects; they do not include NSD.
 
