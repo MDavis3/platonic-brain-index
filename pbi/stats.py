@@ -38,7 +38,8 @@ SUB_FRAC = 0.8
 SEED_SUB, SEED_NULL, SEED_PERM, SEED_LAYER = 20261102, 30261102, 40261102, 50261102
 K_SENS = (5, 10, 20)
 ALPHA = 0.05
-ENGINE_VERSION = "2"  # 2: per-subject subsample/null scores, model-model matrix, layer files in fingerprint
+ENGINE_VERSION = "3"  # 2: per-subject subsample/null scores, model-model matrix, layer files in fingerprint;
+#                       3: source-code hash in fingerprint, cache moved into the repo (.cache/stats)
 METRICS = sc.METRICS
 DATASETS = sc.DATASETS
 # Systems named in PREREGISTRATION.md: H3 families ("ResNet, ViT, ConvNeXt, DINOv2, MAE, CLIP-LAION"), the LM
@@ -269,8 +270,22 @@ def _layer_sweep(D, root):
     return rows
 
 
+def _code_hash():
+    """Hash of the source code the cached engine results depend on (kernels.py and score.py in full, plus the
+    engine functions of this module and pbi.robustness), so a code change can never reuse stale cache entries."""
+    import inspect
+    from . import robustness as rb
+    h = hashlib.sha1()
+    for mod in (kn, sc):
+        h.update(Path(mod.__file__).read_bytes())
+    for fn in (_task, _layer_sweep, _subsample_idx, _mm_matrix, _mm_mean, _get, rb._task, rb._scores, rb._cc,
+               rb._cc_bank, rb.chance_corrected):
+        h.update(inspect.getsource(fn).encode())
+    return h.hexdigest()
+
+
 def _fingerprint(root, ds, n_sub, n_null, snap):
-    h = hashlib.sha1(f"{ENGINE_VERSION}|{ds}|{n_sub}|{n_null}|{SUB_FRAC}|{SEED_SUB}|{SEED_NULL}".encode())
+    h = hashlib.sha1(f"{ENGINE_VERSION}|{ds}|{n_sub}|{n_null}|{SUB_FRAC}|{SEED_SUB}|{SEED_NULL}|{_code_hash()}".encode())
     kdir = sc.art_root(root) / "kernels" / ds
     files = [kdir / "model" / f"{m}.npz" for m in snap[0]]
     files += [kdir / "brain" / f"{s}_{t}.npz" for s in snap[1]
@@ -290,7 +305,8 @@ def _cache_dir():
     d = os.environ.get("PBI_CACHE")
     if d == "0":
         return None
-    d = Path(d) if d else Path(os.environ.get("PBI_DATA", Path.home() / "pbi_data")) / "cache" / "stats"
+    # default: inside the repository (git-ignored), so a fresh clone never reuses another checkout's results
+    d = Path(d) if d else sc.REPO / ".cache" / "stats"
     try:
         d.mkdir(parents=True, exist_ok=True)
         return d
@@ -627,14 +643,25 @@ def verdicts(H):
                            f"(threshold >= 2/3); mean rho > 0 with CI excluding 0 (ignoring p): {ci_only}/3"))
     a = H[(H["hypothesis"] == "H4_bestLM") & (H["dataset"] == "things_fmri") & (H["metric"] == "mknn")]
     b = H[(H["hypothesis"] == "H4_scale") & (H["dataset"] == "things_fmri") & (H["metric"] == "mknn")]
-    h4a = bool(len(a) and a["p"].iloc[0] < ALPHA)
-    h4b = bool(len(b) and np.isfinite(b["effect"].iloc[0]) and b["effect"].iloc[0] > 0)
+    # (a) and (b) are both judged with the general cell rule (Holm p < 0.05 and CI excluding 0), as H3 is. The
+    # literal table text ("scale rho > 0") would accept a bare positive point estimate for (b); that reading is
+    # reported in the detail but is not used for the verdict (changed after the independent review; DEVIATIONS.md).
+    h4a = bool(len(a) and a["confirmed"].iloc[0])
+    h4b = bool(len(b) and b["confirmed"].iloc[0])
+    h4b_point = bool(len(b) and np.isfinite(b["effect"].iloc[0]) and b["effect"].iloc[0] > 0)
+    def _d(r):
+        if not len(r) or not np.isfinite(r["effect"].iloc[0]):
+            return " (no data)"
+        r = r.iloc[0]
+        return f" ({r['effect']:.3f}, CI [{r['ci_lo']:.3f}, {r['ci_hi']:.3f}], p={r['p']:.4f}, Holm p={r['p_holm']:.4f})"
     V["H4"] = dict(passed=h4a and h4b, available=len(a) + len(b),
-                   detail=(f"(a) best language model above shuffled-stimulus null on fMRI-IT (mutual k-NN): "
-                           f"{'yes' if h4a else 'no'}"
-                           f"{' (p=%.4f)' % a['p'].iloc[0] if len(a) and np.isfinite(a['p'].iloc[0]) else ''}; "
-                           f"(b) mean within-LM-family scale rho > 0 on fMRI-IT (mutual k-NN): {'yes' if h4b else 'no'}"
-                           f"{' (rho=%.2f)' % b['effect'].iloc[0] if len(b) and np.isfinite(b['effect'].iloc[0]) else ''}"))
+                   label=("PASS" if h4a and h4b else "PARTIAL (FAIL)" if h4a or h4b else "FAIL"),
+                   detail=(f"(a) best language model above the shuffled-stimulus null on fMRI-IT (mutual k-NN): "
+                           f"{'confirmed' if h4a else 'not confirmed'}{_d(a)}; "
+                           f"(b) mean within-LM-family scale rho on fMRI-IT (mutual k-NN): "
+                           f"{'confirmed' if h4b else 'not confirmed'}{_d(b)}. Literal reading of (b) as a bare "
+                           f"point estimate rho > 0: {'met' if h4b_point else 'not met'} -> H4 would "
+                           f"{'PASS' if h4a and h4b_point else 'FAIL'} under that reading"))
     c = _cells(H, "H5", "mknn")
     V["H5"] = dict(passed=int(c["confirmed"].sum()) >= 2, available=len(c),
                    detail=f"mutual k-NN: confirmed in {int(c['confirmed'].sum())}/3 datasets (threshold >= 2/3)")
@@ -798,7 +825,9 @@ def run(root=None, n_sub=N_SUB, n_null=N_NULL, n_perm=N_PERM, jobs=None, verbose
     settings = dict(n_sub=n_sub, n_null=n_null, n_perm=n_perm)
     sens = sensitivity(meta, point, eng, subj, ref, mmsim, n_perm)
     sens[0][["analysis"] + cols].to_csv(out / "sensitivity.csv", index=False, float_format="%.4f")
-    write_markdown(H, verdicts(H), out / "hypotheses.md", datasets, settings, sens)
+    from . import robustness
+    rob = robustness.run(root, meta, point, eng, subj, n_sub, n_perm, jobs, verbose)
+    write_markdown(H, verdicts(H), out / "hypotheses.md", datasets, settings, sens, rob)
     if verbose:
         print(f"[stats] done in {time.time() - t0:.0f} s")
     return H
@@ -808,7 +837,62 @@ def _fmt(x, nd=3):
     return "" if x is None or (isinstance(x, float) and not np.isfinite(x)) else f"{x:.{nd}f}"
 
 
-def write_markdown(H, V, path, datasets, settings, sens=None):
+def _reading_notes(H, V, rob):
+    """Plain-language caveats generated from the exploratory robustness results (pbi/robustness.py)."""
+    T, RV, floor = rob
+    f = _fmt
+
+    def cell(a, h, ds, mt):
+        r = T[(T["analysis"] == a) & (T["hypothesis"] == h) & (T["dataset"] == ds) & (T["metric"] == mt)]
+        return r.iloc[0] if len(r) else None
+
+    def prim(h, ds, mt):
+        r = H[(H["hypothesis"] == h) & (H["dataset"] == ds) & (H["metric"] == mt)]
+        return r.iloc[0] if len(r) else None
+
+    L = ["## How to read these verdicts (exploratory checks; details in `robustness.md`)", ""]
+    n1 = int(_cells(H, "H1")["confirmed"].sum())
+    h1cc = RV["rsa_cc"]["H1"]
+    rs = [(ds, prim("H1", ds, "rsa"), cell("rsa_cc", "H1", ds, "rsa")) for ds in DATASETS]
+    L.append(f"* **H1 depends on the RDM definition.** Under the preregistered RDM (1 - Pearson r between stimulus "
+             f"rows, feature means kept) H1 is confirmed in {n1}/9 cells; the misses are RSA cells. With column-centred "
+             f"RDMs (exploratory) H1 is {'PASS' if h1cc['passed'] else 'FAIL'} ({h1cc['detail'].split(' (')[0]}); "
+             "trained - random RSA: " + ", ".join(
+                 f"{sc.DS_SHORT[ds]} {f(p['effect'])} -> {f(c['effect'])}" for ds, p, c in rs if p is not None and c is not None)
+             + ". The preregistered verdict stands; the RSA-based part of it reflects the shared mean pattern "
+               "rather than evidence that trained networks are no better than random ones.")
+    h2 = [(ds, prim("H2", ds, "rsa"), cell("rsa_cc", "H2", ds, "rsa")) for ds in DATASETS]
+    L.append("* **The negative H2 RSA correlations are an RDM artefact as well**: H2 rho (RSA) " + ", ".join(
+        f"{sc.DS_SHORT[ds]} {f(p['effect'])} -> {f(c['effect'])}" for ds, p, c in h2 if p is not None and c is not None)
+        + " with column-centred RDMs. Read them as 'not confirmed', not as 'capability hurts'. H2 fails under every "
+          f"variant (column-centred RSA: {RV['rsa_cc']['H2']['detail'].split(' (')[0]}; chance-adjusted mutual k-NN: "
+          f"{RV['mknn_chance']['H2']['detail'].split(' (')[0]}).")
+    if floor:
+        L.append("* **Corrected mutual k-NN has a chance floor above 0**: chance k/(n-1) divided by sqrt(ceiling) is " +
+                 ", ".join(f"{sc.DS_SHORT[ds]} {x['floor']:.3f}" for ds, x in floor.items() if ds in sc.DS_SHORT) +
+                 " in corrected units (MEG ceilings " + (f"{floor['things_meg']['ceil_min']:.3f}-{floor['things_meg']['ceil_max']:.3f}"
+                 if "things_meg" in floor else "n/a") + f" vs chance {floor.get('things_meg', {}).get('chance', np.nan):.3f}). "
+                 "MEG mutual k-NN cells therefore carry little information, and H6 passing there is close to trivial. "
+                 f"With chance-adjusted mutual k-NN (exploratory): H1 {RV['mknn_chance']['H1']['detail'].split(' (')[0]}, "
+                 f"H5 {RV['mknn_chance']['H5']['detail']}.")
+    rf = []
+    for ds in DATASETS:
+        a = cell("reference", "REF_full_vs_groupmean", ds, "rsa")
+        b = cell("reference", "REF_halves_vs_groupmean", ds, "rsa")
+        c = cell("reference", "REF_halves_vs_single_subject", ds, "rsa")
+        if a is not None:
+            rf.append(f"{sc.DS_SHORT[ds]} {f(a['effect'])} / {f(b['effect'])} / {f(c['effect'])}")
+    if rf:
+        L.append("* **REF_brain_heldout is not like-for-like** (a subject's full kernel vs the others' mean; models are "
+                 "scored against split halves). RSA reference full-vs-mean / halves-vs-mean / halves-vs-one-subject: "
+                 + "; ".join(rf) + ". Compare models with the like-for-like columns in `robustness.md`.")
+    L.append("* **H4**: arm (a) is confirmed; arm (b) (LM scale trend) rests on two families and is not confirmed under "
+             "the cell rule, so H4 is reported as PARTIAL (not passed).")
+    L.append("")
+    return L
+
+
+def write_markdown(H, V, path, datasets, settings, sens=None, rob=None):
     pre = dict(n_sub=N_SUB, n_null=N_NULL, n_perm=N_PERM)
     L = ["# Hypothesis tests (machine-generated by `python -m pbi stats`; do not edit)", ""]
     if settings != pre:
@@ -817,7 +901,9 @@ def write_markdown(H, V, path, datasets, settings, sens=None):
     if missing:
         L += [f"**INCOMPLETE: no scores for {', '.join(missing)}; their cells count as not confirmed.**", ""]
     L += ["Cell = dataset x metric. Confirmed in a cell: one-sided permutation p < 0.05 after Holm correction across",
-          "the 9 cells AND 95% subsample CI excluding 0 (H6: upper CI < 1). CIs: "
+          "the 9 cells AND 95% subsample CI excluding 0 (H6: upper CI < 1). CIs (stimulus sampling only: the model "
+          "set is held fixed, so CIs of correlations across models do not include model-sampling uncertainty; "
+          "model-bootstrap CIs are in `robustness.md`): "
           f"{settings['n_sub']} subsamples of 80% of stimuli; permutation tests: {settings['n_perm']} permutations; "
           f"shuffled-stimulus nulls: {settings['n_null']} permutations.", "",
           "## Verdicts (preregistered thresholds)", "", "| Hypothesis | Verdict | Detail |", "|---|---|---|"]
@@ -826,13 +912,16 @@ def write_markdown(H, V, path, datasets, settings, sens=None):
              "H5": "Model-model agreement predicts model-brain agreement", "H6": "No model reaches the noise ceiling"}
     for h in ["H1", "H2", "H3", "H4", "H5", "H6"]:
         v = V[h]
-        L.append(f"| {h} {names[h]} | **{'PASS' if v['passed'] else 'FAIL'}** | {v['detail']} |")
+        L.append(f"| {h} {names[h]} | **{v.get('label', 'PASS' if v['passed'] else 'FAIL')}** | {v['detail']} |")
     head = ("Brains and models converge as capability rises (H2 passed; subject to the reviewer's checks)."
             if V["H2"]["passed"] else
             "Models share structure with brains, but more capable models are not reliably more brain-like "
             "(H2 failed; H1 and H5 passed)." if V["H1"]["passed"] and V["H5"]["passed"] else
             "H2 failed and H1/H5 did not both pass: no convergence claim; see cells below.")
-    L += ["", f"**Headline decision rule:** {head}", "", "## Cells", "",
+    L += ["", f"**Headline decision rule:** {head}", ""]
+    if rob is not None:
+        L += _reading_notes(H, V, rob)
+    L += ["## Cells", "",
           "| Test | Dataset | Metric | Effect | 95% CI | p | p (Holm) | Confirmed | n |", "|---|---|---|---|---|---|---|---|---|"]
     for _, r in H.iterrows():
         if r["hypothesis"].startswith("H4_best:"):
@@ -848,7 +937,10 @@ def write_markdown(H, V, path, datasets, settings, sens=None):
         for _, r in fam.iterrows():
             L.append(f"| {r['hypothesis'][8:]} | {sc.DS_SHORT.get(r['dataset'])} | {r['metric']} | "
                      f"{_fmt(r['effect'])} | {_fmt(r['p'], 4)} | {r['note']} |")
-    L += ["", "Notes: H2_k* rows are the k-sensitivity check (mutual k-NN with k = 5, 10, 20; primary k = n/20). "
+    L += ["", "Notes: H2_k* rows are the k-sensitivity check (mutual k-NN with k = 5, 10, 20). The primary k is "
+          "round(n/20): k = 10 for EEG and MEG (n = 200) and **k = 5 for fMRI (n = 100)**, so the primary H2 row equals "
+          "H2_k10 for EEG/MEG and H2_k5 for fMRI; the fMRI H2_k10 and H2_k20 rows are sensitivity values, not the "
+          "primary analysis. "
           "H2_width_partial is the width-confound control. REF_brain_heldout is the brain-brain reference "
           "(not a test). LOSO = leave-one-subject-out ranking consistency (CI columns hold min/max over subjects). "
           "H4 is operationalized on the primary metric (mutual k-NN) because the threshold names no metric; "

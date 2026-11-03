@@ -89,11 +89,24 @@ def test_verdict_h6_and_h4():
     assert st.verdicts(_H(rows))["H6"]["passed"]
     rows[3]["ci_hi"] = 1.05
     assert not st.verdicts(_H(rows))["H6"]["passed"]
-    rows = [dict(hypothesis="H4_bestLM", dataset="things_fmri", metric="mknn", p=0.01),
+    rows = [dict(hypothesis="H4_bestLM", dataset="things_fmri", metric="mknn", p=0.001),
             dict(hypothesis="H4_scale", dataset="things_fmri", metric="mknn", effect=0.2)]
     assert st.verdicts(_H(rows))["H4"]["passed"]
     rows[1]["effect"] = -0.2
     assert not st.verdicts(_H(rows))["H4"]["passed"]
+    # (b) is judged with the cell rule: a positive but non-significant point estimate does not pass
+    rows[1].update(effect=0.1, p=0.42, ci_lo=-0.3)
+    v = st.verdicts(_H(rows))["H4"]
+    assert not v["passed"] and v["label"].startswith("PARTIAL") and "would PASS" in v["detail"]
+
+
+def test_chance_corrected_mknn():
+    from pbi import robustness as rb
+    c = 0.05
+    out = rb.chance_corrected(np.array([[c, 0.3, 0.3]]), np.array([0.5, 0.5, 0.04]), c)
+    assert out[0, 0] == pytest.approx(0.0)
+    assert out[0, 1] == pytest.approx(((0.3 - c) / (1 - c)) / np.sqrt((0.5 - c) / (1 - c)))
+    assert np.isnan(out[0, 2])  # ceiling below chance -> excluded
 
 
 def test_derive_subject_and_model_restriction():

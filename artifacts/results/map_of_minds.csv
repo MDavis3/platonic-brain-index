@@ -39,7 +39,7 @@ dinov2_vit_base_p14,model,,0.4562,0.1323
 dinov2_vit_giant_p14,model,,0.5256,0.0239
 dinov2_vit_large_p14,model,,0.3441,-0.0207
 dinov2_vit_small_p14,model,,0.5943,0.1792
-hubert-base-ls960,model,,-0.6919,-0.4416
+hubert-base-ls960,model,,-0.6919,-0.4415
 hubert-large-ll60k,model,,-0.7090,-0.4583
 mae_vit_base,model,,-0.8656,0.2658
 mae_vit_huge,model,,-0.5321,0.5602

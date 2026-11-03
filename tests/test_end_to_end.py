@@ -29,12 +29,31 @@ def monkeypatch_module():
 def test_outputs_exist(reproduced):
     r = reproduced / "results"
     for f in ("scores.csv", "scores_subject.csv", "scores_reference.csv", "hypotheses.csv", "hypotheses.md",
-              "null_pvalues.csv", "loso.csv", "leaderboard.csv", "model_ci.csv", "family_scaling.csv"):
+              "null_pvalues.csv", "loso.csv", "leaderboard.csv", "model_ci.csv", "family_scaling.csv",
+              "robustness.csv", "robustness.md", "scores_variants.csv"):
         assert (r / f).exists(), f
     assert (reproduced / "models.csv").exists()
     assert (reproduced.parent / "LEADERBOARD.md").exists()
     for f in ("map_of_minds.png", "map_of_minds.svg", "scaling.png", "family_scaling.png"):
         assert (reproduced.parent / "figures" / f).exists(), f
+
+
+def test_robustness_rsa_cc_matches_direct(reproduced):
+    """rsa_cc point scores equal Spearman RSA on 1 - cos kernels computed directly from the kernel files."""
+    import numpy as np
+    from pbi import kernels as kn
+    V = pd.read_csv(reproduced / "results" / "scores_variants.csv")
+    ds, m = "things_eeg2", "vit_3"
+    kd = reproduced / "kernels" / ds
+    KM = sc.load_kernel(kd / "model" / f"{m}.npz")
+    vals = []
+    for s in ("sub-01", "sub-02", "sub-03"):
+        H = [sc.load_kernel(kd / "brain" / f"{s}_split{i}_{h}.npz") for i in range(5) for h in "AB"]
+        raw = np.mean([kn.rsa(1 - KM["cos"], 1 - K["cos"]) for K in H])
+        ceil = np.mean([kn.rsa(1 - H[2 * i]["cos"], 1 - H[2 * i + 1]["cos"]) for i in range(5)])
+        vals.append(raw / np.sqrt(ceil))
+    got = V[(V["dataset"] == ds) & (V["model"] == m) & (V["metric"] == "rsa_cc")]["corrected"].iloc[0]
+    assert got == pytest.approx(np.mean(vals), abs=1e-6)
 
 
 def test_synthetic_effects_detected(reproduced):

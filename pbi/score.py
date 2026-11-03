@@ -386,14 +386,14 @@ def score_all(root=None, datasets=DATASETS, verbose=True):
     cols = ["dataset", "model", "subject", "metric", "raw", "ceiling", "corrected", "included"]
     S = pd.DataFrame(rows_s, columns=cols)
     R = pd.DataFrame(rows_r, columns=cols).rename(columns={"model": "system"})
-    S.to_csv(out / "scores_subject.csv", index=False, float_format="%.6g")
-    R.to_csv(out / "scores_reference.csv", index=False, float_format="%.6g")
+    S.to_csv(out / "scores_subject.csv", index=False, float_format="%.10g")
+    R.to_csv(out / "scores_reference.csv", index=False, float_format="%.10g")
     pd.DataFrame(rows_c, columns=["dataset", "subject", "metric", "ceiling"]).to_csv(
-        out / "ceilings.csv", index=False, float_format="%.6g")
+        out / "ceilings.csv", index=False, float_format="%.10g")
     pd.DataFrame(rows_mm, columns=["dataset", "model_a", "model_b", "mknn"]).to_csv(
-        out / "model_similarity.csv", index=False, float_format="%.6g")
+        out / "model_similarity.csv", index=False, float_format="%.10g")
     agg = summarize(S, "model")
-    agg.to_csv(out / "scores.csv", index=False, float_format="%.6g")
+    agg.to_csv(out / "scores.csv", index=False, float_format="%.10g")
     return agg
 
 

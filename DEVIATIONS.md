@@ -63,7 +63,25 @@ pin down something it leaves open. The final section lists the statistics implem
   split-half ceilings were known, labelled exploratory in `hypotheses.md` and `sensitivity.csv`; they do not replace
   any verdict): (a) H2, H3, H5 without the three MAE models; (b) every hypothesis after excluding, per dataset x
   metric, subjects whose split-half ceiling is < 0.1 (MEG and fMRI subjects; EEG2 ceilings are all >= 0.23).
-* **Independent review.** `REVIEW.md` (independent reviewer rerun) does not exist yet at the time of this commit.
+* **Independent review.** `REVIEW.md` holds the blind reviewer's report (unedited) and the response to it.
+* **(changed after review; makes the result worse) H4 reading.** The H4 table threshold says "above-null (p < 0.05)
+  for fMRI-IT; scale rho > 0". Until the review, arm (b) passed on a bare positive point estimate while H3 was judged
+  with the full cell rule. Both H4 arms are now judged with the general cell rule (Holm-corrected p < 0.05 and CI
+  excluding 0), consistent with H3 and with the definition of "confirmed" in the preregistration. Result: (a) is
+  confirmed, (b) is not (fMRI mutual k-NN rho = 0.107, CI [-0.343, 0.914], Holm p = 1; only two LM families), so H4
+  is reported as **PARTIAL (not passed)**. Under the literal point-estimate reading H4 would pass; `hypotheses.md`
+  states both. (a) now uses the Holm-corrected p and CI instead of the raw p; this changes nothing (Holm p 0.009).
+* **(addition, exploratory) Robustness analyses** after the review (`pbi/robustness.py`, `robustness.md`,
+  `robustness.csv`, `scores_variants.csv`; not preregistered, no verdict replaced): column-centred RSA
+  (RDM = 1 - cosine of column-centred features), chance-adjusted mutual k-NN ((x - c)/(1 - c) on score and ceiling,
+  c = k/(n-1), subjects with ceiling <= c excluded), both together, H2 on raw (uncorrected) scores, model-resampling
+  bootstrap CIs for H2, and a like-for-like brain-brain reference (subject split halves vs the other subjects).
+  The leaderboard shows an exploratory `PBI alt` (chance-adjusted mutual k-NN + column-centred RSA) next to the
+  preregistered PBI, which still defines the ranking.
+* **(specification) RDM definition kept.** The preregistration specifies "correlation-distance RDMs" (1 - Pearson r
+  between stimulus patterns), which is what the primary analysis uses. This RDM keeps every feature's mean over
+  stimuli; the review showed that the RSA-based H1 misses and the negative H2/H5 RSA correlations depend on that.
+  The primary analysis is unchanged; `hypotheses.md` flags the dependence and `robustness.md` gives the numbers.
 
 
 ## Scoring / statistics implementation choices (pbi/score.py, pbi/stats.py)
@@ -82,8 +100,10 @@ None of these change the preregistered plan; they pin down details the plan leav
   permutations use all subjects and all split halves.
 * **H4 "best-of-family" null** = distribution of the maximum over the family's models of the shuffled
   scores (accounts for picking the best model). H4 is judged on the primary metric (mutual k-NN), since
-  the threshold names no metric: (a) best language model (null = max over all language models) p < 0.05
-  on THINGS-fMRI-IT, and (b) mean within-LM-family rho(log10 params, score) > 0 there.
+  the threshold names no metric: (a) best language model (null = max over all language models) confirmed
+  on THINGS-fMRI-IT, and (b) mean within-LM-family rho(log10 params, score) confirmed there (both with the
+  cell rule; see "H4 reading" above). Every family's own best model also beats its family-max null on fMRI
+  mutual k-NN (`H4_best:*` rows), so using the best of all language models changes nothing.
 * **H3 confirmation** uses the general cell rule (Holm-corrected one-sided permutation p < 0.05, with
   params permuted within each family, plus a 95 % CI excluding 0). hypotheses.md also reports the
   CI-only reading.
@@ -93,6 +113,10 @@ None of these change the preregistered plan; they pin down details the plan leav
   conservative choice for "no model reaches the ceiling").
 * **Holm** always uses a family of 9 cells. Cells with no data (e.g. a dataset not yet processed) enter
   as p = 1 and count as not confirmed.
+* **Stored precision.** `scores*.csv`, `ceilings.csv` and `model_similarity.csv` are written with 10 significant
+  digits (6 before the review), so they can be compared more tightly than the 1e-6 storage precision.
+* **Engine cache.** Moved from `$PBI_DATA/cache/stats` to `.cache/stats` in the repository (git-ignored) and keyed on
+  a hash of the engine source code in addition to kernels and settings; `PBI_CACHE=0` disables it.
 * **Runtime.** The full 1000 subsamples / 1000 null permutations / 10,000 label permutations are run (no
   reduction was needed). `python -m pbi reproduce --jobs 5` on all data (17 subjects x 64 models, no engine cache)
   took 251 s on an M2 Pro.

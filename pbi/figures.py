@@ -222,7 +222,8 @@ def fig_map(root=None, highlight=None):
     ax.set_xlabel("MDS 1")
     ax.set_ylabel("MDS 2")
     ax.set_title("Map of minds: brains and models placed by their alignment profile across all models\n"
-                 "(distance = 1 - correlation of z-scored corrected mutual-k-NN profiles; exploratory)", fontsize=10)
+                 "(distance = 1 - correlation of z-scored corrected mutual-k-NN profiles; exploratory: brain rows are\n"
+                 "ceiling-corrected brain-model scores, model rows are raw model-model scores, so positions are not like-for-like)", fontsize=10)
     ax.set_aspect("equal", adjustable="datalim")
     # legends: families (colour), markers
     fam_handles = []

@@ -1,0 +1,235 @@
+analysis,hypothesis,dataset,metric,effect,ci_lo,ci_hi,p,p_holm,confirmed,n,note
+rsa_cc,H1,things_eeg2,mknn,0.0754,0.0632,0.0851,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+rsa_cc,H2,things_eeg2,mknn,0.0756,-0.0251,0.1598,0.3320,1.0000,False,35.0000,
+rsa_cc,H3,things_eeg2,mknn,-0.3667,-0.5167,-0.1833,0.9419,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-1.00, convnext=-1.00, dinov2=-0.40, mae=1.00, resnet=-1.00, vit_sup=0.20"
+rsa_cc,H5,things_eeg2,mknn,0.5947,0.5016,0.6672,0.0001,0.0009,True,35.0000,
+rsa_cc,H6,things_eeg2,mknn,0.2629,0.2486,0.2766,,,True,55.0000,best=dino_vit_small_p16; CI of max over models per subsample
+rsa_cc,REF_brain_heldout,things_eeg2,mknn,0.5988,0.5820,0.6120,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+rsa_cc,H1,things_eeg2,cka,0.0685,0.0525,0.0859,0.0028,0.0056,True,44.0000,35 trained vs 9 random-init
+rsa_cc,H2,things_eeg2,cka,0.1317,0.0688,0.1532,0.2352,1.0000,False,35.0000,
+rsa_cc,H3,things_eeg2,cka,-0.2167,-0.4167,-0.1667,0.8268,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.90, convnext=-0.80, dinov2=-0.40, mae=1.00, resnet=-1.00, vit_sup=0.80"
+rsa_cc,H5,things_eeg2,cka,0.6034,0.5728,0.6499,0.0001,0.0009,True,35.0000,
+rsa_cc,H6,things_eeg2,cka,0.2747,0.2547,0.2942,,,True,55.0000,best=alexnet; CI of max over models per subsample
+rsa_cc,REF_brain_heldout,things_eeg2,cka,0.8554,0.8396,0.8681,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+rsa_cc,H1,things_eeg2,rsa,0.0562,0.0402,0.0731,0.0075,0.0075,True,44.0000,35 trained vs 9 random-init
+rsa_cc,H2,things_eeg2,rsa,-0.0073,-0.0741,0.0635,0.5166,1.0000,False,35.0000,
+rsa_cc,H3,things_eeg2,rsa,-0.2167,-0.3833,-0.1500,0.8195,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.90, convnext=-1.00, dinov2=-0.20, mae=1.00, resnet=-1.00, vit_sup=0.80"
+rsa_cc,H5,things_eeg2,rsa,0.5118,0.4543,0.5705,0.0008,0.0024,True,35.0000,
+rsa_cc,H6,things_eeg2,rsa,0.2779,0.2591,0.2982,,,True,55.0000,best=alexnet; CI of max over models per subsample
+rsa_cc,REF_brain_heldout,things_eeg2,rsa,0.8396,0.8218,0.8551,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+rsa_cc,H1,things_meg,mknn,0.0313,0.0227,0.0398,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+rsa_cc,H2,things_meg,mknn,-0.0359,-0.1864,0.3034,0.5787,1.0000,False,35.0000,
+rsa_cc,H3,things_meg,mknn,-0.2833,-0.4667,0.0000,0.8857,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.80, convnext=-0.80, dinov2=-0.40, mae=0.50, resnet=-0.60, vit_sup=0.40"
+rsa_cc,H5,things_meg,mknn,0.4871,0.3252,0.7182,0.0017,0.0034,True,35.0000,
+rsa_cc,H6,things_meg,mknn,0.2580,0.2509,0.2711,,,True,55.0000,best=alexnet; CI of max over models per subsample
+rsa_cc,REF_brain_heldout,things_meg,mknn,0.2892,0.2617,0.3140,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+rsa_cc,H1,things_meg,cka,0.1000,0.0793,0.1200,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+rsa_cc,H2,things_meg,cka,0.2032,0.1074,0.3307,0.1154,0.8077,False,35.0000,
+rsa_cc,H3,things_meg,cka,-0.1667,-0.3000,-0.1333,0.7639,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.90, convnext=-1.00, dinov2=-0.20, mae=1.00, resnet=-0.90, vit_sup=1.00"
+rsa_cc,H5,things_meg,cka,0.6703,0.5798,0.7560,0.0001,0.0009,True,35.0000,
+rsa_cc,H6,things_meg,cka,0.2337,0.2133,0.2588,,,True,55.0000,best=alexnet; CI of max over models per subsample
+rsa_cc,REF_brain_heldout,things_meg,cka,0.4441,0.3789,0.5147,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+rsa_cc,H1,things_meg,rsa,0.0891,0.0686,0.1094,0.0003,0.0009,True,44.0000,35 trained vs 9 random-init
+rsa_cc,H2,things_meg,rsa,0.0915,-0.0107,0.2825,0.3016,1.0000,False,35.0000,
+rsa_cc,H3,things_meg,rsa,-0.2000,-0.3000,-0.1000,0.8013,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.90, convnext=-1.00, dinov2=-0.40, mae=1.00, resnet=-0.90, vit_sup=1.00"
+rsa_cc,H5,things_meg,rsa,0.5782,0.4633,0.6729,0.0002,0.0009,True,35.0000,
+rsa_cc,H6,things_meg,rsa,0.2503,0.2277,0.2765,,,True,55.0000,best=alexnet; CI of max over models per subsample
+rsa_cc,REF_brain_heldout,things_meg,rsa,0.4438,0.3855,0.5048,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+rsa_cc,H1,things_fmri,mknn,0.0774,0.0552,0.0923,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+rsa_cc,H2,things_fmri,mknn,-0.0074,-0.2416,0.3145,0.5102,1.0000,False,35.0000,
+rsa_cc,H3,things_fmri,mknn,-0.0667,-0.2500,0.3000,0.6223,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=0.10, convnext=-1.00, dinov2=-0.60, mae=1.00, resnet=-0.70, vit_sup=0.80"
+rsa_cc,H5,things_fmri,mknn,0.4059,0.1062,0.6410,0.0074,0.0074,True,35.0000,
+rsa_cc,H6,things_fmri,mknn,0.2819,0.2567,0.3129,,,True,55.0000,best=vit_base_p16_in21k; CI of max over models per subsample
+rsa_cc,REF_brain_heldout,things_fmri,mknn,0.4000,0.3612,0.4844,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+rsa_cc,H1,things_fmri,cka,0.1317,0.1059,0.1644,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+rsa_cc,H2,things_fmri,cka,0.2639,0.0237,0.5252,0.0608,0.5408,False,35.0000,
+rsa_cc,H3,things_fmri,cka,-0.1500,-0.2667,0.0667,0.7392,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.60, convnext=-0.80, dinov2=-0.80, mae=1.00, resnet=-0.70, vit_sup=1.00"
+rsa_cc,H5,things_fmri,cka,0.8073,0.5812,0.9050,0.0001,0.0009,True,35.0000,
+rsa_cc,H6,things_fmri,cka,0.2160,0.1901,0.2670,,,True,55.0000,best=clip_vit_b_32_openai; CI of max over models per subsample
+rsa_cc,REF_brain_heldout,things_fmri,cka,0.6340,0.5034,0.7755,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+rsa_cc,H1,things_fmri,rsa,0.1385,0.1110,0.1679,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+rsa_cc,H2,things_fmri,rsa,0.2649,0.0837,0.4234,0.0601,0.5408,False,35.0000,
+rsa_cc,H3,things_fmri,rsa,-0.2667,-0.3667,-0.0667,0.8809,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.70, convnext=-0.40, dinov2=-1.00, mae=0.50, resnet=-1.00, vit_sup=1.00"
+rsa_cc,H5,things_fmri,rsa,0.7779,0.6367,0.8499,0.0001,0.0009,True,35.0000,
+rsa_cc,H6,things_fmri,rsa,0.2484,0.2242,0.2963,,,True,55.0000,best=clip_vit_b_32_openai; CI of max over models per subsample
+rsa_cc,REF_brain_heldout,things_fmri,rsa,0.5730,0.4770,0.7007,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+rsa_cc,H2_model_bootstrap,things_eeg2,mknn,0.0756,-0.2792,0.4360,,,False,,CI: models resampled with replacement
+rsa_cc,H2_model_bootstrap,things_eeg2,cka,0.1317,-0.2417,0.4880,,,False,,CI: models resampled with replacement
+rsa_cc,H2_model_bootstrap,things_eeg2,rsa,-0.0073,-0.3485,0.3623,,,False,,CI: models resampled with replacement
+rsa_cc,H2_model_bootstrap,things_meg,mknn,-0.0359,-0.3576,0.3127,,,False,,CI: models resampled with replacement
+rsa_cc,H2_model_bootstrap,things_meg,cka,0.2032,-0.1427,0.5059,,,False,,CI: models resampled with replacement
+rsa_cc,H2_model_bootstrap,things_meg,rsa,0.0915,-0.2577,0.4281,,,False,,CI: models resampled with replacement
+rsa_cc,H2_model_bootstrap,things_fmri,mknn,-0.0074,-0.3700,0.3197,,,False,,CI: models resampled with replacement
+rsa_cc,H2_model_bootstrap,things_fmri,cka,0.2639,-0.0810,0.5379,,,False,,CI: models resampled with replacement
+rsa_cc,H2_model_bootstrap,things_fmri,rsa,0.2649,-0.0543,0.5391,,,False,,CI: models resampled with replacement
+mknn_chance,H1,things_eeg2,mknn,0.0835,0.0700,0.0942,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+mknn_chance,H2,things_eeg2,mknn,0.0756,-0.0257,0.1595,0.3320,1.0000,False,35.0000,
+mknn_chance,H3,things_eeg2,mknn,-0.3667,-0.5167,-0.1833,0.9419,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-1.00, convnext=-1.00, dinov2=-0.40, mae=1.00, resnet=-1.00, vit_sup=0.20"
+mknn_chance,H5,things_eeg2,mknn,0.5947,0.5016,0.6673,0.0001,0.0009,True,35.0000,
+mknn_chance,H6,things_eeg2,mknn,0.1984,0.1820,0.2134,,,True,55.0000,best=dino_vit_small_p16; CI of max over models per subsample
+mknn_chance,REF_brain_heldout,things_eeg2,mknn,0.5707,0.5519,0.5855,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+mknn_chance,H1,things_eeg2,cka,0.0685,0.0525,0.0859,0.0028,0.0112,True,44.0000,35 trained vs 9 random-init
+mknn_chance,H2,things_eeg2,cka,0.1317,0.0688,0.1532,0.2352,1.0000,False,35.0000,
+mknn_chance,H3,things_eeg2,cka,-0.2167,-0.4167,-0.1667,0.8268,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.90, convnext=-0.80, dinov2=-0.40, mae=1.00, resnet=-1.00, vit_sup=0.80"
+mknn_chance,H5,things_eeg2,cka,0.6034,0.5728,0.6499,0.0001,0.0009,True,35.0000,
+mknn_chance,H6,things_eeg2,cka,0.2747,0.2547,0.2942,,,True,55.0000,best=alexnet; CI of max over models per subsample
+mknn_chance,REF_brain_heldout,things_eeg2,cka,0.8554,0.8396,0.8681,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+mknn_chance,H1,things_eeg2,rsa,0.0277,0.0078,0.0477,0.0623,0.1869,False,44.0000,35 trained vs 9 random-init
+mknn_chance,H2,things_eeg2,rsa,0.2154,0.0785,0.3252,0.1036,0.8287,False,35.0000,
+mknn_chance,H3,things_eeg2,rsa,-0.1333,-0.2833,0.2333,0.7199,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.30, convnext=-0.20, dinov2=-0.40, mae=1.00, resnet=-0.70, vit_sup=-0.20"
+mknn_chance,H5,things_eeg2,rsa,0.4891,0.3999,0.5628,0.0016,0.0080,True,35.0000,
+mknn_chance,H6,things_eeg2,rsa,0.2365,0.2137,0.2701,,,True,55.0000,best=siglip_vit_l_16_256; CI of max over models per subsample
+mknn_chance,REF_brain_heldout,things_eeg2,rsa,0.8014,0.7830,0.8177,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+mknn_chance,H1,things_meg,mknn,0.0620,0.0447,0.0842,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+mknn_chance,H2,things_meg,mknn,-0.0083,-0.1722,0.3586,0.5177,1.0000,False,35.0000,
+mknn_chance,H3,things_meg,mknn,-0.2167,-0.4504,0.0004,0.8210,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.80, convnext=-0.80, dinov2=-0.40, mae=0.50, resnet=-0.60, vit_sup=0.80"
+mknn_chance,H5,things_meg,mknn,0.4860,0.3159,0.7395,0.0021,0.0084,True,35.0000,
+mknn_chance,H6,things_meg,mknn,0.1415,0.1260,0.1861,,,True,55.0000,best=alexnet; CI of max over models per subsample
+mknn_chance,REF_brain_heldout,things_meg,mknn,0.2115,0.1499,0.2949,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+mknn_chance,H1,things_meg,cka,0.1000,0.0793,0.1200,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+mknn_chance,H2,things_meg,cka,0.2032,0.1074,0.3307,0.1154,0.8287,False,35.0000,
+mknn_chance,H3,things_meg,cka,-0.1667,-0.3000,-0.1333,0.7639,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.90, convnext=-1.00, dinov2=-0.20, mae=1.00, resnet=-0.90, vit_sup=1.00"
+mknn_chance,H5,things_meg,cka,0.6703,0.5798,0.7560,0.0001,0.0009,True,35.0000,
+mknn_chance,H6,things_meg,cka,0.2337,0.2133,0.2588,,,True,55.0000,best=alexnet; CI of max over models per subsample
+mknn_chance,REF_brain_heldout,things_meg,cka,0.4441,0.3789,0.5147,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+mknn_chance,H1,things_meg,rsa,0.0290,-0.0016,0.0593,0.1229,0.2458,False,44.0000,35 trained vs 9 random-init
+mknn_chance,H2,things_meg,rsa,-0.6768,-0.7597,-0.4552,1.0000,1.0000,False,35.0000,
+mknn_chance,H3,things_meg,rsa,0.1500,-0.1667,0.2500,0.2778,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.80, convnext=-0.40, dinov2=-0.20, mae=1.00, resnet=0.90, vit_sup=0.40"
+mknn_chance,H5,things_meg,rsa,-0.3132,-0.4829,-0.0448,0.9677,1.0000,False,35.0000,
+mknn_chance,H6,things_meg,rsa,0.2980,0.2436,0.3886,,,True,55.0000,best=mae_vit_huge; CI of max over models per subsample
+mknn_chance,REF_brain_heldout,things_meg,rsa,0.3691,0.2812,0.4960,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+mknn_chance,H1,things_fmri,mknn,0.1055,0.0742,0.1314,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+mknn_chance,H2,things_fmri,mknn,-0.0744,-0.2790,0.2795,0.6636,1.0000,False,35.0000,
+mknn_chance,H3,things_fmri,mknn,-0.1167,-0.2500,0.2837,0.6996,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.20, convnext=-1.00, dinov2=-0.60, mae=1.00, resnet=-0.70, vit_sup=0.80"
+mknn_chance,H5,things_fmri,mknn,0.3490,0.0712,0.6054,0.0181,0.0543,False,35.0000,
+mknn_chance,H6,things_fmri,mknn,0.1895,0.1532,0.2324,,,True,55.0000,best=vit_base_p16_in21k; CI of max over models per subsample
+mknn_chance,REF_brain_heldout,things_fmri,mknn,0.3477,0.2927,0.4764,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+mknn_chance,H1,things_fmri,cka,0.1317,0.1059,0.1644,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+mknn_chance,H2,things_fmri,cka,0.2639,0.0237,0.5252,0.0608,0.5471,False,35.0000,
+mknn_chance,H3,things_fmri,cka,-0.1500,-0.2667,0.0667,0.7392,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.60, convnext=-0.80, dinov2=-0.80, mae=1.00, resnet=-0.70, vit_sup=1.00"
+mknn_chance,H5,things_fmri,cka,0.8073,0.5812,0.9050,0.0001,0.0009,True,35.0000,
+mknn_chance,H6,things_fmri,cka,0.2160,0.1901,0.2670,,,True,55.0000,best=clip_vit_b_32_openai; CI of max over models per subsample
+mknn_chance,REF_brain_heldout,things_fmri,cka,0.6340,0.5034,0.7755,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+mknn_chance,H1,things_fmri,rsa,-0.0771,-0.1195,-0.0313,0.9926,0.9926,False,44.0000,35 trained vs 9 random-init
+mknn_chance,H2,things_fmri,rsa,-0.2591,-0.4645,0.0253,0.9368,1.0000,False,35.0000,
+mknn_chance,H3,things_fmri,rsa,0.2500,0.0329,0.4667,0.1608,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.80, convnext=0.00, dinov2=0.40, mae=0.50, resnet=0.60, vit_sup=0.80"
+mknn_chance,H5,things_fmri,rsa,-0.2022,-0.4303,0.0662,0.8808,1.0000,False,35.0000,
+mknn_chance,H6,things_fmri,rsa,0.2068,0.1393,0.3077,,,True,55.0000,best=mae_vit_large; CI of max over models per subsample
+mknn_chance,REF_brain_heldout,things_fmri,rsa,0.7076,0.5883,0.8839,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+mknn_chance,H2_model_bootstrap,things_eeg2,mknn,0.0756,-0.2792,0.4360,,,False,,CI: models resampled with replacement
+mknn_chance,H2_model_bootstrap,things_eeg2,cka,0.1317,-0.2417,0.4880,,,False,,CI: models resampled with replacement
+mknn_chance,H2_model_bootstrap,things_eeg2,rsa,0.2154,-0.1981,0.5802,,,False,,CI: models resampled with replacement
+mknn_chance,H2_model_bootstrap,things_meg,mknn,-0.0083,-0.3361,0.3506,,,False,,CI: models resampled with replacement
+mknn_chance,H2_model_bootstrap,things_meg,cka,0.2032,-0.1427,0.5059,,,False,,CI: models resampled with replacement
+mknn_chance,H2_model_bootstrap,things_meg,rsa,-0.6768,-0.8531,-0.3470,,,False,,CI: models resampled with replacement
+mknn_chance,H2_model_bootstrap,things_fmri,mknn,-0.0744,-0.4260,0.2593,,,False,,CI: models resampled with replacement
+mknn_chance,H2_model_bootstrap,things_fmri,cka,0.2639,-0.0810,0.5379,,,False,,CI: models resampled with replacement
+mknn_chance,H2_model_bootstrap,things_fmri,rsa,-0.2591,-0.5780,0.1324,,,False,,CI: models resampled with replacement
+both,H1,things_eeg2,mknn,0.0835,0.0700,0.0942,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+both,H2,things_eeg2,mknn,0.0756,-0.0257,0.1595,0.3320,1.0000,False,35.0000,
+both,H3,things_eeg2,mknn,-0.3667,-0.5167,-0.1833,0.9419,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-1.00, convnext=-1.00, dinov2=-0.40, mae=1.00, resnet=-1.00, vit_sup=0.20"
+both,H5,things_eeg2,mknn,0.5947,0.5016,0.6673,0.0001,0.0009,True,35.0000,
+both,H6,things_eeg2,mknn,0.1984,0.1820,0.2134,,,True,55.0000,best=dino_vit_small_p16; CI of max over models per subsample
+both,REF_brain_heldout,things_eeg2,mknn,0.5707,0.5519,0.5855,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+both,H1,things_eeg2,cka,0.0685,0.0525,0.0859,0.0028,0.0056,True,44.0000,35 trained vs 9 random-init
+both,H2,things_eeg2,cka,0.1317,0.0688,0.1532,0.2352,1.0000,False,35.0000,
+both,H3,things_eeg2,cka,-0.2167,-0.4167,-0.1667,0.8268,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.90, convnext=-0.80, dinov2=-0.40, mae=1.00, resnet=-1.00, vit_sup=0.80"
+both,H5,things_eeg2,cka,0.6034,0.5728,0.6499,0.0001,0.0009,True,35.0000,
+both,H6,things_eeg2,cka,0.2747,0.2547,0.2942,,,True,55.0000,best=alexnet; CI of max over models per subsample
+both,REF_brain_heldout,things_eeg2,cka,0.8554,0.8396,0.8681,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+both,H1,things_eeg2,rsa,0.0562,0.0402,0.0731,0.0075,0.0075,True,44.0000,35 trained vs 9 random-init
+both,H2,things_eeg2,rsa,-0.0073,-0.0741,0.0635,0.5166,1.0000,False,35.0000,
+both,H3,things_eeg2,rsa,-0.2167,-0.3833,-0.1500,0.8195,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.90, convnext=-1.00, dinov2=-0.20, mae=1.00, resnet=-1.00, vit_sup=0.80"
+both,H5,things_eeg2,rsa,0.5118,0.4543,0.5705,0.0008,0.0024,True,35.0000,
+both,H6,things_eeg2,rsa,0.2779,0.2591,0.2982,,,True,55.0000,best=alexnet; CI of max over models per subsample
+both,REF_brain_heldout,things_eeg2,rsa,0.8396,0.8218,0.8551,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+both,H1,things_meg,mknn,0.0620,0.0447,0.0842,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+both,H2,things_meg,mknn,-0.0083,-0.1722,0.3586,0.5177,1.0000,False,35.0000,
+both,H3,things_meg,mknn,-0.2167,-0.4504,0.0004,0.8210,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.80, convnext=-0.80, dinov2=-0.40, mae=0.50, resnet=-0.60, vit_sup=0.80"
+both,H5,things_meg,mknn,0.4860,0.3159,0.7395,0.0021,0.0042,True,35.0000,
+both,H6,things_meg,mknn,0.1415,0.1260,0.1861,,,True,55.0000,best=alexnet; CI of max over models per subsample
+both,REF_brain_heldout,things_meg,mknn,0.2115,0.1499,0.2949,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+both,H1,things_meg,cka,0.1000,0.0793,0.1200,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+both,H2,things_meg,cka,0.2032,0.1074,0.3307,0.1154,0.8077,False,35.0000,
+both,H3,things_meg,cka,-0.1667,-0.3000,-0.1333,0.7639,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.90, convnext=-1.00, dinov2=-0.20, mae=1.00, resnet=-0.90, vit_sup=1.00"
+both,H5,things_meg,cka,0.6703,0.5798,0.7560,0.0001,0.0009,True,35.0000,
+both,H6,things_meg,cka,0.2337,0.2133,0.2588,,,True,55.0000,best=alexnet; CI of max over models per subsample
+both,REF_brain_heldout,things_meg,cka,0.4441,0.3789,0.5147,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+both,H1,things_meg,rsa,0.0891,0.0686,0.1094,0.0003,0.0009,True,44.0000,35 trained vs 9 random-init
+both,H2,things_meg,rsa,0.0915,-0.0107,0.2825,0.3016,1.0000,False,35.0000,
+both,H3,things_meg,rsa,-0.2000,-0.3000,-0.1000,0.8013,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.90, convnext=-1.00, dinov2=-0.40, mae=1.00, resnet=-0.90, vit_sup=1.00"
+both,H5,things_meg,rsa,0.5782,0.4633,0.6729,0.0002,0.0009,True,35.0000,
+both,H6,things_meg,rsa,0.2503,0.2277,0.2765,,,True,55.0000,best=alexnet; CI of max over models per subsample
+both,REF_brain_heldout,things_meg,rsa,0.4438,0.3855,0.5048,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+both,H1,things_fmri,mknn,0.1055,0.0742,0.1314,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+both,H2,things_fmri,mknn,-0.0744,-0.2790,0.2795,0.6636,1.0000,False,35.0000,
+both,H3,things_fmri,mknn,-0.1167,-0.2500,0.2837,0.6996,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.20, convnext=-1.00, dinov2=-0.60, mae=1.00, resnet=-0.70, vit_sup=0.80"
+both,H5,things_fmri,mknn,0.3490,0.0712,0.6054,0.0181,0.0181,True,35.0000,
+both,H6,things_fmri,mknn,0.1895,0.1532,0.2324,,,True,55.0000,best=vit_base_p16_in21k; CI of max over models per subsample
+both,REF_brain_heldout,things_fmri,mknn,0.3477,0.2927,0.4764,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+both,H1,things_fmri,cka,0.1317,0.1059,0.1644,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+both,H2,things_fmri,cka,0.2639,0.0237,0.5252,0.0608,0.5408,False,35.0000,
+both,H3,things_fmri,cka,-0.1500,-0.2667,0.0667,0.7392,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.60, convnext=-0.80, dinov2=-0.80, mae=1.00, resnet=-0.70, vit_sup=1.00"
+both,H5,things_fmri,cka,0.8073,0.5812,0.9050,0.0001,0.0009,True,35.0000,
+both,H6,things_fmri,cka,0.2160,0.1901,0.2670,,,True,55.0000,best=clip_vit_b_32_openai; CI of max over models per subsample
+both,REF_brain_heldout,things_fmri,cka,0.6340,0.5034,0.7755,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+both,H1,things_fmri,rsa,0.1385,0.1110,0.1679,0.0001,0.0009,True,44.0000,35 trained vs 9 random-init
+both,H2,things_fmri,rsa,0.2649,0.0837,0.4234,0.0601,0.5408,False,35.0000,
+both,H3,things_fmri,rsa,-0.2667,-0.3667,-0.0667,0.8809,1.0000,False,6.0000,"mean within-family rho(log10 params, score): clip_laion=-0.70, convnext=-0.40, dinov2=-1.00, mae=0.50, resnet=-1.00, vit_sup=1.00"
+both,H5,things_fmri,rsa,0.7779,0.6367,0.8499,0.0001,0.0009,True,35.0000,
+both,H6,things_fmri,rsa,0.2484,0.2242,0.2963,,,True,55.0000,best=clip_vit_b_32_openai; CI of max over models per subsample
+both,REF_brain_heldout,things_fmri,rsa,0.5730,0.4770,0.7007,,,False,,"M(subject, mean of other subjects)/sqrt(ceiling), mean over subjects"
+both,H2_model_bootstrap,things_eeg2,mknn,0.0756,-0.2792,0.4360,,,False,,CI: models resampled with replacement
+both,H2_model_bootstrap,things_eeg2,cka,0.1317,-0.2417,0.4880,,,False,,CI: models resampled with replacement
+both,H2_model_bootstrap,things_eeg2,rsa,-0.0073,-0.3485,0.3623,,,False,,CI: models resampled with replacement
+both,H2_model_bootstrap,things_meg,mknn,-0.0083,-0.3361,0.3506,,,False,,CI: models resampled with replacement
+both,H2_model_bootstrap,things_meg,cka,0.2032,-0.1427,0.5059,,,False,,CI: models resampled with replacement
+both,H2_model_bootstrap,things_meg,rsa,0.0915,-0.2577,0.4281,,,False,,CI: models resampled with replacement
+both,H2_model_bootstrap,things_fmri,mknn,-0.0744,-0.4260,0.2593,,,False,,CI: models resampled with replacement
+both,H2_model_bootstrap,things_fmri,cka,0.2639,-0.0810,0.5379,,,False,,CI: models resampled with replacement
+both,H2_model_bootstrap,things_fmri,rsa,0.2649,-0.0543,0.5391,,,False,,CI: models resampled with replacement
+primary,H2_model_bootstrap,things_eeg2,mknn,0.0756,-0.2792,0.4360,,,False,,CI: models resampled with replacement
+raw_uncorrected,H2_raw,things_eeg2,mknn,0.0793,,,0.3255,1.0000,False,35.0000,"uncorrected raw scores, mean over subjects"
+primary,H2_model_bootstrap,things_eeg2,cka,0.1317,-0.2417,0.4880,,,False,,CI: models resampled with replacement
+raw_uncorrected,H2_raw,things_eeg2,cka,0.1317,,,0.2352,1.0000,False,35.0000,"uncorrected raw scores, mean over subjects"
+primary,H2_model_bootstrap,things_eeg2,rsa,0.2154,-0.1981,0.5802,,,False,,CI: models resampled with replacement
+raw_uncorrected,H2_raw,things_eeg2,rsa,0.2154,,,0.1036,0.8287,False,35.0000,"uncorrected raw scores, mean over subjects"
+primary,H2_model_bootstrap,things_meg,mknn,-0.0359,-0.3576,0.3127,,,False,,CI: models resampled with replacement
+raw_uncorrected,H2_raw,things_meg,mknn,-0.0310,,,0.5684,1.0000,False,35.0000,"uncorrected raw scores, mean over subjects"
+primary,H2_model_bootstrap,things_meg,cka,0.2032,-0.1427,0.5059,,,False,,CI: models resampled with replacement
+raw_uncorrected,H2_raw,things_meg,cka,0.1982,,,0.1211,0.8476,False,35.0000,"uncorrected raw scores, mean over subjects"
+primary,H2_model_bootstrap,things_meg,rsa,-0.6768,-0.8531,-0.3470,,,False,,CI: models resampled with replacement
+raw_uncorrected,H2_raw,things_meg,rsa,-0.6451,,,1.0000,1.0000,False,35.0000,"uncorrected raw scores, mean over subjects"
+primary,H2_model_bootstrap,things_fmri,mknn,-0.0074,-0.3700,0.3197,,,False,,CI: models resampled with replacement
+raw_uncorrected,H2_raw,things_fmri,mknn,0.0566,,,0.3665,1.0000,False,35.0000,"uncorrected raw scores, mean over subjects"
+primary,H2_model_bootstrap,things_fmri,cka,0.2639,-0.0810,0.5379,,,False,,CI: models resampled with replacement
+raw_uncorrected,H2_raw,things_fmri,cka,0.3446,,,0.0193,0.1737,False,35.0000,"uncorrected raw scores, mean over subjects"
+primary,H2_model_bootstrap,things_fmri,rsa,-0.2591,-0.5780,0.1324,,,False,,CI: models resampled with replacement
+raw_uncorrected,H2_raw,things_fmri,rsa,-0.2235,,,0.9079,1.0000,False,35.0000,"uncorrected raw scores, mean over subjects"
+reference,REF_full_vs_groupmean,things_eeg2,mknn,0.5988,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_groupmean,things_eeg2,mknn,0.5187,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_single_subject,things_eeg2,mknn,0.3677,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_full_vs_groupmean,things_eeg2,cka,0.8554,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_groupmean,things_eeg2,cka,0.7894,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_single_subject,things_eeg2,cka,0.6312,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_full_vs_groupmean,things_eeg2,rsa,0.8014,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_groupmean,things_eeg2,rsa,0.7490,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_single_subject,things_eeg2,rsa,0.5876,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_full_vs_groupmean,things_meg,mknn,0.2892,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_groupmean,things_meg,mknn,0.2546,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_single_subject,things_meg,mknn,0.2226,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_full_vs_groupmean,things_meg,cka,0.4441,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_groupmean,things_meg,cka,0.2721,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_single_subject,things_meg,cka,0.1588,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_full_vs_groupmean,things_meg,rsa,0.3691,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_groupmean,things_meg,rsa,0.2600,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_single_subject,things_meg,rsa,0.1502,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_full_vs_groupmean,things_fmri,mknn,0.4000,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_groupmean,things_fmri,mknn,0.3275,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_single_subject,things_fmri,mknn,0.2933,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_full_vs_groupmean,things_fmri,cka,0.6340,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_groupmean,things_fmri,cka,0.4201,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_single_subject,things_fmri,cka,0.3192,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_full_vs_groupmean,things_fmri,rsa,0.7076,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_groupmean,things_fmri,rsa,0.5441,,,,,False,,"brain-brain reference, mean over subjects"
+reference,REF_halves_vs_single_subject,things_fmri,rsa,0.4385,,,,,False,,"brain-brain reference, mean over subjects"
