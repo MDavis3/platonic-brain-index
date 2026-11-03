@@ -289,6 +289,7 @@ META_FIELDS = ["model_id", "family", "modality", "objective", "training_data", "
                "capability", "size_label", "source"]
 META_CSV = REPO / "artifacts" / "models_vision.csv"
 META_JSON = DATA / "cache" / "models_vision_meta.json"  # running state (not committed)
+CAP_JSON = DATA / "cache" / "capability_vision.json"     # written only by pbi.capability
 
 
 def load_meta():
@@ -301,6 +302,10 @@ def load_meta():
 
 def save_meta(meta):
     META_JSON.parent.mkdir(parents=True, exist_ok=True)
+    if CAP_JSON.exists():  # capability values live in their own file so both CLIs can run concurrently
+        for mid, acc in json.loads(CAP_JSON.read_text()).items():
+            if mid in meta:
+                meta[mid]["capability"] = acc
     META_JSON.write_text(json.dumps(meta, indent=1))
     order = list(REGISTRY)
     rows = sorted(meta.values(), key=lambda r: order.index(r["model_id"]) if r["model_id"] in order else 1e9)

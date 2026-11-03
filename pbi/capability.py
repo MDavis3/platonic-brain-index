@@ -12,6 +12,7 @@
 CLI: python -m pbi.capability [--models all] [--force]
 """
 import argparse
+import json
 import time
 import traceback
 
@@ -57,14 +58,14 @@ def five_shot_accuracy(X, labels, sup):
     return float((pred == labels[q]).mean())
 
 
+def _caps():
+    return json.loads(M.CAP_JSON.read_text()) if M.CAP_JSON.exists() else {}
+
+
 def run(model_ids, force=False):
     paths, labels, sup = episode()
-    meta = M.load_meta()
     for mid in sorted(model_ids, key=lambda m: M.REGISTRY[m].approx_params):
-        if mid not in meta:
-            print(f"[{mid}] no metadata yet (run pbi.models first); skipping")
-            continue
-        if meta[mid].get("capability") not in ("", None) and not force:
+        if mid in _caps() and not force:
             continue
         spec = M.REGISTRY[mid]
         L = None
@@ -78,9 +79,12 @@ def run(model_ids, force=False):
             X = M.cached_features(spec, getL, paths, "capability_eeg2train")
             assert np.isfinite(X).all()
             acc = five_shot_accuracy(X, labels, sup)
+            caps = _caps()
+            caps[mid] = round(acc, 5)
+            M.CAP_JSON.write_text(json.dumps(caps, indent=1))
             meta = M.load_meta()
-            meta[mid]["capability"] = round(acc, 5)
-            M.save_meta(meta)
+            if mid in meta:
+                M.save_meta(meta)
             print(f"[{mid}] capability={acc:.4f} ({time.time() - t0:.0f}s)", flush=True)
         except Exception as e:  # noqa
             traceback.print_exc()
