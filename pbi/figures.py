@@ -3,10 +3,11 @@
   figures/map_of_minds.{png,svg}  every brain subject and every model in one 2-D embedding (exploratory)
   figures/scaling.png             corrected score vs capability, dataset x metric (H2)
   figures/family_scaling.png      corrected score vs log10 params within families (H3 / H4 scale)
+  figures/headline.png            one-row summary for EEG/MEG/fMRI: mknn vs capability (1600x900)
   figures/timeresolved.png        time-resolved EEG/MEG alignment (exploratory; only if computed)
 
-Colour: hue = training objective (Okabe-Ito, colourblind-safe), families within an objective are lighter /
-darker shades of that hue. Marker = modality (models) or recording type (brains).
+Colour (scaling figures): hue = training objective (Okabe-Ito, colourblind-safe), families within an
+objective are lighter / darker shades of that hue. Map + headline: one Paul Tol 'bright' hue per model group. Marker = modality (models) or recording type (brains).
 
 Map of minds. Each system's profile is its corrected mutual-k-NN alignment with every model: for a brain
 subject, its subject-level corrected score with each model on its own dataset; for a model, its mutual k-NN
@@ -182,6 +183,66 @@ def map_embedding(X):
     return Y, D
 
 
+# Map / headline palette: one clearly separable hue per model group (Paul Tol "bright", colourblind-safe);
+# brains are black. Families are not colour-coded here (too many to separate); the scaling figures do that.
+GROUP_PAL = {"supervised": "#4477AA", "ssl": "#228833", "clip": "#DDAA33", "language": "#EE6677",
+             "audio": "#AA3377", "random": "#AAAAAA"}
+GROUP_PAL_LABEL = {"supervised": "vision: supervised", "ssl": "vision: self-supervised",
+                   "clip": "vision: CLIP / SigLIP", "language": "language", "audio": "audio",
+                   "random": "vision: random-init"}
+
+
+def map_group(meta, m):
+    g = group_of(meta, m)
+    return {"siglip": "clip", "other": "supervised"}.get(g, g)
+
+
+def _place_labels(ax, items, avoid_xy, fontsize=8):
+    """Deterministic greedy label placement: for each (text, xy, style) try a ring of offsets (points) and take
+    the first whose box overlaps no placed label, no marker in `avoid_xy` and stays inside the axes; fall back to
+    the least-overlapping candidate. A thin leader line is drawn when the label sits far from its point."""
+    fig = ax.figure
+    fig.canvas.draw()
+    r = fig.canvas.get_renderer()
+    pts = ax.transData.transform(np.asarray(avoid_xy, float))
+    axbox = ax.get_window_extent(r)
+    px = fig.dpi / 72.0
+    cands = []
+    for rad in (7, 13, 20, 28, 38, 50):
+        for ang in (0, 180, 45, 135, 315, 225, 90, 270, 20, 160, 340, 200):
+            a = np.deg2rad(ang)
+            cands.append((rad * np.cos(a), rad * np.sin(a)))
+    placed = []
+    for text, xy, kw in items:
+        best, best_cost = None, None
+        rmin = kw.pop("min_offset", 0)
+        for dx, dy in cands:
+            if np.hypot(dx, dy) < rmin:
+                continue
+            ha = "left" if dx > 1 else ("right" if dx < -1 else "center")
+            va = "bottom" if dy > 1 else ("top" if dy < -1 else "center")
+            t = ax.annotate(text, xy, xytext=(dx, dy), textcoords="offset points", ha=ha, va=va,
+                            fontsize=fontsize, **kw)
+            bb = t.get_window_extent(r).expanded(1.06, 1.15)
+            t.remove()
+            cost = sum(bb.overlaps(p) for p in placed) * 10
+            inside = (pts[:, 0] > bb.x0 - 4 * px) & (pts[:, 0] < bb.x1 + 4 * px) & \
+                     (pts[:, 1] > bb.y0 - 4 * px) & (pts[:, 1] < bb.y1 + 4 * px)
+            cost += int(inside.sum()) * 3
+            if bb.x0 < axbox.x0 or bb.x1 > axbox.x1 or bb.y0 < axbox.y0 or bb.y1 > axbox.y1:
+                cost += 100
+            if best_cost is None or cost < best_cost:
+                best, best_cost = (dx, dy, ha, va, bb), cost
+            if cost == 0:
+                break
+        dx, dy, ha, va, bb = best
+        far = np.hypot(dx, dy) > max(15, rmin + 6)
+        ax.annotate(text, xy, xytext=(dx, dy), textcoords="offset points", ha=ha, va=va, fontsize=fontsize,
+                    arrowprops=dict(arrowstyle="-", color="#888888", lw=0.6, shrinkA=1, shrinkB=4) if far else None,
+                    **kw)
+        placed.append(bb)
+
+
 def fig_map(root=None, highlight=None):
     X, info, feats, meta, ref = map_profiles(root)
     if len(X) < 4:
@@ -194,65 +255,138 @@ def fig_map(root=None, highlight=None):
             if Y[ci[0], a] < 0:
                 Y[:, a] *= -1
     models = info[info["kind"] == "model"]["system"].tolist()
-    fcol = family_colors(meta, models)
-    fig, ax = plt.subplots(figsize=(11, 8))
+    n_brain = int((info["kind"] == "brain").sum())
+    fig, ax = plt.subplots(figsize=(11, 7.6))
+    labels = []
+    # brain datasets: one shaded hull + one label per dataset cluster
+    for ds in BRAIN_MARKER:
+        idx = info.index[(info["kind"] == "brain") & (info["dataset"] == ds)]
+        if not len(idx):
+            continue
+        P = Y[idx]
+        c = P.mean(0)
+        if len(P) >= 3:
+            try:
+                from scipy.spatial import ConvexHull
+                ang = np.linspace(0, 2 * np.pi, 24, endpoint=False)
+                Q = (P[:, None, :] + 0.035 * np.stack([np.cos(ang), np.sin(ang)], 1)[None]).reshape(-1, 2)
+                H = Q[ConvexHull(Q).vertices]
+                ax.fill(H[:, 0], H[:, 1], color="#000000", alpha=0.06, lw=0, zorder=1)
+            except Exception:
+                pass
+        ax.scatter(P[:, 0], P[:, 1], marker=BRAIN_MARKER[ds], s=150 if ds == "things_eeg2" else 90,
+                   c=BRAIN_COLOR, edgecolors="white", linewidths=0.7, zorder=4)
+        top = idx[int(np.argmax(P[:, 1]))]
+        labels.append((f"{sc.DS_SHORT[ds]} ({len(idx)} subjects)", tuple(Y[top]),
+                       dict(color=BRAIN_COLOR, fontweight="bold")))
     for i, r in info.iterrows():
-        x, y = Y[i]
-        if r["kind"] == "brain":
-            ax.scatter(x, y, marker=BRAIN_MARKER[r["dataset"]], s=150 if r["dataset"] == "things_eeg2" else 80,
-                       c=BRAIN_COLOR, edgecolors="white", linewidths=0.6, zorder=4)
-            ax.annotate(r["system"], (x, y), xytext=(4, 3), textcoords="offset points", fontsize=7, color=BRAIN_COLOR)
-        elif r["kind"] == "consensus":
-            ax.scatter(x, y, marker="o", s=380, facecolors="none", edgecolors="black", linewidths=2, zorder=5)
-            ax.scatter(x, y, marker="+", s=120, c="black", zorder=5)
-            ax.annotate("consensus\n(mean trained-vision kernel)", (x, y), xytext=(10, -14),
-                        textcoords="offset points", fontsize=8, fontweight="bold")
-        else:
-            m = r["system"]
-            mod = meta.at[m, "modality"] if m in meta.index else "vision"
-            mk = "X" if sc.is_random(meta, m) else MODALITY_MARKER.get(mod, "o")
-            fam = meta.at[m, "family"] if m in meta.index else m
-            ax.scatter(x, y, marker=mk, s=_size(meta, m), c=fcol.get(fam, OKABE["other"]),
-                       edgecolors="#333333", linewidths=0.4, alpha=0.9, zorder=3)
+        if r["kind"] != "model":
+            continue
+        m = r["system"]
+        mod = meta.at[m, "modality"] if m in meta.index else "vision"
+        mk = "X" if sc.is_random(meta, m) else MODALITY_MARKER.get(mod, "o")
+        ax.scatter(*Y[i], marker=mk, s=_size(meta, m), c=GROUP_PAL[map_group(meta, m)],
+                   edgecolors="white", linewidths=0.5, alpha=0.95, zorder=3)
+    if len(ci):
+        x, y = Y[ci[0]]
+        ax.scatter(x, y, marker="o", s=420, facecolors="none", edgecolors="black", linewidths=2, zorder=6)
+        ax.scatter(x, y, marker="+", s=130, c="black", linewidths=1.6, zorder=6)
+        labels.insert(0, ("consensus", (x, y), dict(color="black", fontweight="bold", min_offset=12)))
     for m in highlight or []:
         hit = info.index[info["system"] == m]
         if len(hit):
-            ax.annotate(m, Y[hit[0]], xytext=(5, -9), textcoords="offset points", fontsize=7.5, color="#222222",
-                        arrowprops=None)
+            labels.append((m, tuple(Y[hit[0]]), dict(color="#333333")))
     ax.set_xlabel("MDS 1")
     ax.set_ylabel("MDS 2")
-    ax.set_title("Map of minds: brains and models placed by their alignment profile across all models\n"
-                 "(distance = 1 - correlation of z-scored corrected mutual-k-NN profiles; exploratory: brain rows are\n"
-                 "ceiling-corrected brain-model scores, model rows are raw model-model scores, so positions are not like-for-like)", fontsize=10)
+    ax.set_title(f"Map of minds: {n_brain} human brains and {len(models)} models", fontsize=14,
+                 fontweight="bold", loc="left", pad=12)
     ax.set_aspect("equal", adjustable="datalim")
-    # legends: families (colour), markers
-    fam_handles = []
-    by_group = {}
-    for m in models:
-        if m in meta.index:
-            by_group.setdefault(group_of(meta, m), set()).add(meta.at[m, "family"])
-    for g in OKABE:
-        for f in sorted(by_group.get(g, [])):
-            fam_handles.append(Line2D([], [], marker="o", ls="", markersize=7, markerfacecolor=fcol[f],
-                                      markeredgecolor="#333333", label=f"{f} ({GROUP_LABEL[g]})"))
-    l1 = ax.legend(handles=fam_handles, title="family (colour)", loc="upper left", bbox_to_anchor=(1.01, 1.0),
-                   fontsize=7, title_fontsize=8, ncol=1 if len(fam_handles) <= 22 else 2, frameon=False)
+    ax.margins(0.06)
+    ax.tick_params(labelsize=8, colors="#555555")
+    _place_labels(ax, labels, Y, fontsize=8.5)
+    grp_handles = [Line2D([], [], marker="o", ls="", markersize=8, markerfacecolor=GROUP_PAL[g],
+                          markeredgecolor="white", label=GROUP_PAL_LABEL[g]) for g in GROUP_PAL
+                   if any(map_group(meta, m) == g for m in models)]
+    grp_handles.append(Line2D([], [], marker="*", ls="", markersize=11, color=BRAIN_COLOR, label="human brain"))
+    l1 = ax.legend(handles=grp_handles, title="colour", loc="upper left", bbox_to_anchor=(1.01, 1.0),
+                   fontsize=8, title_fontsize=8.5, frameon=False, alignment="left")
     ax.add_artist(l1)
-    mk_handles = [Line2D([], [], marker=MODALITY_MARKER[k], ls="", color="#666666", label=f"model: {k}")
+    mk_handles = [Line2D([], [], marker=MODALITY_MARKER[k], ls="", color="#666666", label=f"{k} model")
                   for k in MODALITY_MARKER]
-    mk_handles.append(Line2D([], [], marker="X", ls="", color=OKABE["random"], label="model: random-init"))
-    mk_handles += [Line2D([], [], marker=BRAIN_MARKER[d], ls="", color=BRAIN_COLOR, markersize=9 if d == "things_eeg2" else 7,
-                          label=f"brain: {sc.DS_SHORT[d]} subject") for d in BRAIN_MARKER]
-    mk_handles.append(Line2D([], [], marker="o", ls="", markerfacecolor="none", markeredgecolor="black", markersize=11,
-                             label="consensus"))
-    ax.legend(handles=mk_handles, title="marker (size = log params)", loc="lower left",
-              bbox_to_anchor=(1.01, 0.0), fontsize=7, title_fontsize=8, frameon=False)
+    mk_handles.append(Line2D([], [], marker="X", ls="", color="#666666", label="random-init model"))
+    mk_handles += [Line2D([], [], marker=BRAIN_MARKER[d], ls="", color=BRAIN_COLOR,
+                          markersize=10 if d == "things_eeg2" else 7, label=f"{sc.DS_SHORT[d]} subject")
+                   for d in BRAIN_MARKER]
+    mk_handles.append(Line2D([], [], marker="o", ls="", markerfacecolor="none", markeredgecolor="black",
+                             markersize=11, markeredgewidth=1.8, label="consensus (mean trained-\nvision kernel)"))
+    l2 = ax.legend(handles=mk_handles, title="marker (size = log params)", loc="lower left",
+                   bbox_to_anchor=(1.01, 0.0), fontsize=8, title_fontsize=8.5, frameon=False, alignment="left")
+    note = fig.text(0.01, 0.035,
+                    "Exploratory. Each system is placed by its profile of corrected mutual-k-NN alignment with every "
+                    "model; distance = 1 - Pearson r of z-scored profiles; metric MDS.\nBrain rows are "
+                    "ceiling-corrected brain-model scores and model rows are raw model-model scores, so brain and "
+                    "model positions are not like-for-like.", fontsize=7, color="#666666", ha="left", va="top")
     d = _fig_dir(root)
-    fig.savefig(d / "map_of_minds.png", bbox_extra_artists=[l1], **SAVE)
-    fig.savefig(d / "map_of_minds.svg", bbox_extra_artists=[l1], **SAVE_SVG)
+    extra = [l1, l2, note]
+    fig.savefig(d / "map_of_minds.png", bbox_extra_artists=extra, **SAVE)
+    fig.savefig(d / "map_of_minds.svg", bbox_extra_artists=extra, **SAVE_SVG)
     plt.close(fig)
     coords = info.assign(x=Y[:, 0], y=Y[:, 1])
     coords.to_csv(sc.results_dir(root) / "map_of_minds.csv", index=False, float_format="%.4f")
+
+
+# ------------------------------------------------------------------ headline (one row, Twitter-sized)
+
+def fig_headline(root=None, metric="mknn"):
+    """1600x900 px: corrected mutual-k-NN vs capability for trained vision models, one panel per dataset,
+    with the H2 Spearman rho [95% CI], the random-init range and the brain-to-brain held-out reference."""
+    out = sc.results_dir(root)
+    meta = sc.load_models(root)
+    S = pd.read_csv(out / "scores.csv")
+    R = pd.read_csv(out / "scores_reference.csv")
+    H = _hyp(root)
+    fig, axes = plt.subplots(1, 3, figsize=(16, 9), dpi=100, sharey=True)
+    fig.subplots_adjust(left=0.06, right=0.985, top=0.77, bottom=0.17, wspace=0.08)
+    for ax, ds in zip(axes, sc.DATASETS):
+        g = S[(S["dataset"] == ds) & (S["metric"] == metric)].set_index("model")
+        rnd = g.loc[[m for m in g.index if sc.is_random(meta, m)], "corrected"].dropna()
+        if len(rnd):
+            ax.axhspan(rnd.min(), max(rnd.max(), rnd.min() + 1e-3), color="#AAAAAA", alpha=0.35, lw=0, zorder=0)
+        bb = R[(R["dataset"] == ds) & (R["metric"] == metric) & (R["system"] == "brain_heldout")
+               & R["included"].astype(bool)]["corrected"]
+        if len(bb):
+            ax.axhline(bb.mean(), color=BRAIN_COLOR, ls="--", lw=1.6, zorder=1)
+        ax.axhline(0, color="#DDDDDD", lw=0.8, zorder=0)
+        tv = [m for m in g.index if sc.is_trained_vision(meta, m) and np.isfinite(meta.at[m, "capability"])]
+        for m in tv:
+            ax.scatter(meta.at[m, "capability"], g.at[m, "corrected"], s=_size(meta, m, 40) * 1.4,
+                       c=GROUP_PAL[map_group(meta, m)], edgecolors="white", linewidths=0.7, alpha=0.95, zorder=3)
+        r = H[(H["hypothesis"] == "H2") & (H["dataset"] == ds) & (H["metric"] == metric)]
+        t = sc.DS_SHORT[ds]
+        if len(r) and pd.notna(r["effect"].iloc[0]):
+            r = r.iloc[0]
+            t += f"\nSpearman ρ = {r['effect']:.2f}"
+            if pd.notna(r.get("ci_lo")):
+                t += f"  [{r['ci_lo']:.2f}, {r['ci_hi']:.2f}]"
+        ax.set_title(t, fontsize=17, loc="left", linespacing=1.4)
+        ax.set_xlabel("capability (5-shot accuracy)", fontsize=14)
+        ax.tick_params(labelsize=12)
+        ax.grid(axis="y", color="#EEEEEE", lw=0.8, zorder=0)
+    axes[0].set_ylabel("brain alignment\n(mutual k-NN, noise-ceiling corrected)", fontsize=14)
+    fig.text(0.06, 0.95, "Does brain alignment grow with model capability?", fontsize=24, fontweight="bold",
+             ha="left", va="top")
+    n = len([m for m in S["model"].unique() if sc.is_trained_vision(meta, m)
+             and np.isfinite(meta.at[m, "capability"])])
+    fig.text(0.06, 0.895, f"{n} trained vision models scored against human EEG, MEG and fMRI (THINGS); "
+             "ρ with 95% subsample CI", fontsize=14, color="#555555", ha="left", va="top")
+    hs = [Line2D([], [], marker="o", ls="", markersize=11, markerfacecolor=GROUP_PAL[g], markeredgecolor="white",
+                 label=GROUP_PAL_LABEL[g].replace("vision: ", "")) for g in ("supervised", "ssl", "clip")]
+    hs += [matplotlib.patches.Patch(color="#AAAAAA", alpha=0.35, label="random-init models (range)"),
+           Line2D([], [], color=BRAIN_COLOR, ls="--", lw=1.6, label="brain → held-out brain")]
+    fig.legend(handles=hs, loc="lower center", ncol=len(hs), fontsize=13, frameon=False,
+               bbox_to_anchor=(0.52, 0.01), handletextpad=0.4, columnspacing=1.6)
+    fig.savefig(_fig_dir(root) / "headline.png", dpi=100, metadata={"Software": None})
+    plt.close(fig)
 
 
 # ------------------------------------------------------------------ scaling
@@ -478,6 +612,7 @@ def make_all(root=None):
         if len(r):
             hl.append(r["model"].iloc[0])
     for fn, args in ((fig_map, (root, hl)), (fig_scaling, (root,)), (fig_family_scaling, (root,)),
+                     (fig_headline, (root,)),
                      (fig_timeresolved, (root,))):
         try:
             fn(*args)

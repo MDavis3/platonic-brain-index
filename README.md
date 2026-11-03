@@ -24,7 +24,7 @@ they do not include NSD.
 
 ![Capability vs brain alignment](figures/headline.png)
 
-*Capability (5-shot accuracy) against corrected brain alignment for the 35 trained vision models, per dataset and metric.*
+*Capability (5-shot accuracy) against noise-ceiling-corrected mutual-k-NN alignment for the 35 trained vision models, one panel per dataset (Spearman ρ with 95% subsample CI); grey band = random-init range, dashed line = brain-to-held-out-brain reference. All metrics: `figures/scaling.png`.*
 
 ![Map of minds](figures/map_of_minds.png)
 
