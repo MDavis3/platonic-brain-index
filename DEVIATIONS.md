@@ -1,6 +1,8 @@
 # Deviations from the preregistration
 
-`PREREGISTRATION.md` (commit cbd0a89) said deviations would be listed in `RESULTS.md`; they are listed here instead.
+`PREREGISTRATION.md` (commit cbd0a89) said deviations would be listed in `RESULTS.md`. `RESULTS.md` (the reader-facing
+write-up) has a "Deviations from the preregistration" section that summarizes the ones that matter for interpretation;
+the complete list is kept here.
 This file lists every place where the executed analysis differs from, or had to specify, what the preregistration
 says. Items marked **(deviation)** change something the preregistration states; items marked **(specification)**
 pin down something it leaves open. The final section lists the statistics implementation choices recorded when
