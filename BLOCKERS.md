@@ -20,3 +20,8 @@ Logged as they happen. Format: date — blocker — what I did instead.
   (b) audio models given the spoken concept name (macOS TTS), labelled exploratory.
 * 2026-11-02 — **THINGS images can't be redistributed** (research-only license). — Images are never committed;
   the pipeline downloads them from OSF. The committed artifacts are n×n stimulus kernels, which are derived data.
+* 2026-11-02 21:15 — **Push to GitHub (MDavis3).** The user approved pushing to their personal MDavis3 account. The `gh` CLI on this
+  machine is only logged into the work account (`manavdavis-sama`), and adding MDavis3 via device login stopped at GitHub's
+  passkey re-authentication ("sudo mode"), which only the user can complete. I did not push to the work account. — Everything is
+  committed locally; `scripts/push_to_github.sh` creates `MDavis3/platonic-brain-index` and pushes in one step after
+  `gh auth login` as MDavis3.
