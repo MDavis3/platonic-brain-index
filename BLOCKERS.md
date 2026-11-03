@@ -25,3 +25,5 @@ Logged as they happen. Format: date — blocker — what I did instead.
   passkey re-authentication ("sudo mode"), which only the user can complete. I did not push to the work account. — Everything is
   committed locally; `scripts/push_to_github.sh` creates `MDavis3/platonic-brain-index` and pushes in one step after
   `gh auth login` as MDavis3.
+  * **Resolved 21:40** — the user completed GitHub sign-in; pushed to the private repo `MDavis3/platonic-brain-index`. The CLI default
+    stays the work account; this repo uses a repo-local credential helper for MDavis3. Commits from now on use the MDavis3 noreply email.
